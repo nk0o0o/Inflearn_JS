@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노드 추가,이동,삭제의 실무적 예제</title>
+    <style>
+        body {
+            font-size: 15px;
+            font-family: "맑은 고딕";
+        } 
+        ul.menu {
+                padding: 10px;
+                list-style: none;
+                border: 1px #000 solid;
+        }
+        ul.menu li {
+            border: 1px #eeeeee solid;
+            margin: 10px;
+        }
+        button {
+            text-align: center;
+        }
+        button:hover {
+            background-color: yellow;
+        }
+        li.select {
+            background-color: #ccc;
+        }
+    </style>
+    <script src="libs/jquery-3.5.1.min.js"></script>   
+</head>
+<body>
+    <div>
+        <input type="text" id="menuName" />
+        <button id="add">추가</button>
+        <button id="update">수정</button>
+        <button id="remove">삭제</button>
+        <button id="up">위로</button>
+        <button id="down">아래로</button>
+    </div>
+    <ul class="menu"></ul>    
+
+    <script>
+        //전역 변수 선언 및 초기화
+        var $menu = null;
+        var $menuName = null;
+        var $selectedItem = null;
+
+        $(document).ready(function(){
+            init();//초기화 메소드
+            initEvent();//초기 이벤트 등록
+        })
+        //전역에서 사용할 jq변수 초기화
+        function init(){
+            $menu = $('ul.menu');
+            $menuName = $('#menuName')
+        }
+        function initEvent() {
+            $('#add').click(function(){
+                addMenu();
+            });
+
+        }
+        function addMenu(){
+            var newMenu = $menuName.val();
+            var $li = document.createElement('li');
+            $li.textContent($menuName)
+        }
+        
+    </script>
+</body>
+</html>
