@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While 반복문</title>
+</head>
+<body>
+    <script>
+        //1~100 합계
+       /*  var sum = 0;
+        var i = 1;
+        while (i<=100) {
+            sum += i
+            document.write(i +', ' + sum + '<br>');
+            i++;
+        } */
+        //while문은 무한루프 전용으로 사용!!!!
+
+        //do while문은 false여도 무조건 한번 실행
+        //do while문은 사용자 의사 물어보고 루핑 할지 말지 결정
+        var a = 0;
+        var b = 0;
+        var sum1 = 0
+        var i = 1;
+        do {
+            sum1 = a + b;
+            document.write('i='+ i +', a='+ a +', sum=' + sum1 + '<br>');
+            a++;
+            i++
+        } while (a <=3);
+    </script>
+</body>
+</html>

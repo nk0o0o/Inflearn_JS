@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문</title>
+</head>
+<body>
+    <script>
+        var data = ['서울', '인천', '대전', '대구'];
+        document.write('도시 총 개수 :' +data.length +'<br>');        
+        for (let i = 0; i < data.length; i++) {
+            document.write(data[i]+' ');            
+        }
+
+
+        var value = prompt('어디까지 입력?', '숫자입력');
+        value = parseInt(value);
+        for (let i = 1; i < value; i++) {
+            document.write(i+'<br>');             
+        }
+
+        //구구단
+        var dan = prompt('몇단 출력?')
+        dan = parseInt(dan);
+
+        for (let i = 1; i <= 9; i++) {
+            document.write( dan + "*" + i + "=" + ( dan * i ) + "<br>");
+        }
+    </script>
+</body>
+</html>

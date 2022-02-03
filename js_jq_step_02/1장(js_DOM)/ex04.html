@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM-4(이벤트 다중 추가)</title>
+    <style>
+        #container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+        img {width: 100px;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="images/girl.png" id="pic">
+    </div>
+    <script>
+        var pic = document.querySelector('#pic');
+        pic.addEventListener('mouseover', changePic, false);
+        pic.addEventListener('mouseout', originPic, false);
+        function changePic(){
+            pic.src = "images/boy.png"
+        }
+        function originPic(){
+            pic.src = "images/girl.png"
+            //querySelector로 접근한 경우 요소속성에 접근이 쉽다.
+        }
+    </script>
+</body>
+</html>

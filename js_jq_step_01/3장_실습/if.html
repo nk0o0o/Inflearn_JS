@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 - 1</title>
+</head>
+<body>
+    <script>
+        var userID = window.prompt("사용자 아이디입력")
+        if (userID == 'Shin'){
+            alert(userID + '님 환영!!')
+        } else {
+            alert('아이디 오류, 확인!!')            
+        }
+
+        var value = window.prompt("숫자입력")
+        //prompt는 스트링 반환이므로 parseInt() 통해서 정수 타입으로 바꿔야함
+        value = parseInt(value);
+
+        if(value % 2 == 0){
+            alert('짝수!')
+        } else {
+            alert('홀수!')
+        }
+
+        if((value % 2 == 0 )&& (value % 3 == 0)){
+            alert('2와 3의 공배수 o')
+        } else {
+            alert('2와 3의 공배수 x')
+        }
+        
+        if((value % 2 == 0 ) || (value % 3 == 0)){
+            alert('2나 3의 배수 o')
+        } else {
+            alert('2와 3 모두의 배수 x')
+        }
+    </script>
+</body>
+</html>

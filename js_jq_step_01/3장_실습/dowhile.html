@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var inputStr = null;
+
+        alert('메시지 입력');
+        alert('프로그램 종료 하려면 q 입력');
+        //최소 한번 무조건 실행
+        do {
+            inputStr = prompt('메시지 입력')
+            document.write(inputStr + '<br>')
+        } while (!(inputStr == 'q'));
+        //q입력하면 true가 되면 무한 반복이므로
+        //논리 부정연산자로 false로 빠져 나옴
+
+    </script>
+</body>
+</html>

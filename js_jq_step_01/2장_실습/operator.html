@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자</title>
+</head>
+<body>
+    <div class="list_show"></div>
+    <div class="show"></div>
+    
+    <script>
+        var radius = 10;//반지름
+        var pi = 3.14;
+        
+        //alert ( 2 * pi * radius);
+
+        window.onload = function(){
+            var list = ""; //문자열 타입
+            var num = 10; // 숫자 타입
+            list += "<ul>";
+                list += "   <li>안녕</li>";
+                list += "   <li>자바스크립트</li>";
+            list += "</ul>";
+            num += 10;
+            num += 10;
+            num += 10;
+            num += 10;
+            document.querySelector('.show').innerHTML = num;
+            document.querySelector('.list_show').innerHTML = list;
+        }
+        var input = prompt ("숫자 입력", "숫자")
+        alert(typeof(input));
+        var numType = Number(input);
+        alert(typeof(numType));
+        //한글써도 number타입이라고 나오는데 입력문자 체크하면 NaN나옴
+    </script>
+</body>
+</html>

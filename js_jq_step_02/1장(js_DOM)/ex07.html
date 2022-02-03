@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM-7(요소 추가하기)</title>
+    <link rel="stylesheet" href="css/nameList.css">
+    <style>
+        #nameList button {width: 40px; height: 40px;}
+        #nameList button::after {display: block; content:'X'}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <form action="">
+            <input type="text" id="userName" placeholder="입력하세요." required>
+            <button onclick="newRegister();return false;">go</button>
+        </form>
+        <hr>
+        <ul id="nameList">
+            <!-- <li>name <button>X</button></li> -->
+        </ul>
+    </div>
+    <script>        
+        function newRegister(){ //li 전체 등록하는 함수
+            var userNameInput = document.querySelector('#userName');
+            var nameList = document.querySelector('#nameList');
+            var text = document.createTextNode(userName.value);
+            var newLI = document.createElement('li');
+            newLI.appendChild(text);
+            //nameList.appendChild(newLI);            
+            nameList.insertBefore(newLI, nameList.childNodes[0])//항상 첫번째 자식으로 추가
+            //삭제 버튼 
+            var deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delBtn';                           
+            newLI.appendChild(deleteBtn);                        
+            var delBtns = document.querySelectorAll('.delBtn');
+            //li 등록할때 각 삭제 버튼에 이벤트를 달아주는거!!
+            delBtns.forEach(el => {
+                el.addEventListener('click', deleteLI); 
+            });
+
+            //다 만들고 인풋 값 제거, 포커스
+            userNameInput.value = '';    
+            userNameInput.focus();
+        }
+        
+        function deleteLI(){
+            this.parentNode.parentNode.removeChild(this.parentNode)
+            document.querySelector('#userName').focus();
+        }
+       
+        
+
+    </script>
+</body>
+</html>

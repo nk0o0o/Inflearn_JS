@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문</title>
+</head>
+<body>
+    <script>
+        var userID = window.prompt('아이디');
+        var userPW = window.prompt('패스워드');
+        if(userID == "Shin" && userPW == "1111"){
+            alert(userID + "님 로그인!")
+        } else if (userID == "Shin"){
+            alert('패스워드 오류');
+        } else {
+            alert("아이디 오류");
+        }
+        
+        var value = window.prompt("행운번호 입력!")
+        if(value == "1"){
+            document.write("tv 당첨!")
+        } else if (value == "2"){
+            document.write('에어컨 당첨!');        
+        } else if (value == "3"){
+            document.write('pc 당첨!');
+        } else {
+            document.write("꽝!");
+        }
+
+        var rank = window.prompt("직급 입력. 1-부장/ 2-차장/ 3-과장/ 4-대리/ 5-사원");
+        
+        switch (rank) {
+            case "1": document.write("<p>부장급여는 500</p>")
+            break;
+            case "2": document.write("<p>차장급여는 500</p>")
+            break;
+            case "3": document.write("<p>과장급여는 500</p>")
+            break;
+            case "4": document.write("<p>대리급여는 500</p>")
+            break;
+            case "5": document.write("<p>사원급여는 500</p>")
+            break;        
+            default: alert ('잘못입력!')
+        }
+    </script>
+</body>
+</html>
