@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수방식으로 클래스만들기</title>
+    <script src="libs/jquery-3.5.1.min.js"></script>    
+</head>
+<body>    
+    <script>       
+        //클래스 설계하기(붕어빵 기계) -- 멤버변수 4개
+        //속성 프로퍼티 -- 3개, 
+        //멤버 메서드 함수 --1개
+        function Person() {
+            this.name = '홍길동';
+            this.age = 15;
+            this.address = '대구';
+            this.displayPerson = function(){
+                document.write('name: ' + this.name +' age: ' + this.age +' address: ' + this.address + '<br/>')
+            }
+        }
+        //인스턴스 생성(붕어빵 종류별로 만들기)
+        //new 라는 연산자가 메모리에 멤버의 크기만큼 할당 (똑같은 붕어빵기계 사오기)
+        var american_person = new Person(); //팥붕어빵 
+        american_person.displayPerson();
+
+        var korean_person = new Person();//크림붕어빵
+        korean_person.name = '짱구'
+        korean_person.displayPerson();
+    </script>
+</body>
+</html>
