@@ -38,34 +38,144 @@
         <button id="remove">삭제</button>
         <button id="up">위로</button>
         <button id="down">아래로</button>
+        <button id="selectAllBtn">전체선택</button>
     </div>
-    <ul class="menu"></ul>    
+    <ul class="menu"></ul>      
 
     <script>
         //전역 변수 선언 및 초기화
         var $menu = null;
         var $menuName = null;
         var $selectedItem = null;
+        var $menuItem = null;
 
         $(document).ready(function(){
             init();//초기화 메소드
             initEvent();//초기 이벤트 등록
         })
+
         //전역에서 사용할 jq변수 초기화
         function init(){
-            $menu = $('ul.menu');
-            $menuName = $('#menuName')
+            $menu = $('ul.menu'); 
+            $menuName = $('input#menuName'); //인풋      
         }
-        function initEvent() {
+
+        function initEvent() {        
             $('#add').click(function(){
                 addMenu();
             });
-
+            $menu.on('click', 'li', function() { //새로 추가된 li라 바인딩다름...
+                selectItem($(this));
+            });           
+            $('#remove').click(function(){
+                removeMenu();
+            })
+            $('#update').click(function(){
+                updateMenu();
+            })
+            $('#up').click(function(){
+                moveUpMenu();
+            })
+            $('#down').click(function(){
+                moveDownMenu();
+            })
+            $('#selectAllBtn').click(function(){
+                selectAll();
+            })
         }
+
+        function moveDownMenu(){            
+            var $menuItem = $('.menu_item');
+            var $selectedItem = $('.select');  
+            if(!$menuItem.length){return false}
+            if($selectedItem.length > 1 || $selectedItem.length == 0){
+                alert('하나의 메뉴를 선택해주세요');   
+                return false;             
+            } 
+            $selectedItem.insertAfter($selectedItem.next())
+        }
+        function moveUpMenu(){
+            var $menuItem = $('.menu_item');
+            var $selectedItem = $('.select');   
+            if(!$menuItem.length){return false}
+            if($selectedItem.length > 1 || $selectedItem.length == 0){
+                alert('하나의 메뉴를 선택해주세요');   
+                return false;             
+            } 
+            if($selectedItem){
+                var $prevItem = $selectedItem.prev()
+                $selectedItem.insertBefore($prevItem);
+            }
+        }
+        function updateMenu(){
+            var $menuItem = $('.menu_item');
+            var $selectedItem = $('.select');       
+            if(!$menuItem){return false}
+            if($selectedItem.length > 1 || $selectedItem.length == 0){
+                alert('하나의 메뉴를 선택해주세요');   
+                return false;             
+            } 
+
+            var $updateTxt = $menuName.val().trim();
+            if($updateTxt == ""){
+                alert('메뉴를 입력해주세요');
+                $menuName.focus();
+                return false;
+            }
+
+            var $confirm = confirm('선택한 메뉴를 수정하겠습니까?');
+            if($confirm){
+                $selectedItem.html($updateTxt);
+            }
+
+            $menuName.val('');
+            $menuName.focus();
+        }
+
+        function removeMenu(){
+            var $selectedItem = $('.select')         
+            if($selectedItem){
+                var $confirm = confirm('선택한 메뉴를 삭제하겠습니까?');                
+                if($confirm){
+                    $selectedItem.remove();
+                    $selectedItem = null;
+                }
+            }else {
+                alert('선택한 메뉴가 없습니다.')
+                return false
+            }
+        }      
+        function selectAll(){
+            $('.menu_item').addClass('select');
+        }
+        function selectItem($item){
+            $selectedItem = $item;
+            $selectedItem.toggleClass('select');           
+        }
+
         function addMenu(){
-            var newMenu = $menuName.val();
-            var $li = document.createElement('li');
-            $li.textContent($menuName)
+            //사용자 입력 텍스트 가져오기
+            var $newMenutxt = $menuName.val().trim();
+            //공백 알림!
+            if($newMenutxt == ""){
+                alert('메뉴를 입력해주세요');
+                $menuName.focus();
+                return false;
+            }
+            //새로운 li 만들고 텍스트 넣기
+            var $newMenuLi = $('<li>'+ $newMenutxt +'</li>');
+            $newMenuLi.addClass('menu_item');
+            
+            //ul에 아래로 넣기         
+            if( $('.menu_item').length > 0){
+                $('.menu_item').last().after($newMenuLi);
+            }else {
+                $newMenuLi.prependTo($menu);
+            }
+
+            //인풋 비우고 포커싱
+            $menuName.val('');
+            $menuName.focus();
         }
         
     </script>
