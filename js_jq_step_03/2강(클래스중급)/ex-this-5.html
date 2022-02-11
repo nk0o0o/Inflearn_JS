@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스턴스호출 this 정체-5</title>
+    <script src="libs/jquery-3.5.1.min.js"></script>
+    <style>
+        
+    </style> 
+</head>
+<body>    
+    
+    <script>
+      var userName = "사용자이름";
+
+      function User(name){
+          this.userName = name;
+      }
+
+      //User('김연아'); //인스턴스 만든게 아니고, 일반 함수 호출
+     // console.log('userName = ' + userName); //매개변수 넣은 값으로 재할당됨 : 함수 호출의 this는 윈도우꺼
+
+      var user = new User("박지성");
+
+      console.log('userName = ' + userName); //
+      console.log('userName = ' + user.userName); //매개변수 넣은 값으로 재할당됨 : 인스턴스 호출의 this는 인스턴스 만들때 넣은 매개변수값으로
+      
+      
+
+
+
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로토타입 방식 클래스로 싱글/다중 탭메뉴 생성</title>
+    <title>프로토타입 방식 클래스로 싱글/다중 탭메뉴 생성---최적화 작업</title>
     <script src="libs/jquery-3.5.1.min.js"></script>
     <style>
         .tab-menu {
@@ -69,22 +69,20 @@
         
        $(document).ready(function(){
            //설계한 클래스의 인스턴스 생성하기
-            var tabMenu1 = new TabMenu();
-            //인스턴스 작동하게하는 메서드 불러오기
-            tabMenu1.init('#tabMenu1');
-            tabMenu1.initEvent();
-            
-            var tabMenu2 = new TabMenu();
-            tabMenu2.init('#tabMenu2');
-            tabMenu2.initEvent();
+            var tabMenu1 = new TabMenu('#tabMenu1');
+            var tabMenu2 = new TabMenu('#tabMenu2');         
        });
        
-       //클래스 설계
-       function TabMenu() {
+       //클래스 설계 
+       //생성자 부분에서 매개변수를 받고 있다.
+       function TabMenu(tabname) {
            //프로퍼티 초기화
             this.$tabMenu=null; // ul
             this.$menuItems=null; // li
             this.$selectedMenuItem=null;
+            //인스턴스의 메서드 바로 작동하게하는 메서드 불러오기
+            this.init(tabname);
+            this.initEvent();
        }
 
        //초기화 메서드
