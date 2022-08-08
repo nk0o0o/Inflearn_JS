@@ -1,0 +1,399 @@
+//Main Responsive
+@media screen and (max-width: $media_pc) {//1024px
+   .inner {
+      width: 100%;
+      padding: 0 20px;
+   } 
+   
+}
+@media screen and (max-width: $media_tablet) {//835px;
+   .mobile_br{
+      display: block;
+   }
+   .header{
+      overflow: hidden;
+      height: 45px;
+      transition: all 700ms;
+      .logo{
+         margin-right: 0;
+      }
+      .util{
+         margin-left: 0;
+         width: 18px;
+         text-align: right;
+         &_search{
+            display: none;
+         }
+      }
+      .nav{         
+         order: 5;
+         flex: 1 1 100%;
+         &_hamb{
+            width: 18px;
+            height: 10px;
+            display: block;
+            position: relative;
+            &::after{
+               display: block;
+               content: '';
+               width: 100%;
+               height: 1px;
+               background-color: $color-white;
+               position: absolute;
+               top: 0;
+               left: 0;
+               transition: all 300ms ease-in;
+            }
+            &::before{
+               display: block;
+               content: '';
+               width: 100%;
+               height: 1px;
+               background-color: $color-white;
+               position: absolute;
+               bottom: 0;
+               left: 0;
+               transition: all 300ms ease-in;               
+            }
+         }
+         &_list{
+            border-top: 1px solid #6e6e73;
+            flex-direction: column;
+            padding: 0 40px;
+            margin: 0 -20px; 
+            transition: all 300ms ease-in;
+            opacity: 0.1;
+         }
+         &_item{
+            width: 100%;
+            height: 45px;
+            & + .nav_item{
+               border-top: 1px solid $gray-600;
+            }
+            a{
+               @include flexStart;
+               width: 100%;
+               height: 100%;
+               opacity: 0.7;
+               transition:all 200ms ease-in;
+               &:hover{
+                  opacity: 1;
+               }
+            }
+         }
+      }     
+      &.open{
+         background-color: #000;
+         height: 100vh;
+         overflow: visible;
+         .inner{
+            align-items: flex-start; 
+            flex-wrap: wrap;
+         }
+         .nav{
+            display: block;
+            &_hamb{
+               margin-top: 16px;                            
+            }
+            &_list{
+               height: auto;
+               overflow: visible;
+               opacity: 1;
+            }
+         }
+         .header_search{
+            visibility: visible;
+            opacity: 1;
+            overflow: visible;
+            height: auto;
+            padding:4px 0 16px;
+            .input_group{             
+               height: 38px;
+               overflow: visible;
+               visibility: visible;
+            }
+         }
+         .util{
+            margin-top: 16px;
+            &_cart{
+               opacity: 0;
+               visibility: hidden;
+            }
+         }
+      }
+   }
+   section[data-product="MacBookAir"]{
+      background: url('../images/main/hero_macbookair_small.png') no-repeat center/cover;
+      background-position: bottom;
+   }
+   section[data-product="iPhone13"]{
+      background: url('../images/main/hero_iphone13_small.jpg') no-repeat center/cover;
+   }
+   section[data-product="iPhone13Pro"]{
+      background: url('../images/main/hero_iphone13pro_small.jpg') no-repeat center/cover;
+   }
+   section div[data-product="WATCH7"]{
+      background: url('../images/main/promo_ws7_small.jpg') no-repeat center/cover; 
+   }
+   section div[data-product="MacBookPro13"]{
+      background: url('../images/main/promo_mbp13_small.jpg') no-repeat center/cover;
+   }
+   section div[data-product="iPadair"]{
+      background: url('../images/main/promo_ipadair_small.jpg') no-repeat center/cover;
+   }
+   section div[data-product="AirPodsPro"]{
+      background:#000 url("../images/main/tile_small.jpg") no-repeat bottom center/40%;
+   }
+   section div[data-product="musicLive"]{
+      background: url('../images/main/promo_maryj_small.jpg') no-repeat bottom center/cover;    
+      .product_cont{
+         .product_tit{
+            @include flexCenter;
+            margin-top: -1.2rem;
+            img{
+               top: 12px;
+            }
+         }
+      }
+   }
+   .product{
+      &_section{
+         height:520px;
+         &-col2{
+            padding: 0 0 12px;
+         }
+         &.align_center{
+            align-items: flex-start;
+            .product_cont{
+               padding-left: 0;
+               align-items: center;
+            }
+         }
+      }
+      &_col2_box {
+         flex: 1 1 100%;
+         height: 300px;
+         .product{
+            &_cont{
+               padding:3.6rem 0 3.2rem;
+            }
+            &_tit{
+               font-size: $fs-md;
+               &.with_logo{
+                  padding-left:26px;
+                  img{
+                     width: 24px;
+                     position: absolute;
+                     top: -25px;
+                     left: 0;
+                  }
+                  span{
+                     margin-left: -24px;
+                  }
+               }
+               &_circle{
+                  font-size: $fs-l;
+                  font-weight: $fw-n;
+                  width: 80px;
+                  height: 80px;
+                  border: 3px solid #fff;
+               }
+            }
+            &_desc{
+               font-size: $fs-sm;
+               .m2Box{
+                  width: 28px;
+                  height: 28px;
+               }
+            }
+            &_link{
+               font-size: $fs-xs;
+            }
+         }
+      }
+      &_tit{
+         font-weight: $fw-sb;
+         font-size: $fs-xlg;
+         line-height: 1.2;
+      }
+      &_desc {
+         font-size: $fs-m;
+         & + .product_link {
+            margin-top: 18px;
+         }
+         .m2Box{
+            width: 30px;
+            height: 30px;
+            margin-left: 8px;
+            @include flexCenter;
+            em{
+               font-size: $fs-xxxs;
+               color:$color-white;
+               padding-left: 6px;
+               background: url('../images/apple_logo.svg') no-repeat left center/28%
+            }
+         }
+      }
+      &_link {         
+         font-size: $fs-s;
+      }
+   }
+   .footer{
+      &_info{
+         padding-bottom: 16px;
+      }
+      &_contact {
+         padding: 16px 0;
+      }
+      &_company{
+         border-top: 0;
+         margin-top: -12px;
+         flex-direction: column;
+         align-items: flex-start;
+         &_country {
+            order: -1;
+            position: static;
+            & + .footer_company_copy{
+               margin-top: 16px;
+            }
+         }
+         &_copy {
+            & + .footer_company_link{
+               margin-top: 8px;
+            }
+         }
+      }
+      &_sitemap {
+         column-count: auto;
+         li {
+            padding: 10px 0;
+            cursor: pointer;
+            &.open, &:active, &:hover{
+               .sitemap_tit{
+                  &::after ,&::before{
+                     background-color: #000;
+                  }
+                  color: $gray-700;
+                  font-weight: $fw-sb;
+               }
+            }
+            &.open, &:active{
+               .sitemap_tit{
+                  &::after{
+                     transform: rotate(-45deg);
+                  }
+                  &::before{
+                     transform: rotate(45deg);
+                  }
+               }
+            }
+            &.open{
+               .sitemap_list{
+                  height: auto;
+                  padding-top: 8px;
+                  padding-bottom: 10px;
+                  overflow: visible;
+                  transition: all 0.3s;
+                  a{
+                     transition: all 0.3s;
+                     height: auto;
+                  }
+               }
+            }
+            border-bottom: 1px solid $gray-200;
+         }
+         .sitemap{
+            &_list{
+               height: 0px;
+               padding: 0 14px;
+               overflow: hidden;
+               transition: all 0.3s;
+               a{
+                  height: 0;
+                  transition: all 0.3s;
+               }
+            }
+            &_tit {
+               width: 100%;          
+               color: $gray-400;
+               font-weight: $fw-n;
+               font-size: $fs-xxs;
+               position: relative;
+               &::after ,&::before{
+                  position: absolute;
+                  content: '';
+                  display: block;
+                  width: 8px;
+                  height: 1px;
+                  background: $gray-700;
+                  top: 50%;
+                  right: 20px;
+                  transform: translateY(-50%);
+                  transition: transform 0.5s;
+               }
+               &::after{
+                  transform: translateY(-50%) rotate(-90deg);
+               }
+            }
+         }      
+      }
+   }
+}
+.nav_hamb.xOpen{
+   &::after{
+      animation: xOpenA 300ms forwards ease-in-out;
+      @keyframes xOpenA {
+         0%{
+            top:6px;
+         }
+         100%{
+            top: 5px;
+            transform: rotate(45deg);
+         }
+      }
+   }
+   &::before{
+      animation: xOpenB 300ms forwards ease-in-out;
+      @keyframes xOpenB {
+         0%{
+           bottom:5px;
+         }
+         100%{                        
+            bottom:4px;
+            transform: rotate(-45deg);
+         }
+      }
+   }  
+}
+.nav_hamb.xClosed{
+   &::after{
+      animation: xClosedA 300ms forwards ease-in-out;
+      @keyframes xClosedA {
+         0%{
+            transform: rotate(45deg);
+            top:6px;
+         }
+         50%{
+            transform: rotate(0deg);
+         }
+         100%{
+            top: 0px;
+         }
+      }
+   }
+   &::before{
+      animation: xClosedB 300ms forwards ease-in-out;
+      @keyframes xClosedB {
+         0%{
+            transform: rotate(-45deg);
+            bottom:5px;
+         }
+         50%{
+            transform: rotate(0deg);
+         }
+         100%{                        
+            bottom:0px;
+         }
+      }
+   }
+}

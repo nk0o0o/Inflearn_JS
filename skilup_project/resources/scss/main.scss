@@ -1,0 +1,415 @@
+@charset "utf-8";
+@import "style";
+$media_pc: 1024px;
+$media_tablet:835px;
+$media_mobile:720px;
+svg{
+   vertical-align: top;
+}
+.inner {
+   width: 1024px;
+   margin: 0 auto;
+   @include flexStart; 
+}
+.container{
+   &_bnr-top{
+     background-color: $gray-50;
+     text-align: center;
+     padding: 16px 62px;
+     p{
+        font-size: $fs-xxs;
+        font-weight: $fw-m;
+        line-height: 1.2;
+      }
+   }
+}
+.mobile_br{
+   display: none;
+}
+//헤더
+.header {
+   background-color: $gray-800;
+   .inner {
+      transition: all 300ms;
+      justify-content: space-between;
+      flex-wrap: wrap
+   }
+   .logo {
+      margin-right: $sp06;
+      line-height: 1;
+      font-size: 14px;
+   }
+   .nav {
+      &_hamb{
+         display: none;
+      }
+      flex: 1 0 auto;
+      &_list {
+         @include flexBetween;
+      }
+      &_item {
+         a {
+            color: $color-white;
+            font-size: $fs-xs;
+         }
+      }
+   }
+   .util {
+      margin-left: $sp06;
+      .util_cart{
+         transition: all 500ms;
+      }
+      .util_search {
+         margin-right: $sp06;
+      }
+      > *[class*="ico"] {
+         filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%);
+      }
+   }
+   &_search{
+      flex: 1 1 100%;
+      position: relative;
+      visibility: hidden;
+      opacity: 0;
+      overflow: hidden;
+      height: 0;
+      padding: 0;
+      transition: all 300ms;
+      .input_group{
+         height: 0px;
+         overflow: hidden;
+         visibility: hidden;
+         transition: all 500ms ease-in;
+         width: 100%;
+         .input_text[type="text"]{
+            caret-color:$color-white;
+            border-radius: 10px;
+            background-color: $gray-900;
+            border-color: $gray-900;
+            color: $color-white;
+            font-weight: $fw-sb;
+         }
+      }
+   }
+}
+div[data-product]{
+   cursor: pointer;
+}
+section[data-product="MacBookAir"]{
+   background: url('../images/main/hero_macbookair_largetall.png') no-repeat center/cover;
+}
+section[data-product="iPhone13"]{
+   background: url('../images/main/hero_iphone13_largetall.jpg') no-repeat center/cover;
+}
+section[data-product="iPhone13Pro"]{
+   background: url('../images/main/hero_iphone13pro_largetall.jpg') no-repeat center/cover;
+}
+section div[data-product="WATCH7"]{
+   background: url('../images/main/promo_ws7_large.jpg') no-repeat center/cover; 
+}
+section div[data-product="MacBookPro13"]{
+   background: url('../images/main/promo_mbp13_large.jpg') no-repeat center/cover;
+}
+section div[data-product="iPadair"]{
+   background: url('../images/main/promo_ipadair_large.jpg') no-repeat center/cover;
+}
+section div[data-product="AirPodsPro"]{
+   background:#000 url("../images/main/tile_large.jpg") no-repeat bottom center/40%;
+}
+section div[data-product="musicLive"]{
+   background: url('../images/main/promo_maryj_large.jpg') no-repeat bottom center/cover;
+   .product_cont{
+      height: 100%;
+      justify-content: flex-start;
+      .product_desc{
+         margin-top: auto;
+      }
+      .product_tit{
+         @include flexCenter;
+         margin-top: -3.2rem;
+         img{
+            top: 8px;
+         }
+      }
+   }
+}
+div[data-product="appleTV"]{
+   background: url('../images/main/promo_blackbird_large.jpg') no-repeat center/cover;  
+   .product_cont{
+      height: 100%;
+      justify-content: flex-start;
+   }
+   h3.product_tit{
+      font-size: $fs-xxxlg;
+      margin-top: auto;
+   }
+}
+.product {
+   &_section {
+      display: flex;
+      align-items: flex-start;
+      height: 690px;
+      background-color: $gray-10;
+      &.align_center{
+         align-items: center;
+         .product_cont{
+            padding-left: $sp11;
+         }
+      }
+      & + .product_section {
+         margin-top: 12px;
+      }
+      &-col2 {
+         @include flexStart;
+         flex-wrap: wrap;
+         padding: 12px;
+         gap: 12px;
+      }
+   }
+   &_col2_box {
+      flex: 1 1 calc(50% - 12px);
+      background-color: #000;
+      height: 580px;
+      &.bg_white{
+         .product_tit{color: $gray-900;}
+         .product_desc{color: $gray-900;}
+      }
+      .product {
+         &_tit {
+            color: $color-white;
+            line-height: 1;
+            font-size: $fs-lg;
+            font-weight: $fw-sb;
+            position: relative;
+            &.with_logo{
+               padding-left: 34px;
+               img{
+                  width: 28px;
+                  position: absolute;
+                  top: -25px;
+                  left: 0;
+               }
+               span{
+                  margin-left: -34px;
+               }
+            }
+            & + .product_desc {
+               margin-top: 12px;
+            }
+         }
+         &_desc {
+            color: $color-white;
+            font-size: $fs-m;
+            & + .product_link {
+               margin-top: 12px;
+            }
+            .m2Box{
+               width: 32px;
+               height: 32px;
+               -webkit-box-shadow:-1px -2px 9px 2px #f5963d, 2px 3px 10px 4px #8000ff;
+               -moz-box-shadow:-1px -2px 9px 2px #f5963d, 2px 3px 10px 4px #8000ff;
+               box-shadow:-1px -2px 9px 2px #f5963d, 2px 3px 10px 4px #8000ff;
+            }
+         }
+         &_cont{
+            padding:6.4rem 0 3.2rem;
+         }
+         &_link{
+            font-size: $fs-s;
+            a:hover {
+               > span {
+                  &::after {
+                     height: 1px;
+                  }
+               }
+            }
+         }
+      }
+   }
+   &_cont {
+      @include flexCenter;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      padding: $sp09 0 140px;
+      &-left {
+         align-items: flex-start;
+      }
+   }
+   &_tit {
+      font-size: $fs-xxxlg;
+      text-align: center;
+      & + .product_desc {
+         margin-top: 12px;
+      }
+      span{
+         display: block;
+         font-size: $fs-xs;
+         margin-top: 8px;
+         letter-spacing: 1.6px;
+      }
+      &_circle{
+         width: 100px;
+         height: 100px;
+         border: 4px solid $color-white;
+         border-radius: 100%;
+         @include flexCenter;
+         margin-left: 8px;
+      }
+   }
+   &_desc {
+      @include flexStart;
+      font-size: $fs-md;
+      text-align: center;
+      font-weight: 500;
+      & + .product_link {
+         margin-top: 24px;
+      }
+      .m2Box{
+         width: 38px;
+         height: 38px;
+         background-color: #000000;
+         margin-left: 8px;
+         @include flexCenter;
+         em{
+            font-size: $fs-xxs;
+            color:$color-white;
+            padding-left: 10px;
+            background: url('../images/apple_logo.svg') no-repeat left center/35%;
+         }
+      }
+   }
+   &_link {
+      color: $color-primary;
+      font-size: $fs-sm;
+      font-weight: 500;
+      @include flexStart;
+      > a {
+         & + a {
+            margin-left: 36px;
+         }
+         @include flexStart;
+         > i {
+            filter: invert(20%) sepia(59%) saturate(7005%) hue-rotate(200deg) brightness(97%) contrast(101%);
+         }
+         &:hover {
+            > span {
+               position: relative;
+               &::after {
+                  content: "";
+                  display: block;
+                  position: absolute;
+                  bottom: -2px;
+                  left: 0;
+                  width: 100%;
+                  height: 2px;
+                  background-color: $color-primary-lighten1;
+               }
+               &.txt_white{
+                  &::after{
+                     background-color: $color-white;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+.footer {
+   background-color: $gray-10;
+   .inner {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   &_info {
+      padding: 16px 0 24px;
+      font-size: 11px;
+      color: $gray-600;
+      line-height: 1.4;
+   }
+   &_sitemap {
+      width: 100%;
+      padding: 24px 0 8px;
+      border-top: 1px solid $gray-100;
+      column-count: 5;
+      li {
+         @include flexStart;
+         flex-direction: column;
+         align-items: flex-start;
+         font-weight: $fw-b;
+         text-align: left;
+         padding: 0 0 24px;
+         &:nth-child(1),
+         &:nth-child(3),
+         &:nth-child(4),
+         &:nth-child(6) {
+            break-after: column;
+         }
+      }
+      .sitemap{
+         &_list{
+            @include flexStart;
+            flex-direction: column;
+            align-items: flex-start;
+         }
+         &_tit {
+            font-size: $fs-xxxs;
+         }
+         &_item {
+            font-size: 11px;            
+            font-weight: $fw-n;
+            margin-top: 12px;
+            &:hover{
+               border-bottom: 1px solid $gray-700;
+            }
+         }
+      }      
+   }
+   &_contact {
+     /*  @include flexStart; */
+      padding: 12px 0;
+      color: $gray-600;
+      font-size: $fs-xxs;
+   }
+   &_company {
+      position: relative;
+      padding: 12px 0 24px;
+      border-top: 1px solid $gray-100;
+      @include flexStart;
+      flex-wrap: wrap;
+      &_copy {
+         font-size: 11px;
+         margin-right: 36px;
+      }
+      &_link {
+         @include flexStart;
+         li {
+            & + li {
+               border-left: 1px solid $gray-200;
+               padding-left: 12px;
+               margin-left: 12px;
+            }
+         }
+         a {
+            color: $gray-500;
+            font-size: 11px;
+            font-weight: $fw-m;
+         }
+      }
+      &_num {
+         flex: 1 1 100%;
+         font-size: 11px;
+         color: $gray-400;
+         padding-top: 12px;
+      }
+      &_country {
+         position: absolute;
+         right: 0;
+         top: 12px;
+         font-weight: $fw-m;
+         font-size: 11px;
+      }
+   }
+}
+
+@import "_main_responsive";

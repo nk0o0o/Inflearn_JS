@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="reset.css">
+   <link rel="stylesheet" href="style.css">
+   <script src="gsap.mi.js" type="text/javascript"></script>
+   <script src="flip.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+   <div class='wrapper'>
+      <!-- card -->
+      <div class='card'>
+         <div class="card__intro">
+            <div class="card__intro--job">
+               <p>퍼블리셔</p>
+               <ul>
+                  <li>#html</li>
+                  <li>#css</li>
+                  <li>#javaScript</li>
+               </ul>
+            </div>
+            <div class="card__intro--avatar"><img src="https://assets.codepen.io/66496/card-smile.svg" alt></div>
+         </div>
+         <div class='card__heading'>
+            <div class="card__heading--name">
+               홍기ㅏㄹ동
+            </div>
+            <div class="card__heading--year">
+               14년 경력
+            </div>
+
+         </div>
+         <div class='card__text'>최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는
+            디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를
+            만들어내는 디자이너입니다.</div>
+      </div>
+      <!-- card -->
+      <div class='card'>
+         <div class="card__intro">
+            <div class="card__intro--job">
+               <p>퍼블리셔</p>
+               <ul>
+                  <li>#html</li>
+                  <li>#css</li>
+                  <li>#javaScript</li>
+               </ul>
+            </div>
+            <div class="card__intro--avatar"><img src="  https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png" alt></div>
+         </div>
+         <div class='card__heading'>
+            <div class="card__heading--name">
+               홍기ㅏㄹ동
+            </div>
+            <div class="card__heading--year">
+               14년 경력
+            </div>
+         </div>
+         <div class='card__text'>최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는
+            디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를
+            만들어내는 디자이너입니다.</div>
+      </div>
+      <!-- card -->
+      <div class='card'>
+         <div class="card__intro">
+            <div class="card__intro--job">
+               <p>퍼블리셔</p>
+               <ul>
+                  <li>#html</li>
+                  <li>#css</li>
+                  <li>#javaScript</li>
+               </ul>
+            </div>
+            <div class="card__intro--avatar"><img src="  https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png" alt></div>
+         </div>
+         <div class='card__heading'>
+            <div class="card__heading--name">
+               홍기ㅏㄹ동
+            </div>
+            <div class="card__heading--year">
+               14년 경력
+            </div>
+         </div>
+         <div class='card__text'>최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는
+            디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를 만들어내는 디자이너입니다.최상의 결과를
+            만들어내는 디자이너입니다.</div>
+      </div>
+    
+     
+   </div>
+
+
+   <script>
+      gsap.registerPlugin(Flip);
+
+      const activeClass = "is-active";
+      const inactiveClass = "is-inactive";
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card, idx) => {
+         card.addEventListener("click", () => {
+            const state = Flip.getState(cards);
+            const isCardActive = card.classList.contains(activeClass);
+
+            cards.forEach((otherCard, otherIdx) => {
+               otherCard.classList.remove(activeClass);
+               otherCard.classList.remove(inactiveClass);
+               if (!isCardActive && idx !== otherIdx)
+                  otherCard.classList.add(inactiveClass);
+            });
+
+            if (!isCardActive) {
+               card.classList.add(activeClass);
+            }
+
+            Flip.from(state, {
+               duration: 1,
+               ease: "expo.out",
+               absolute: true
+            });
+
+         });
+      });
+   </script>
+</body>
+
+</html>

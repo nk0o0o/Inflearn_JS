@@ -1,0 +1,96 @@
+/* Checkbox Button */
+.input_check {
+   display: none;
+   &_wrap {
+      display: inline-block;
+      position: relative;
+   }
+   & + label {
+      display: inline-block;
+      position: relative;
+      min-height: 24px;
+      padding-left: 30px;
+      user-select: none;
+      font-size: $fs-xs;
+      line-height: 24px;
+      cursor: pointer;
+      &::before {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 24px;
+         height: 24px;
+         text-align: center;
+         background: #fff;
+         @include iconImgPath("ico_forms.svg");
+         background-position: 0 -24px;
+      }
+   }
+   &:checked + label {
+      &::before {
+         background-color: transparent;
+         background-position: -24px -24px;
+      }
+   }
+   &:disabled + label {
+      cursor: default;
+      &::before {
+         background-color: transparent;
+         background-position: -48px -24px;
+      }
+   }
+   &[disabled][checked] + label {
+      &::before {
+         background-position: -72px -24px;
+      }
+   }
+}
+
+/* Radio Button */
+.input_radio {
+   display: none;
+   &_wrap {
+      display: inline-block;
+      position: relative;
+   }
+   & + label {
+      display: inline-block;
+      position: relative;
+      min-height: 24px;
+      padding-left: 27px;
+      font-size: $fs-xs;
+      line-height: 24px;
+      user-select: none;
+      cursor: pointer;
+      &::before {
+         content: "";
+         display: block;
+         position: absolute;
+         left: 0;
+         top: 0;
+         width: 24px;
+         height: 24px;
+         text-align: center;
+         @include iconImgPath("ico_forms.svg");
+         background-position: -96px -24px;
+      }
+   }
+   &:checked + label {
+      &::before {
+         background-position: -120px -24px;
+      }
+   }
+   &:disabled + label {
+      cursor: default;
+      &::before {
+         background-position: -144px -24px;
+      }
+   }
+   &[disabled][checked] + label {
+      &::before {
+         background-position: -168px -24px;
+      }
+   }
+}

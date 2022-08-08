@@ -1,0 +1,95 @@
+/* Accordion */
+.accordion {
+   &_tit {
+      position: relative;
+      padding: $sp05 $sp05 $sp05 $sp08;
+      font-size: $fs-xs;
+      &::before {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 50%;
+         left: 16px;
+         transform: translateY(-50%);
+         width: 16px;
+         height: 16px;
+         @include iconImgPath("ico_chev_down.svg");
+         background-size: contain;
+         @include trans($prop: all, $duration: 0.3s, $type: ease-out, $delay: 0s);
+      }
+   }
+   &_heading {
+      position: relative;
+      font-size: $fs-sm;
+      line-height: 26px;
+      border-top: 1px solid #e2e5ea;
+      cursor: pointer;
+      &:last-child {
+         border-bottom: 1px solid #e2e5ea;
+      }
+      &.on {
+         font-weight: $fw-m;
+         color: $color-primary;
+         .accordion_tit {
+            &::before {
+               -webkit-transform: rotate(-180deg) translateY(50%);
+               transform: rotate(-180deg) translateY(50%);
+               filter: invert(27%) sepia(97%) saturate(3854%) hue-rotate(217deg) brightness(101%) contrast(99%);
+            }
+         }
+      }
+   }
+   &_cont {
+      display: none;
+      position: relative;
+      padding: $sp05;
+      font-size: $fs-s;
+      font-weight: $fw-n;
+      color: $gray-700;
+      line-height: 24px;
+      background-color: $color-box;
+   }
+   &_list {
+      &.arr_right_list {
+         .accordion_tit {
+            padding-left: $sp05;
+            padding-right: $sp08;
+            &::before {
+               left: auto;
+               right: 16px;
+            }
+         }
+      }
+      &.faq_list {
+         .accordion_tit {
+            &::before {
+               @include iconImgPath("ico_faq_Q_16.svg");
+            }
+         }
+         .accordion_heading {
+            &.on {
+               .accordion_tit {
+                  filter: brightness(0) saturate(100%) invert(29%) sepia(42%) saturate(5897%) hue-rotate(215deg)
+                     brightness(98%) contrast(105%);
+                  &::before {
+                     transform: translateY(-50%);
+                  }
+               }
+            }
+         }
+         .accordion_cont {
+            padding-left: $sp08;
+            &::before {
+               content: "";
+               display: block;
+               position: absolute;
+               top: 16px;
+               left: 16px;
+               width: 16px;
+               height: 16px;
+               @include iconImgPath("ico_faq_A_16.svg");
+            }
+         }
+      }
+   }
+}
