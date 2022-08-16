@@ -8,7 +8,7 @@
    <link rel="icon" type="image/png" href="../favicon.ico">
    <script src="../resources/js/jquery-3.6.0.min.js"></script>
    <script src="../resources/js/common.js"></script>
-   <link rel="stylesheet" href="../resources/css/style.css">
+   <!-- <link rel="stylesheet" href="../resources/css/style.css"> -->
    <link rel="stylesheet" href="../resources/css/main.css">
    <title>MAIN</title>
 </head>
@@ -42,8 +42,22 @@
                </ul>
             </nav>
             <div class="util">
-               <a href="#" class="util_search ico_search ico_16 blind">검색</a>
-               <a href="#" class="util_cart ico_cart ico_16 blind">장바구니</a>
+               <div class="util_search">
+                  <a href="#" class="ico_search ico_16 blind">검색</a>
+               </div>
+               <div class="util_cart">
+                  <a href="#" class="ico_cart ico_16 blind">장바구니</a>
+                  <div class="header_cart">
+                     <p class="header_cart_msg">장바구니가 비어 있습니다.</p>
+                     <ul class="header_cart_list">
+                        <li><a href="#"><i class="ico ico_24 ico_cart"></i>장바구니</a></li>
+                        <li><a href="#"><i class="ico ico_24 ico_bookmark"></i> 저장된 항목</a></li>
+                        <li><a href="#"><i class="ico ico_24 ico_box_02"></i> 주문</a></li>
+                        <li><a href="#"><i class="ico ico_24 ico_user_octagon"></i> 계정</a></li>
+                        <li><a href="#"><i class="ico ico_24 ico_unlock"></i> 로그인</a></li>
+                     </ul>
+                  </div>
+               </div>
             </div>
             <div class="header_search">
                <div class="input_group input_icon_left">
@@ -59,6 +73,7 @@
          </div>
          <!-- MacBook Air -->
          <section class="section product_section align_center" data-product="MacBookAir">
+            <a href="#" class="blind_alink">view more</a>
             <div class="inner">
                <div class="product_cont product_cont-left">
                   <h2 class="product_tit">MacBook Air</h2>
@@ -72,6 +87,7 @@
          </section>
          <!-- iPhone 13 -->
          <section class="section product_section" data-product="iPhone13">
+            <a href="#" class="blind_alink">view more</a>
             <div class="inner">
                <div class="product_cont">
                   <h2 class="product_tit">iPhone 13</h2>
@@ -85,6 +101,7 @@
          </section>
          <!-- iPhone 13 Pro -->
          <section class="section product_section" data-product="iPhone13Pro">
+            <a href="#" class="blind_alink">view more</a>
             <div class="inner">
                <div class="product_cont">
                   <h2 class="product_tit">iPhone 13 Pro</h2>
@@ -99,6 +116,7 @@
          <!-- section-col2 -->
          <section class="section product_section-col2">
             <div class="product_col2_box" data-product="WATCH7">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit with_logo"><img src="../resources/images/apple_logo.svg" alt="apple">WATCH
                      <span>SERIES 7</span></h2>
@@ -110,6 +128,7 @@
                </div>
             </div>
             <div class="product_col2_box" data-product="MacBookPro13">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit">MacBook Pro 13</h2>
                   <p class="product_desc">막강한 성능의<span class="m2Box"><em>M2</em></span></p>
@@ -120,6 +139,7 @@
                </div>
             </div>
             <div class="product_col2_box" data-product="iPadair">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit">iPad air</h2>
                   <p class="product_desc">가뿐하게. 색다르게. 강력하게</p>
@@ -130,6 +150,7 @@
                </div>
             </div>
             <div class="product_col2_box" data-product="AirPodsPro">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit">AirPods Pro</h2>
                   <p class="product_desc">새롭게 귓가를 찾아온 매혹.</p>
@@ -140,6 +161,7 @@
                </div>
             </div>
             <div class="product_col2_box" data-product="musicLive">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit with_logo"><img src="../resources/images/apple_logo.svg" alt="apple">Music<em
                         class="product_tit_circle">LIVE</em></h2>
@@ -150,13 +172,15 @@
                </div>
             </div>
             <div class="product_col2_box" data-product="appleTV">
+               <a href="#" class="blind_alink">view more</a>
                <div class="product_cont">
                   <h2 class="product_tit with_logo"><img src="../resources/images/apple_logo.svg" alt="apple">tv+</h2>
                   <h3 class="product_tit">블랙 버드 <span>BLACK BIRD</span></h2>
                      <p class="product_desc">감옥에서 벗어나는 단 하나의 방법,<br>살인자의 과거를 밝혀라.</p>
                      <div class="product_link">
-                        <a href="#"><span class="txt_white">지금 시청하기</span><i
-                              class="ico_16 ico_play_circle white"></i></a>
+                        <a href="#"><span class="txt_white">지금 시청하기</span>
+                           <i class="ico_16 ico_play_circle white"></i>
+                        </a>
                      </div>
                </div>
             </div>
@@ -261,7 +285,6 @@
             <p class="footer_contact">다양한 쇼핑 방법: <a href="#" class="txt_primary">Apple Store를 방문</a>하거나, <a href="#"
                   class="txt_primary">리셀러</a>를 찾아보거나, 080-330-8877번으로 전화하세요.</p>
             <div class="footer_company">
-               <p class="footer_company_country">대한민국</p>
                <p class="footer_company_copy">Copyright &copy; 2022 Apple Inc. 모든 권리 보유.</p>
                <ul class="footer_company_link">
                   <li><a href="#">개인정보 처리방침</a></li>
@@ -270,29 +293,40 @@
                   <li><a href="#">법적 고지</a></li>
                   <li><a href="#">사이트맵</a></li>
                </ul>
-               <p class="footer_company_num">사업자등록번호 : 120-81-84429 | 통신판매업신고번호 : 제 2011-서울강남-00810호 | 대표이사 : PETER
-                  DENWOOD | 주소 : 서울 특별시 강남구 영동대로 517 | 대표전화 : 02-6712-6700 | 팩스 : 02-6928-0000</p>
+               <p class="footer_company_country">대한민국</p>
             </div>
+            <p class="footer_company_num">사업자등록번호 : 120-81-84429 | 통신판매업신고번호 : 제 2011-서울강남-00810호 | 대표이사 : PETER
+               DENWOOD | 주소 : 서울 특별시 강남구 영동대로 517 | 대표전화 : 02-6712-6700 | 팩스 : 02-6928-0000</p>
          </div>
       </footer>
    </div>
    <script>
       $(document).ready(function () {
+         //header moblie
          $('.nav_hamb').click(function () {
             var $header = $(this).parents('.header');
-            if($header.hasClass('open')){            
+
+            if($header.hasClass('open')){  
+
                $(this).addClass('xClosed').removeClass('xOpen');
                $header.removeClass('open');
+               
             }else if(!$header.hasClass('open')){
+               $header.addClass('open');
                $(this).removeClass('xClosed').addClass('xOpen');
-               $header.addClass('open');            
+
             }
-         })
+         });
+
+
+         //footer
          $('.footer_sitemap li').click(function () {
             $(this).toggleClass('open')
             $(this).find('a').stop(1000).delay(2000).slideDown(1000)
          })
       })
+      /* setTimeout( function () {
+      }, 300)   */
    </script>
 </body>
 

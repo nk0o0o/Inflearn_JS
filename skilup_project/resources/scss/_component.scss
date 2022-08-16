@@ -323,6 +323,17 @@ caption {
 //텍스트 요소 가리기
 .blind {
    @include blind;
+   &_alink{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      //z-index: 10;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      text-indent: -9999px;
+   }
 }
 
 //너비

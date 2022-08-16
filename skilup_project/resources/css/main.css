@@ -265,6 +265,8 @@ caption { font-size: 1.2rem; line-height: 24px; }
 
 .blind { position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; text-indent: -9999px; border: 0; clip: rect(0, 0, 0, 0); text-align: center; }
 
+.blind_alink { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; text-indent: -9999px; }
+
 .w_full { width: 100% !important; }
 
 .w_half { width: 50% !important; }
@@ -1597,7 +1599,7 @@ div.dataTables_wrapper .btn.active.focus, div.dataTables_wrapper .btn.active:foc
 
 svg { vertical-align: top; }
 
-.inner { width: 1024px; margin: 0 auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.inner { width: 1024px; margin: 0 auto; padding: 0 20px; }
 
 .container_bnr-top { background-color: #F0F0F0; text-align: center; padding: 16px 62px; }
 
@@ -1605,35 +1607,55 @@ svg { vertical-align: top; }
 
 .mobile_br { display: none; }
 
-.header { background-color: #404040; }
+.header { background-color: #404040; position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.header .inner { -webkit-transition: all 300ms; transition: all 300ms; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+.header .inner { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; position: relative; }
 
-.header .logo { margin-right: 2.4rem; line-height: 1; font-size: 14px; }
+.header .logo { line-height: 1; font-size: 14px; }
 
-.header .nav { -webkit-box-flex: 1; -ms-flex: 1 0 auto; flex: 1 0 auto; }
+.header .nav { -webkit-box-flex: 1; -ms-flex: auto; flex: auto; }
 
-.header .nav_hamb { display: none; }
+.header .nav_hamb { -webkit-transition: a; transition: a; display: none; }
 
-.header .nav_list { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.header .nav_list { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-pack: distribute; justify-content: space-around; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; }
 
 .header .nav_item a { color: #fff; font-size: 1.4rem; }
 
-.header .util { margin-left: 2.4rem; }
+.header .section { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-.header .util .util_cart { -webkit-transition: all 500ms; transition: all 500ms; }
+.header .util { margin-left: auto; position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-flex: 0; -ms-flex: 0 0 5.08%; flex: 0 0 5.08%; }
 
-.header .util .util_search { margin-right: 2.4rem; }
+.header .util > *[class*="util"] > a::before { -webkit-filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%); filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%); }
 
-.header .util > *[class*="ico"] { -webkit-filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%); filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%); }
+.header .util_cart { -webkit-transition: all 500ms; transition: all 500ms; display: block; }
 
-.header_search { -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; position: relative; visibility: hidden; opacity: 0; overflow: hidden; height: 0; padding: 0; -webkit-transition: all 300ms; transition: all 300ms; }
+.header .util_cart::before { content: ''; display: block; visibility: hidden; width: 0; position: absolute; border-style: solid; border-color: #DBDBDB transparent; top: 23px; bottom: auto; left: auto; right: -2px; border-width: 0 7px 10px; }
 
-.header_search .input_group { height: 0px; overflow: hidden; visibility: hidden; -webkit-transition: all 500ms ease-in; transition: all 500ms ease-in; width: 100%; }
+.header .util_cart::after { content: ''; display: block; width: 0; visibility: hidden; position: absolute; border-style: solid; border-color: #fff transparent; top: 26px; bottom: auto; left: auto; right: 0; border-width: 0 5px 7px; z-index: 1; }
+
+.header .util_search { display: block; }
+
+.header_search { position: absolute; overflow: hidden; width: 100%; top: 50px; left: 0; -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; padding: 0 20px; }
+
+.header_search .input_group { height: 0px; overflow: hidden; -webkit-transition: height 300ms 200ms; transition: height 300ms 200ms; width: 100%; }
 
 .header_search .input_group .input_text[type="text"] { caret-color: #fff; border-radius: 10px; background-color: #303030; border-color: #303030; color: #fff; font-weight: 600; }
 
+.header_cart { display: none; padding: 16px 20px; background-color: #fff; border: 1px solid #DBDBDB; border-radius: 20px; position: absolute; z-index: 1; right: 0; top: 32px; margin-right: -120px; }
+
+.header_cart_msg { color: #666666; padding: 16px 0; font-size: 1.2rem; text-align: center; }
+
+.header_cart_msg + .header_cart_list { margin-top: 16px; }
+
+.header_cart_list li { border-top: 1px solid #DBDBDB; text-align: left; }
+
+.header_cart_list a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: block; padding: 8px 0; width: 240px; font-size: 1.2rem; color: #06c; }
+
+.header_cart_list a .ico { -webkit-filter: invert(27%) sepia(59%) saturate(2566%) hue-rotate(195deg) brightness(93%) contrast(103%); filter: invert(27%) sepia(59%) saturate(2566%) hue-rotate(195deg) brightness(93%) contrast(103%); margin-right: 16px; }
+
 div[data-product] { cursor: pointer; }
+
+section { position: relative; }
 
 section[data-product="MacBookAir"] { background: url("../images/main/hero_macbookair_largetall.png") no-repeat center/cover; }
 
@@ -1675,7 +1697,7 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
 
 .product_section-col2 { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: wrap; flex-wrap: wrap; padding: 12px; gap: 12px; }
 
-.product_col2_box { -webkit-box-flex: 1; -ms-flex: 1 1 calc(50% - 12px); flex: 1 1 calc(50% - 12px); background-color: #000; height: 580px; }
+.product_col2_box { -webkit-box-flex: 1; -ms-flex: 1 1 calc(50% - 12px); flex: 1 1 calc(50% - 12px); background-color: #000; height: 580px; position: relative; }
 
 .product_col2_box.bg_white .product_tit { color: #303030; }
 
@@ -1737,7 +1759,7 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
 
 .product_link > a:hover > span.txt_white::after { background-color: #fff; }
 
-.footer { background-color: #f5f5f7; }
+.footer { background-color: #f5f5f7; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
 .footer .inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; }
 
@@ -1753,48 +1775,65 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
 
 .footer_sitemap .sitemap_tit { font-size: 1rem; }
 
-.footer_sitemap .sitemap_item { font-size: 11px; font-weight: 400; margin-top: 12px; }
+.footer_sitemap .sitemap_item { font-size: 11px; font-weight: 400; margin-top: 12px; border-bottom: 1px solid; border-color: transparent; -webkit-transition: all 200ms; transition: all 200ms; }
 
-.footer_sitemap .sitemap_item:hover { border-bottom: 1px solid #525252; }
+.footer_sitemap .sitemap_item:hover { border-color: #525252; }
 
-.footer_contact { /*  @include flexStart; */ padding: 12px 0; color: #6e6e73; font-size: 1.2rem; }
+.footer_contact { padding: 12px 0; color: #6e6e73; font-size: 1.2rem; }
 
-.footer_company { position: relative; padding: 12px 0 24px; border-top: 1px solid #DBDBDB; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+.footer_company { position: relative; padding: 12px 0 12px; border-top: 1px solid #DBDBDB; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
 .footer_company_copy { font-size: 11px; margin-right: 36px; }
 
-.footer_company_link { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.footer_company_link { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
-.footer_company_link li + li { border-left: 1px solid #BFBFBF; padding-left: 12px; margin-left: 12px; }
+.footer_company_link li { margin-top: 8px; padding-right: 12px; }
+
+.footer_company_link li + li { border-left: 1px solid #BFBFBF; padding-left: 2px; }
 
 .footer_company_link a { color: #666666; font-size: 11px; font-weight: 500; }
 
-.footer_company_num { -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; font-size: 11px; color: #868686; padding-top: 12px; }
+.footer_company_num { -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; font-size: 11px; color: #868686; padding-bottom: 24px; }
 
-.footer_company_country { position: absolute; right: 0; top: 12px; font-weight: 500; font-size: 11px; }
+.footer_company_country { margin-left: auto; font-weight: 500; font-size: 11px; }
 
-@media screen and (max-width: 1024px) { .inner { width: 100%; padding: 0 20px; } }
+@media screen and (max-width: 1240px) { .header_cart { margin-right: calc(501px - 50vw); } }
+
+@media screen and (max-width: 1024px) { .inner { width: 100%; padding: 0 20px; }
+  .header .util_cart::before { position: fixed; top: 38px; right: 18px; }
+  .header .util_cart::after { position: fixed; top: 41px; right: 20px; }
+  .header_cart { margin-right: -20px; } }
 
 @media screen and (max-width: 835px) { .mobile_br { display: block; }
-  .header { overflow: hidden; height: 45px; -webkit-transition: all 700ms; transition: all 700ms; }
+  .header { height: 45px; overflow: hidden; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; -webkit-transition: all 500ms; transition: all 500ms; }
+  .header .inner { -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
   .header .logo { margin-right: 0; }
-  .header .util { margin-left: 0; width: 18px; text-align: right; }
+  .header .util { margin-left: 0; width: 18px; text-align: right; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; }
   .header .util_search { display: none; }
-  .header .nav { -webkit-box-ordinal-group: 6; -ms-flex-order: 5; order: 5; -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; }
+  .header .util_cart::before { display: none; }
+  .header .util_cart::after { top: 38px; }
+  .header .nav { -webkit-transition: all 300ms; transition: all 300ms; opacity: 0.1; position: fixed; top: 100px; left: 0; width: 100%; z-index: -1; -webkit-box-ordinal-group: 6; -ms-flex-order: 5; order: 5; -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; }
   .header .nav_hamb { width: 18px; height: 10px; display: block; position: relative; }
   .header .nav_hamb::after { display: block; content: ''; width: 100%; height: 1px; background-color: #fff; position: absolute; top: 0; left: 0; -webkit-transition: all 300ms ease-in; transition: all 300ms ease-in; }
   .header .nav_hamb::before { display: block; content: ''; width: 100%; height: 1px; background-color: #fff; position: absolute; bottom: 0; left: 0; -webkit-transition: all 300ms ease-in; transition: all 300ms ease-in; }
-  .header .nav_list { border-top: 1px solid #6e6e73; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 0 40px; margin: 0 -20px; -webkit-transition: all 300ms ease-in; transition: all 300ms ease-in; opacity: 0.1; }
-  .header .nav_item { width: 100%; height: 45px; }
+  .header .nav_list { border-top: 1px solid #6e6e73; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 0 40px; margin: 0; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; height: 0; overflow: hidden; visibility: hidden; -webkit-transition: height 300ms; transition: height 300ms; }
+  .header .nav_item { width: 100%; padding: 14px 0; }
   .header .nav_item + .nav_item { border-top: 1px solid #6e6e73; }
   .header .nav_item a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; height: 100%; opacity: 0.7; -webkit-transition: all 200ms ease-in; transition: all 200ms ease-in; }
   .header .nav_item a:hover { opacity: 1; }
-  .header.open { background-color: #000; height: 100vh; overflow: visible; }
-  .header.open .inner { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; -ms-flex-wrap: wrap; flex-wrap: wrap; }
-  .header.open .nav { display: block; }
+  .header_cart { position: absolute; top: 30px; right: 0; border-radius: 0; border: 0; width: 100vw; }
+  .header_cart_list { width: 530px; margin: 0 auto; }
+  .header_cart_list a { width: 100%; }
+  .header_cart::before { content: ''; display: block; position: fixed; width: 100%; height: 100vh; top: 45px; left: 0; background-color: rgba(0, 0, 0, 0.5); } }
+
+@media screen and (max-width: 835px) and (max-width: 610px) { .header_cart { padding: 16px 40px; }
+  .header_cart_list { width: 100%; } }
+
+@media screen and (max-width: 835px) { .header.open { background-color: #000; height: 100vh; overflow: visible; }
+  .header.open .inner { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow: visible; }
+  .header.open .nav { opacity: 1; position: absolute; z-index: 1; }
   .header.open .nav_hamb { margin-top: 16px; }
-  .header.open .nav_list { height: auto; overflow: visible; opacity: 1; }
-  .header.open .header_search { visibility: visible; opacity: 1; overflow: visible; height: auto; padding: 4px 0 16px; }
+  .header.open .nav_list { height: auto; overflow: visible; visibility: visible; }
   .header.open .header_search .input_group { height: 38px; overflow: visible; visibility: visible; }
   .header.open .util { margin-top: 16px; }
   .header.open .util_cart { opacity: 0; visibility: hidden; }
@@ -1808,11 +1847,11 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
   section div[data-product="musicLive"] { background: url("../images/main/promo_maryj_small.jpg") no-repeat bottom center/cover; }
   section div[data-product="musicLive"] .product_cont .product_tit { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; margin-top: -1.2rem; }
   section div[data-product="musicLive"] .product_cont .product_tit img { top: 12px; }
-  .product_section { height: 520px; }
+  .product_section { height: 500px; }
   .product_section-col2 { padding: 0 0 12px; }
   .product_section.align_center { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; }
   .product_section.align_center .product_cont { padding-left: 0; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
-  .product_col2_box { -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; height: 300px; }
+  .product_col2_box { -webkit-box-flex: 1; -ms-flex: 1 1 100%; flex: 1 1 100%; height: 530px; }
   .product_col2_box .product_cont { padding: 3.6rem 0 3.2rem; }
   .product_col2_box .product_tit { font-size: 2.4rem; }
   .product_col2_box .product_tit.with_logo { padding-left: 26px; }
@@ -1831,9 +1870,8 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
   .footer_info { padding-bottom: 16px; }
   .footer_contact { padding: 16px 0; }
   .footer_company { border-top: 0; margin-top: -12px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; }
-  .footer_company_country { -webkit-box-ordinal-group: 0; -ms-flex-order: -1; order: -1; position: static; }
+  .footer_company_country { -webkit-box-ordinal-group: 0; -ms-flex-order: -1; order: -1; margin-left: 0; margin-bottom: 20px; }
   .footer_company_country + .footer_company_copy { margin-top: 16px; }
-  .footer_company_copy + .footer_company_link { margin-top: 8px; }
   .footer_sitemap { -webkit-column-count: auto; column-count: auto; }
   .footer_sitemap li { padding: 10px 0; cursor: pointer; border-bottom: 1px solid #BFBFBF; }
   .footer_sitemap li.open .sitemap_tit, .footer_sitemap li:active .sitemap_tit, .footer_sitemap li:hover .sitemap_tit { color: #525252; font-weight: 600; }
@@ -1895,3 +1933,5 @@ div[data-product="appleTV"] h3.product_tit { font-size: 5.4rem; margin-top: auto
     bottom: 5px; }
   50% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
   100% { bottom: 0px; } }
+
+@media screen and (max-width: 320px) { .product_tit { font-size: 3.2rem; } }

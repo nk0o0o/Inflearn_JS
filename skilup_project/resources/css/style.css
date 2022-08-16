@@ -265,6 +265,8 @@ caption { font-size: 1.2rem; line-height: 24px; }
 
 .blind { position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; text-indent: -9999px; border: 0; clip: rect(0, 0, 0, 0); text-align: center; }
 
+.blind_alink { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; text-indent: -9999px; }
+
 .w_full { width: 100% !important; }
 
 .w_half { width: 50% !important; }

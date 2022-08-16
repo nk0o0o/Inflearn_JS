@@ -3,13 +3,14 @@
 $media_pc: 1024px;
 $media_tablet:835px;
 $media_mobile:720px;
+$media_mini:320px;
 svg{
    vertical-align: top;
 }
 .inner {
-   width: 1024px;
+   width: $media_pc;
    margin: 0 auto;
-   @include flexStart; 
+   padding: 0 20px;
 }
 .container{
    &_bnr-top{
@@ -29,23 +30,26 @@ svg{
 //헤더
 .header {
    background-color: $gray-800;
-   .inner {
-      transition: all 300ms;
-      justify-content: space-between;
-      flex-wrap: wrap
+   position: relative;
+   @include flexCenter;
+   .inner {     
+      @include flexBetween;
+      position: relative;
    }
    .logo {
-      margin-right: $sp06;
       line-height: 1;
-      font-size: 14px;
+      font-size: 14px;     
    }
    .nav {
+      flex: auto;
       &_hamb{
+         transition: a;
          display: none;
       }
-      flex: 1 0 auto;
       &_list {
          @include flexBetween;
+         justify-content: space-around;
+         flex: 1 1 auto;
       }
       &_item {
          a {
@@ -54,32 +58,69 @@ svg{
          }
       }
    }
+   .section{
+      @include flexStart;
+      flex-direction: column;
+   }
    .util {
-      margin-left: $sp06;
-      .util_cart{
+      margin-left: auto;
+      position: relative;
+      @include flexBetween;      
+      flex: 0 0 5.08%;
+      & > *[class*="util"]{
+         > a::before {
+            filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%);
+         }
+      }
+      &_cart{
          transition: all 500ms;
+         display: block;
+         &::before{
+            content: '';
+            display: block;	
+            visibility: hidden;
+            width: 0;
+            position: absolute;        
+            border-style: solid;
+            border-color: $gray-100 transparent;
+            top: 23px;
+            bottom: auto;
+            left: auto;
+            right: -2px;
+            border-width: 0 7px 10px;
+        }
+        &::after{
+            content: ''; 
+            display: block;	
+            width: 0;
+            visibility: hidden;
+            position: absolute;       
+            border-style: solid;
+            border-color: #fff transparent;
+            top: 26px;
+            bottom: auto;
+            left: auto;
+            right: 0;
+            border-width: 0 5px 7px;
+            z-index: 1;
+        }
       }
-      .util_search {
-         margin-right: $sp06;
-      }
-      > *[class*="ico"] {
-         filter: invert(100%) sepia(1%) saturate(345%) hue-rotate(230deg) brightness(115%) contrast(100%);
+      &_search {
+         display: block;
       }
    }
    &_search{
-      flex: 1 1 100%;
-      position: relative;
-      visibility: hidden;
-      opacity: 0;
+      position: absolute;
       overflow: hidden;
-      height: 0;
-      padding: 0;
-      transition: all 300ms;
+      width: 100%;
+      top: 50px;
+      left: 0;
+      flex: 1 1 100%;
+      padding: 0 20px;
       .input_group{
          height: 0px;
          overflow: hidden;
-         visibility: hidden;
-         transition: all 500ms ease-in;
+         transition: height 300ms 200ms;
          width: 100%;
          .input_text[type="text"]{
             caret-color:$color-white;
@@ -91,9 +132,53 @@ svg{
          }
       }
    }
+   &_cart{
+      //카트온보드
+      display: none;
+      padding: 16px 20px;
+      background-color: $color-white;
+      border: 1px solid $gray-100;
+      border-radius: 20px;
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      top: 32px;
+      margin-right: -120px;
+      &_msg{
+         color: $gray-500;
+         padding: 16px 0;
+         font-size: $fs-xxs;
+         text-align: center;
+         & + .header_cart_list{
+            margin-top: 16px;
+         }
+      }
+      &_list{
+         li{
+            border-top: 1px solid $gray-100;
+            text-align: left;
+         }
+         a{
+            display: flex;
+            align-items: center;
+            display: block;
+            padding: 8px 0;
+            width: 240px;
+            font-size: $fs-xxs;
+            color: $color-primary;
+            .ico{
+               filter: invert(27%) sepia(59%) saturate(2566%) hue-rotate(195deg) brightness(93%) contrast(103%);
+               margin-right: 16px;
+            }
+         }
+      }
+   }
 }
 div[data-product]{
    cursor: pointer;
+}
+section{
+   position: relative;
 }
 section[data-product="MacBookAir"]{
    background: url('../images/main/hero_macbookair_largetall.png') no-repeat center/cover;
@@ -170,6 +255,7 @@ div[data-product="appleTV"]{
       flex: 1 1 calc(50% - 12px);
       background-color: #000;
       height: 580px;
+      position: relative;
       &.bg_white{
          .product_tit{color: $gray-900;}
          .product_desc{color: $gray-900;}
@@ -317,6 +403,7 @@ div[data-product="appleTV"]{
 }
 .footer {
    background-color: $gray-10;
+   @include flexCenter;
    .inner {
       flex-direction: column;
       align-items: flex-start;
@@ -359,21 +446,23 @@ div[data-product="appleTV"]{
             font-size: 11px;            
             font-weight: $fw-n;
             margin-top: 12px;
+            border-bottom: 1px solid;
+            border-color: transparent;
+            transition: all 200ms;
             &:hover{
-               border-bottom: 1px solid $gray-700;
+               border-color: $gray-700;
             }
          }
       }      
    }
    &_contact {
-     /*  @include flexStart; */
       padding: 12px 0;
       color: $gray-600;
       font-size: $fs-xxs;
    }
    &_company {
       position: relative;
-      padding: 12px 0 24px;
+      padding: 12px 0 12px;
       border-top: 1px solid $gray-100;
       @include flexStart;
       flex-wrap: wrap;
@@ -383,11 +472,13 @@ div[data-product="appleTV"]{
       }
       &_link {
          @include flexStart;
+         flex-wrap: wrap;
          li {
+            margin-top: 8px;
+            padding-right: 12px;
             & + li {
                border-left: 1px solid $gray-200;
-               padding-left: 12px;
-               margin-left: 12px;
+               padding-left: 2px;
             }
          }
          a {
@@ -400,12 +491,10 @@ div[data-product="appleTV"]{
          flex: 1 1 100%;
          font-size: 11px;
          color: $gray-400;
-         padding-top: 12px;
+         padding-bottom: 24px;
       }
       &_country {
-         position: absolute;
-         right: 0;
-         top: 12px;
+         margin-left: auto;
          font-weight: $fw-m;
          font-size: 11px;
       }
