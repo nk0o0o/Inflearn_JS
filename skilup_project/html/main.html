@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="long" lang="en"> <!-- long 스크롤바 흔들림없애기 -->
 
 <head>
    <meta charset="UTF-8">
@@ -40,6 +40,16 @@
                   <li class="nav_item"><a href="#">액세서리</a></li>
                   <li class="nav_item"><a href="#">고객지원</a></li>
                </ul>
+               <div class="search_faq_link">
+                  <span>빠른링크</span>
+                  <ul>
+                     <li><a href="#">Apple Store 임시휴무 관련 자주하는 질문</a></li>
+                     <li><a href="#">Apple Store Onlive에서 쇼핑하기</a></li>
+                     <li><a href="#">액세서리</a></li>
+                     <li><a href="#">AirPods</a></li>
+                     <li><a href="#">AirTag</a></li>
+                  </ul>
+               </div>
             </nav>
             <div class="util">
                <div class="util_search">
@@ -62,8 +72,9 @@
             <div class="header_search">
                <div class="input_group input_icon_left">
                   <i class="ico_frm_zoom gray ico_24"></i>
-                  <input type="text" id="" class="input_text" value="" placeholder="내용을 입력해 주세요.">
-               </div>
+                  <input type="text" id="" class="input_text" value="" placeholder="apple.com 검색">
+                  <button class="txt_primary">취소</button>
+               </div>              
             </div>
          </div>
       </header>
@@ -302,25 +313,43 @@
    </div>
    <script>
       $(document).ready(function () {
-         //header moblie
+         //Header moblie
          $('.nav_hamb').click(function () {
             var $header = $(this).parents('.header');
-
             if($header.hasClass('open')){  
-
+               $('html').removeClass('no_scroll');
+               $('body').removeClass('no_scroll');
+               $('body').removeClass('long');
                $(this).addClass('xClosed').removeClass('xOpen');
                $header.removeClass('open');
                
             }else if(!$header.hasClass('open')){
+               $('html').addClass('no_scroll');
+               $('body').addClass('no_scroll');
+               $('body').addClass('long');
                $header.addClass('open');
                $(this).removeClass('xClosed').addClass('xOpen');
-
             }
          });
-
-
-         //footer
-         $('.footer_sitemap li').click(function () {
+         //Header Cart
+         $('.util_cart').click(function(){
+            $(this).toggleClass('open');           
+         })
+         $('.util_search').click(function(){
+            $('header').toggleClass('pc_searching')
+         })
+         //Header Search
+         $('.header_search').click(function(e){
+            var target = $(e.target);
+            if(target.is('button')){
+               $('header').removeClass('searching');
+               $('header').removeClass('pc_searching')
+            }else if(target.is('input[type="text"]')){
+               $('header').addClass('searching')
+            }
+         });
+         //Footer
+         $('.footer_sitemap li').click(function (e) {            
             $(this).toggleClass('open')
             $(this).find('a').stop(1000).delay(2000).slideDown(1000)
          })
@@ -331,3 +360,14 @@
 </body>
 
 </html>
+
+<!-- //토글처럼   
+      if($(this).attr('data-click-state') == 1) {
+      $(this).attr('data-click-state', 0);
+      $('.header').css('overflow', 'hidden')
+   }
+   else {
+      $(this).attr('data-click-state', 1);
+      $('.header').css('overflow', 'visible')
+   }  
+-->
