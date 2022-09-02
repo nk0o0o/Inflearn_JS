@@ -1,0 +1,166 @@
+@import "common";
+
+/* SUB STORE  */
+.sub_store{
+   background-color: $gray-10;
+   .container_bnr-top{
+      position: relative;
+      animation: showDown 500ms 200ms linear 1 forwards, primaryToWhite 300ms 1.5s linear 1 forwards;
+      background-color: $color-primary;
+      color: $color-white;
+      i{
+         filter: invert(21%) sepia(97%) saturate(2230%) hue-rotate(198deg) brightness(99%) contrast(101%);
+      }
+   }
+   @keyframes showDown {
+      0%{
+         top: -50px;
+      }
+      100%{
+         top: 0px;
+      }
+   }
+   @keyframes primaryToWhite {
+      100%{
+         background-color: $color-white;
+         color: $gray-900;
+      }
+   }
+   .section{
+      padding-bottom: 60px;
+   }
+   h2{
+      color: $gray-600;
+      font-size: $fs-xlg;
+      em{
+         color:$gray-900;
+      }
+   }
+   .swiper-container{
+      overflow: visible;
+   }
+}
+.store{   
+   &_contact{
+      @include flexStart;
+      align-items: flex-start;
+      flex-direction: column;
+      &_item{
+         @include flexStart;
+         & + .store_contact_item{
+            margin-top: 20px;
+         }
+      }
+      .avata{
+         width: 35px;
+         height: 35px;
+         border-radius: 50%;
+         overflow: hidden;
+         & + p{
+            padding-left: 8px
+         }
+      }
+      p{
+         @include flexStart;
+         flex-direction: column;
+         align-items: flex-start;
+         font-size: $fs-xs;
+         font-weight: $fw-b;
+         a{
+            margin-top: 4px;
+            color: $color-primary;
+            font-size: $fs-xxs;
+         }
+      }
+   }
+   &_intro{
+      h2{
+         padding: 80px 0;
+      }
+      .inner{
+         @include flexBetween;
+      }
+      .category{
+         &.swiper-container{
+            max-height: 160px;
+         }
+         .items{
+            width: 140px;
+            text-align: center;
+            /* &[data-cate="mac"]{
+               background: url('../images/sub_store/category-mac.png') no-repeat top center/contain;   
+            }
+            &[data-cate="iPhone"]{
+               background: url('../images/sub_store/category-iPhone.png') no-repeat top center/contain;   
+            }
+            &[data-cate="iPad"]{
+               background: url('../images/sub_store/category-iPad.png') no-repeat top center/contain;   
+            }
+            &[data-cate="watch"]{
+               background: url('../images/sub_store/category-watch.png') no-repeat top center/contain;   
+            }
+            &[data-cate="airPods"]{
+               background: url('../images/sub_store/category-airPods.png') no-repeat top center/contain;   
+            }
+            &[data-cate="airTag"]{
+               background: url('../images/sub_store/category-airTag.png') no-repeat top center/contain;   
+            }
+            &[data-cate="TV"]{
+               background: url('../images/sub_store/category-tv.png') no-repeat top center/contain;   
+            }
+            &[data-cate="accessory"]{
+               background: url('../images/sub_store/category-accessory.png') no-repeat top center/contain;   
+            } */
+         }
+         .tit{
+            font-size: $fs-s;
+            padding: 20px 0;
+         }
+      }
+   }
+   &_cont{
+      h2{
+         font-size: $fs-md;
+      }
+      &_new{
+         .store_card{
+            width: 400px;
+            max-width: 400px;
+            height: 500px;
+            max-height: 500px;
+            background-color: $color-white;
+            background-repeat:no-repeat;
+            background-position: bottom center;
+            background-size: contain;
+            &.macBookAir{
+               background-image: url('../images/sub_store/store_card-macBookAir.jpg');
+            }
+         }
+      }
+   }
+}
+
+//카드 모양
+.store_card{
+   padding: $sp06;
+   border-radius: $sp03;
+   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+   .name{
+      color: $gray-600;
+      font-size: $fs-xxs;
+   }
+   .price{
+   }
+   .wording{
+      font-size: $fs-md;
+      font-weight: $fw-b;
+   }
+}
+
+
+@media screen and (max-width: $media_pc) {//1024px
+   .inner {
+      width: 1024px;
+      padding: 0 20px;
+   } 
+}

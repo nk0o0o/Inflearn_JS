@@ -1,5 +1,49 @@
 $(document).ready(function () {
 
+   //Header moblie
+   $('.nav_hamb').click(function () {
+      var $header = $(this).parents('.header');
+      if ($header.hasClass('open')) {
+         $('html').removeClass('no_scroll');
+         $('body').removeClass('no_scroll');
+         $('body').removeClass('long');
+         $(this).addClass('xClosed').removeClass('xOpen');
+         $header.removeClass('open');
+
+      } else if (!$header.hasClass('open')) {
+         $('html').addClass('no_scroll');
+         $('body').addClass('no_scroll');
+         $('body').addClass('long');
+         $header.addClass('open');
+         $(this).removeClass('xClosed').addClass('xOpen');
+      }
+   });
+   //Header Cart
+   $('.util_cart').click(function () {
+      $(this).toggleClass('open');
+   })
+   $('.util_search').click(function () {
+      $('header').toggleClass('pc_searching')
+   })
+   //Header Search
+   $('.header_search').click(function (e) {
+      var target = $(e.target);
+      if (target.is('button')) {
+         $('header').removeClass('searching');
+         $('header').removeClass('pc_searching')
+      } else if (target.is('input[type="text"]')) {
+         $('header').addClass('searching')
+      }
+   });
+   //Footer
+   $('.footer_sitemap li').click(function (e) {
+      $(this).toggleClass('open')
+      $(this).find('a').stop(1000).delay(2000).slideDown(1000)
+   })
+
+
+
+
     /****** Tab Menu ******/
     $('.tab_menu .tab_list').click(function () {
         var activeTab = $(this).attr('data-tab');
