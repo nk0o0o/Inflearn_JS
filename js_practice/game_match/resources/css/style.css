@@ -1,0 +1,74 @@
+.card {
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: bisque;
+  position: relative;
+  cursor: pointer;
+}
+.card__list {
+  display: grid;
+  grid-template-rows: repeat(3, 40px);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.card.flip {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.card::before {
+  display: block;
+  content: attr(data-icon);
+  background-color: aqua;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 4px;
+}
+
+.game__tit {
+  padding: 16px 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+.game__board {
+  width: 30vw;
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 8px;
+}
+.game__result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px;
+}
+.game__result span {
+  font-weight: 700;
+}
+.game__refresh {
+  display: none;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  background: url("../img/ico_refresh.png") center/contain no-repeat;
+  font-size: 0;
+}
