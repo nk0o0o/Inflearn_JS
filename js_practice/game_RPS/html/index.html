@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <title>Document</title>
+   <link rel="stylesheet" href="../resources/css/reset.css">
+   <link rel="stylesheet" href="../resources/css/style.css">
+</head>
+<body>
+   <div id="container">
+      <section class="game__RPS">
+         <h2 class="game__tit">가위바위보</h2>
+         <div class="game__board">
+            <div class="box__random">
+               <div class="box__icon" data-icon="✊"></div>
+            </div>
+            <div class="box__versus"><span>VS</span></div>
+            <ul class="box__choice">
+               <li class="scissors" data-rps="SCI">✌</li>
+               <li class="rock" data-rps="ROC">✊</li>
+               <li class="paper" data-rps="PAP">🖐</li>
+            </ul>
+         </div>
+         <div class="game__result">
+            결과 :&nbsp;<span></span>
+            <button class="game__refresh" type="button">다시하기</button>
+         </div>
+      </section>
+   </div>
+   <script>
+      var $timer;
+      var $stop;
+      var $icons = ['✌','✊','🖐']
+      var $iconLenght = $icons.length;
+      var $stopIcon = $('.box__icon');
+      var $choiceIcon = $('.box__choice li');
+      var $refresh = $('.game__refresh');
+      var $result = $('.game__result').find('span');
+      var $myIcon;
+      var $opponentIcon;
+      
+      //처음 실행
+      randomIcon();
+
+      //다시하기 클릭 이벤트
+      $refresh.click(function(){
+         if($stop){
+            $('.icon_text').remove();
+            $result.text('');
+            $refresh.stop().hide();
+            randomIcon();
+         }
+      })
+
+      //버튼 클릭 이벤트
+      $choiceIcon.click(function(){
+         $myIcon = $(this).attr('data-rps');
+         if(!$stop){
+            stopIcon();
+            compareIcons();
+            $refresh.stop().show();
+            $stop = true;
+         }
+      })
+
+      //비교하기
+      function compareIcons(){
+         switch ($opponentIcon) {
+            case 'ROC':
+               if($myIcon =='ROC'){
+                  $result.text('비김');
+               }else if($myIcon =='SCI'){
+                  $result.text('LOSE');
+               }else if($myIcon =='PAP'){
+                  $result.text('WIN');
+               }
+               break;
+            case 'SCI':
+               if($myIcon =='ROC'){
+                  $result.text('WIN');
+               }else if($myIcon =='SCI'){
+                  $result.text('비김');
+               }else if($myIcon =='PAP'){
+                  $result.text('LOSE');
+               }
+               break;
+            case 'PAP':
+               if($myIcon =='ROC'){
+                  $result.text('LOSE');
+               }else if($myIcon =='SCI'){
+                  $result.text('WIN');
+               }else if($myIcon =='PAP'){
+                  $result.text('비김');
+               }
+               break;
+            default :
+               break;
+         }
+      }
+     
+      //랜덤으로 멈추고 값받기
+      function stopIcon(){
+         stopTimer($timer);
+         var $ranNum = Math.random();
+         var $random = Math.floor($ranNum *$iconLenght);
+         switch ($random) {
+            case 0 :
+               $stopIcon.attr('data-icon','✌');
+               $opponentIcon = 'SCI';
+               printOpp('가위');
+               break;
+            case 1 :
+               $stopIcon.attr('data-icon','✊');
+               $opponentIcon = 'ROC';
+               printOpp('바위');
+               break;
+            case 2 :
+               $stopIcon.attr('data-icon','🖐');
+               $opponentIcon = 'PAP';
+               printOpp('보');
+               break;
+            default :
+               break;
+         }
+      }
+      
+      //아이콘 이름 출력
+      function printOpp($txt){
+         var $div = $('<div class="icon_text">'+ $txt +'</div>');
+         $('.box__random').append($div);
+      }
+
+      //아이콘 돌리기 멈추기
+      function stopTimer(timer){
+         clearInterval(timer);
+         $stop=true;
+      }
+   
+      //아이콘 돌리기
+      function randomIcon(){
+         var $cnt = 0;
+         $timer = setInterval(function(){
+            $stopIcon.attr('data-icon',$icons[$cnt])
+            $cnt++;
+            if($cnt == $iconLenght){
+               $cnt = 0;
+            }
+         }, 100);
+         $stop = false;
+      }
+   </script>
+</body>
+</html>
