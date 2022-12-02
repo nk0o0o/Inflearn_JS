@@ -1,39 +1,128 @@
 .card {
+  position: relative;
+  height: 81px;
+  background-color: transparent;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0.2;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes fadeOut {
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  from {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  from {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+.card__list {
+  display: grid;
+  grid-template-rows: repeat(3, 81px);
+  grid-template-columns: repeat(6, 51px);
+  gap: 8px;
+}
+.card.fade_out {
+  /* opacity: 0; */
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-animation: fadeOut 300ms 1 forwards;
+          animation: fadeOut 300ms 1 forwards;
+}
+.card.flip .card__inner {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.card__inner {
+  height: 100%;
+  position: relative;
+  text-align: center;
   -webkit-transition: -webkit-transform 0.6s;
   transition: -webkit-transform 0.6s;
   transition: transform 0.6s;
   transition: transform 0.6s, -webkit-transform 0.6s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  border: 1px solid;
-  border-radius: 4px;
-  padding: 4px;
-  background-color: bisque;
-  position: relative;
-  cursor: pointer;
+  border-radius: 12px;
 }
-.card__list {
-  display: grid;
-  grid-template-rows: repeat(3, 40px);
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-}
-.card.flip {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-}
-.card::before {
-  display: block;
-  content: attr(data-icon);
-  background-color: aqua;
+.card__back, .card__front {
+  border-radius: 12px;
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.card__front {
+  background-color: aquamarine;
+  border: 1px solid #aaa;
+  -webkit-animation: fadeIn 300ms 1 forwards;
+          animation: fadeIn 300ms 1 forwards;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.card__back {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background-color: beige;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 2px solid #333;
 }
 
 .game__tit {
@@ -43,11 +132,13 @@
   text-align: center;
 }
 .game__board {
-  width: 30vw;
+  width: 365px;
   margin: 0 auto;
   padding: 8px;
   border: 1px solid;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
 .game__result {
   display: -webkit-box;
@@ -65,10 +156,55 @@
   font-weight: 700;
 }
 .game__refresh {
-  display: none;
   width: 16px;
   height: 16px;
   margin-left: 8px;
   background: url("../img/ico_refresh.png") center/contain no-repeat;
   font-size: 0;
+  cursor: pointer;
+}
+.game__pop {
+  visibility: hidden;
+  opacity: 0;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 20px 8px;
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 700;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+.game__pop.end {
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+  visibility: visible;
+  opacity: 1;
+  /*  &::before{
+      z-index: 1;
+      content: '';
+      display: block;
+      width: 100vw;
+      height: 100vw;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      //background-color: rgba(0,0,0,0.4);
+      pointer-events: none;
+   } */
 }
