@@ -11,7 +11,7 @@
 </head>
 <body>
    <div id="container">
-      <section class="game__RPS">
+      <section class="game__match">
          <h2 class="game__tit">짝 맞추기 게임</h2>
          <div class="game__board">
             <ul class="card__list"></ul>
@@ -22,13 +22,18 @@
          </div>
          <div class="game__result">
             <p><span>0</span>/9</p>
-           
          </div>
       </section>
+      <div class="game__board game__list__wrap">
+         <ul class="game__list">
+            <li><a href="../../">게임연습장</a></li>
+            <li><a href="../../game_RPS/html/">가위바위보 게임</a></li>
+         </ul>
+      </div>
    </div>
    <script>
       $(document).ready(function(){
-         init()
+         init();
          $('.game__board').on('click',clickCardEvent);
          $('.game__refresh').on('click',refreshGame)
       })//ready
@@ -56,9 +61,9 @@
          $('.game__result p span').text(cnt)
          createArray(cardPairLength, pair);
          shuffle(cardList);
-         createCard();
-         console.log(cardList)
+            createCard();
       }
+
       function clickCardEvent(e){
          var $t = $(e.target);
          var $cardB = $($t.siblings('.card__back')); 
@@ -111,10 +116,10 @@
          $card.addClass('flip');
          $($el.siblings('.card__back')).attr('data-open', 'true')
       }
-      
+
       //카드만들기
       function createCard(){
-         var $div = '<li class="card"><div class="card__inner"><div class="card__front"></div></div></div></li>';
+         var $div = '<li class="card"><div class="card__inner showing"><div class="card__front"></div></div></div></li>';
          var $backDiv=[];
          for (let i = 0; i < cardPairLength * 2; i++) {
             $backDiv[i] = '<div class="card__back" data-open="false" data-card="'+ cardList[i].cardUrl +'">'            
@@ -123,16 +128,34 @@
             for (let i = 0; i < cardPairLength * 2; i++) {
                $('.card__list').append($div)
                $('.card__inner').eq(i).append($backDiv[i]);
-               inputCardImg(i)
-            }
+            }            
+            showing()
          }, 1000);
       }
-
-      //카드에 그림넣기
+  
+      function showing(){
+         let $from = 0,
+         $to = cardPairLength * 2,
+         $speed = 100,
+         $cardList = $('.card__list'),
+         $timer = setInterval(function(){
+            $cardList.find('.card__inner').eq($from).addClass('fade_in')
+            $from++;
+            if($from > $to){
+               clearInterval($timer);
+               setTimeout(() => {
+                  $cardList.find('.card__inner').removeClass('fade_in showing')
+               },100)
+            }
+         }
+         , $speed);
+      }
+      
+      //카드에 그림넣기 //css로
       function inputCardImg(num){
          var $backCard = $('.card__back').eq(num);
          var $cardImg = $('.card__back').eq(num).attr('data-card');
-         $backCard.css('background-image', "url('/resources/img/" +  $cardImg + ".png')", );         
+         $backCard.css('background-image', "url('/resources/img/" +  $cardImg + ".png')", );
       }
 
       //카드 배열 섞기
