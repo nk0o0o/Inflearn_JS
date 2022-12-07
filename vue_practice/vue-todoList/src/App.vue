@@ -16,13 +16,14 @@
 </template>
 <script>
    import Navigation from './components/Navigation.vue';
-   import Icons from './components/UIelements/Icons.vue';
+   import Colors from './components/GuideLine/Colors.vue';
+   import Icons from './components/UIelements/Icons.vue';   
    export default {
       name: 'App',  
       data() {
          return {
-            currentPageN:String,
-            currentFolderN:String
+            currentFolderN:'',
+            currentPageN:''
          }
       },
       computed:{
@@ -41,6 +42,7 @@
       components: {
          Navigation,
          Icons,
+         Colors
       }
    }
 </script>

@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Create from '@/components/Create'
-import Read from '@/components/Read'
-import Detail from '@/components/Detail'
+import TodoHome from '@/components/TodoList/TodoHome'
 import Colors from '@/components/guideline/Colors'
 import Icons from '@/components//UIElements/Icons'
+import ErrorPage from '@/components/ErrorPage'
 
 Vue.use(Router)
 
@@ -13,22 +12,13 @@ export default new Router({
    mode: 'history',
    routes: [
       {
-         path: '/',
-         name: 'Read',
-         component: Read
+         path: '/toDoList',
+         name: 'TodoHome',
+         component: TodoHome
       },
       {
-         path: '/create/:contentId?',
-         name: 'Create',
-         component: Create
-      },
-      {
-         path: '/detail/:contentId',
-         name: 'Detail',
-         component: Detail
-      },
-      {
-         path: '/guideline/colors',
+         path: '/guideLine/colors',
+         redirect: '',
          name: 'Colors',
          component: Colors
       },
@@ -37,5 +27,10 @@ export default new Router({
          name: 'Icons',
          component: Icons
       },
+      {
+         path : "/:pathMatch(.*)",
+         name : "not-found",
+         component : ErrorPage
+     },
    ]
 })
