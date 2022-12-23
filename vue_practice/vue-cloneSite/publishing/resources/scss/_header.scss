@@ -1,0 +1,24 @@
+header{
+   padding: 8px 0;
+   height: 35px;
+   .inner{      
+      @include flexBetween;
+      position: fixed;
+      width: 100%;
+      padding: 0 16px;
+   }
+   .logo{
+      font-weight: $fw-b;
+      font-size: 1.4rem;
+      letter-spacing: normal;
+   }
+   .menu{
+      &_item{
+         font-size: 1.5rem;
+         font-weight: $fw-bb;
+         + .menu_item{
+            margin-left: 8px;
+         }
+      }
+   }
+}
