@@ -731,14 +731,20 @@ footer .ft_hello {
 
 @media all and (min-width: 901px) {
   .catchphrase {
-    height: 100vh;
     padding: 0;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+    width: 100%;
   }
   .catchphrase .txt_scroll {
     position: absolute;
     display: block;
-    bottom: -60px;
+    bottom: 490px;
     left: 50%;
+    top: 250px;
     -webkit-transform: translate3d(-50%, 0, 0);
             transform: translate3d(-50%, 0, 0);
     letter-spacing: normal;
@@ -750,6 +756,9 @@ footer .ft_hello {
     margin-left: 24px;
   }
   .catchphrase .cp_01 {
+    position: absolute;
+    top: -220px;
+    left: 24px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -760,37 +769,27 @@ footer .ft_hello {
     -ms-flex-align: center;
         align-items: center;
     border: 1px solid;
-    height: 100vh;
   }
   .catchphrase .cp_01 .cp_t {
-    position: sticky;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    top: 288px;
-    -webkit-transform: translate3d(0, -50%, 0);
-            transform: translate3d(0, -50%, 0);
+    position: relative;
+    -webkit-transition: top 500ms ease;
+    transition: top 500ms ease;
   }
-  .catchphrase .cp_01 .cp_t:nth-child(1) {
-    margin-top: 50vw;
+  .catchphrase .cp_01 .cp_t.t0 {
+    top: 220px;
   }
-  .catchphrase .cp_01 .cp_t:nth-child(2) {
-    margin-top: 200vw;
+  .catchphrase .cp_01 .cp_t.t1 {
+    top: 310px;
   }
-  .catchphrase .cp_01 .cp_t:nth-child(3) {
-    margin-top: 300vw;
+  .catchphrase .cp_01 .cp_t.t2 {
+    top: 400px;
   }
   .catchphrase .cp_02 {
-    position: fixed;
-    top: 50%;
-    -webkit-transform: translate3d(0, -50%, 0);
-            transform: translate3d(0, -50%, 0);
-    margin-top: 266px;
-    padding-bottom: 50vh;
-    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-bottom: 45vh;
+    border: 1px solid blue;
   }
   .catchphrase .cp_02 .cp_t {
     letter-spacing: -10px;
@@ -801,6 +800,9 @@ footer .ft_hello {
     position: absolute;
     top: 0;
     left: 0;
+  }
+  .main_visual .sec_visual {
+    padding-top: 150vh;
   }
   .slogan {
     display: block;
@@ -815,7 +817,6 @@ footer .ft_hello {
     position: relative;
     width: 100%;
     background-color: transparent;
-    background: url("../images/main01_con.jfif") top center no-repeat;
   }
   .vis_link::before {
     content: "";
@@ -824,6 +825,10 @@ footer .ft_hello {
     top: 0;
     left: 0;
     padding-bottom: 56.25%;
+  }
+  .vis_link > img {
+    margin: 0 auto;
+    width: 50%;
   }
   .vis_link_center {
     position: absolute;

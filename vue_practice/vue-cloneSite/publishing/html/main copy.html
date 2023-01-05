@@ -120,31 +120,48 @@
   </div>
   <script>
    $(document).ready(function(){
-      let st = 0;
-      let $weLoveText = $('.cp_01 .cp_t');
-      textEffect01($weLoveText);
+      let st = 0,
+         $this = $(this), 
+         $story = $(".cp_02"),
+         $weLoveText = $('.cp_01 .cp_t'),
+         $weLoveTop =[];
+         textEffect($weLoveText, $weLoveTop, 300);
    });
 
-   function textEffect01(arr){
-      let $textarr = arr;
-      let $initSt = 0;
-      let $offsets = [];
-      $textarr.each(function (index, item) {         
-         $offsets.push($(item).offset().top);
-         $(window).scroll(function(){
-            var st = $initSt + $(this).scrollTop();
-            var ani = $offsets[index] - st;
-            setTimeout(() => {
-               if(ani < 0){
-                  $(item).css('top', 0)
-               }else{
-                  $(item).css('top', ani)
-               }               
-            }, 100);
+   function textEffect(arr, top, gap){
+      const $array = arr;
+      const $originTop = top;
+      let $gap;
+      $array.each(function (index, item) {
+         $(item).offset().top
+         $originTop.push($(item).offset().top - $(item).height()/2);
+
+         $(window).scroll(function(event){
+            var st = $(this).scrollTop();
+            //gap
+            if(!$gap || $originTop[index] - st > $gap){
+               $gap = $originTop[index] - st;
+            }else{
+               $gap = gap;
+            };
+            
+            if($originTop[index] - st < 0){
+               $(item).css('top', '0px')
+            }else if($originTop[index] - st <= $gap){
+               setTimeout(() => {
+                 $(item).css('top', $originTop[index] - st + 'px');               
+               }, 100);
+            }               
          });
       });
    }
- 
+
+   function OnlyNum(txt){
+      var testString = "'"+ txt +"'",
+      regex = /[^0-9]/g,
+      result = testString.replace(regex, "");
+      return result;
+   }
   </script>
 </body>
 
