@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      /* let func = function (...argN) {
+         console.log(argN)
+      } */
+      let func = (arg1, arg2, ...argN) => console.log(argN)
+      func(1,2,3,4,5)
+
+      /* let double = function(n) {
+         return n * 2 
+      } */
+      let double = n => n * 2; //한줄일때만 return 생략, 소괄호 or 소괄호 생략 가능
+      let sum= (a, b) => (console.log(a+ b));
+      sum = (a,b)=>{
+         let result = a+b;
+         return console.log(result); //여러줄 중괄호 사용하는 경우에는 return 꼭 써주기
+      }
+      //안되는거 여러줄일때 소괄호
+      /* sum = (a,b)=>(
+         let result = a+b;
+         return console.log(result);
+      ) */
+
+
+      //if문 
+      let age = 17
+      let welcome = (age < 18) ?
+         () => alert('안녕') :
+         () => alert("안녕하세요!");
+      welcome();
+
+      welcome = function(age){
+         if (age <18) {
+            return alert('안녕')
+         } else {
+            return alert('안녕하세요!')
+         }
+      }
+
+      function ask(question, yes, no) { //question은 string, yes/no 는 함수 
+         // if (confirm(question)){
+         //    yes()
+         // }else {
+         //    no()
+         // };
+      }
+    /*   ask(
+         "동의하십니까?",
+         function() { alert("동의하셨습니다."); },
+         function() { alert("취소 버튼을 누르셨습니다."); }
+      ); */
+
+      ask(
+         "동의하십니까?",
+      () => alert("동의하셨습니다."),
+      () => alert("취소 버튼을 누르셨습니다.")
+      )
+
+      function newFunction(){
+         return 18;
+      };
+      console.log(newFunction())
+      var loadScript= function(a, callback) {
+         var b = callback();
+         return a + b;
+      }; 
+      //  loadScript('/my/script.js',newFunction()) 
+      //이러면 그냥 loadScript('/my/script.js',18) 이라서 
+      //callback is not a function 함수가 아니라는 에러남
+
+
+      loadScript("2",
+          function() {
+            newFunction()
+          }
+      );
+      
+   </script>
+</body>
+</html>
