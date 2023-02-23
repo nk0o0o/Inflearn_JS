@@ -5,13 +5,62 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <style>
+      .circle{position: absolute; top:50%; left: 50%; width: 100px; height: 100px; border-radius: 50%;background-color: orange;transform: translateX(-50%) translateY(-50%);}
+      .circle.message-ball{display: flex;align-items: center; justify-content: center;}
+   </style>
 </head>
 <body>
+   
+   <button class="btn_grow_circle">showCircle(150, 150, 100)</button>
+   <!-- <div class="circle">"안녕하세요"</div> -->
+   <script>
+       function addText(div) {
+         div.classList.add('message-ball');
+         div.append("안녕하세요")
+      }
+      function showCircle(cx, cy, radius, callback){
+         let div = document.createElement('div');
+         div.style.width = 0;
+         div.style.height = 0;
+         div.style.left = cx + 'px';
+         div.style.top = cy + 'px';
+         div.className = 'circle';
+         document.body.append(div);
+
+         div.animate({
+            width: radius * 2 + 'px',
+            height: radius * 2 + 'px',
+         },{
+            fill: "forwards",
+            duration: 300
+         },)
+         setTimeout((div) => {
+            callback = addText(div);            
+         }, 200);
+
+      }
+     
+      const growCircleBtn = document.querySelector('.btn_grow_circle');
+      growCircleBtn.addEventListener('click',function () {
+         showCircle(150, 150, 100)
+      })
+
+   </script>
+
+
+
+
+
+
+
+
+
    <script>
       /* let func = function (...argN) {
          console.log(argN)
       } */
-      let func = (arg1, arg2, ...argN) => console.log(argN)
+      let func = (arg1,arg2,...argN) => console.log(argN)
       func(1,2,3,4,5)
 
       /* let double = function(n) {
@@ -35,7 +84,7 @@
       let welcome = (age < 18) ?
          () => alert('안녕') :
          () => alert("안녕하세요!");
-      welcome();
+     /*  welcome(); */
 
       welcome = function(age){
          if (age <18) {
@@ -78,10 +127,12 @@
 
 
       loadScript("2",
-          function() {
+         function() {
             newFunction()
-          }
+         }
       );
+
+   
       
    </script>
 </body>
