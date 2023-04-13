@@ -1,0 +1,11 @@
+.main-bg{
+    height: 300px;
+    background: url('http://heossem.com/react/img/main.jpg') center/cover;
+}
+.product img{
+    max-width: 100%;
+}
+.more{
+    text-align: center;
+    margin:50px;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      // 누산기 (accumulator)
+      // 현재 값 (currentValue)
+      // 현재 인덱스 (idx)
+      // 원본 배열 (src = array) (reduce를 호출한 배열)
+      // initialValue 옵션, 최초호출 첫번째 인수에 제공하는 값
+
+    /*   const array1 = [1, 2, 3, 4];
+      // 0 + 1 + 2 + 3 + 4
+      const initialValue = 0;
+      const sumWithInitial = array1.reduce(         (acc, cur) => acc + cur, initialValue
+      );
+      console.log(sumWithInitial);
+      // Expected output: 10
+      const sum = array1.reduce(function(acc, cur){
+         return acc + cur
+      },);
+      console.log(sum)
+
+      const exReduce = [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array) {
+         console.log("콜백의 반환값(누산기)",accumulator)
+         console.log("현재 값",currentValue)
+         console.log("현재인덱스",currentIndex)
+         console.log("원래배열",array)
+         console.log("총더한값",accumulator + currentValue)
+         return accumulator + currentValue;
+      });
+      console.log(exReduce)
+      console.log("//-------------------------------------------")
+      const exReduce2 =[10, 20, 30].reduce((accumulator, currentValue, currentIndex, array)=>{
+         console.log("2초기값",initialValue)
+         console.log("2현재인덱스",currentIndex)
+         console.log("2현재 값",currentValue)
+         console.log("2콜백의 반환값(누산기)",accumulator)
+         console.log("2총더한값",accumulator + currentValue)
+         //initialValue 없으면 0이 초기값, 1번째 값이 currentValue, 1번째의 인덱스가 currentIndex)
+         return accumulator + currentValue;
+      })
+      console.log(exReduce2)
+      console.log("//-------------------------------------------")
+      const exReduce1 =[10, 20, 30].reduce((accumulator, currentValue, currentIndex, array)=>{
+         console.log("1초기값",initialValue)
+         console.log("1현재인덱스",currentIndex)
+         console.log("1현재 값",currentValue)
+         console.log("1콜백의 반환값(누산기)",accumulator)
+         console.log("1총더한값",accumulator + currentValue)
+         //initialValue 있으면 , 0번째 값이 currentValue, 0번째의 인덱스가 currentIndex)
+         return accumulator + currentValue;
+      },50)
+      console.log(exReduce1)
+       */
+      console.log("//-------------------  연습문제 ------------------------")
+      
+      
+    
+      // after the call we should have:
+      // usersById의 key(id), value(user배열로 받아온 객체들)
+      //서버 데이터로 작업할 때 편리한 기능
+      // id는 고유함.
+      // reduce()문법과 배열 사용
+
+      //사용자 배열 수신 :  {id:..., name:..., age... }.
+      //목표 : groupById(arr) 함수 : id를 키로 객체를 생성하는 함수
+      // 결과
+      // usersById = {
+      //    john: {id: 'john', name: "John Smith", age: 20},
+      //    ann: {id: 'ann', name: "Ann Smith", age: 24},
+      //    pete: {id: 'pete', name: "Pete Peterson", age: 31},
+      // }
+      let users = [
+         {id: 'john', name: "John Smith", age: 20},
+         {id: 'ann', name: "Ann Smith", age: 24},
+         {id: 'pete', name: "Pete Peterson", age: 31},
+      ];
+      let usersById = groupById(users);
+      
+      function groupById(users){
+         // users배열의 객체의 id를 usersById객체의 key로
+         // users배열에서 객체를 usersById객체의 value로
+         return users.reduce((acc, cur) =>{ // 정의 안하고 바로 return 하면 좋겠당!
+           /*
+            //acc[index] = cur
+            //initial = {}
+            // {} = {id:john}
+            // { 0 : {//id:john}}                            = {id:ann}
+            // { 0 : {id:john}, 1 : {id:ann}}                = {id:pete}
+            // { 0 : {id:john}, 1 : {id:ann}, 2 : {id:pete}} = {...} 
+            //                   우변 : acc                  = 좌변 : cur
+            // {
+            //    0 : {id:john}, 
+            //    1 : {id:ann},
+            //    2 : {id:pete}
+            // } */ 
+            const key = cur.id;         
+            acc[key] = cur;
+            return acc 
+         },{})
+      };
+      console.log(usersById)
+
+      // reduce()문법
+      var initialV = 0;
+      //배열 합산
+      var sumW = [0, 1, 2, 3].reduce(
+         (acc, cur) => acc + cur, initialV
+         //0 + 1 = 1
+         //1 + 2 = 3
+         //3 + 3 = 6
+      );// sum is 6
+
+      //객체의 value 합산
+      var sumV = [{x: 1}, {x:2}, {x:3}].reduce(function (accumulator, currentValue) {
+         return accumulator + currentValue.x;
+      },initialV) // logs 6
+            
+   </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      let user = new Map();//맵 생성 : 키벨류 데이터저장소
+         user.set("name", "John");
+         user.set("age", "30");//키, 벨류 저장소에 담기
+
+      console.log("user의 맵", user) //[["name" : "John"],["age" : "30"]
+      console.log(user.get("age")) // 키값 부르면 벨류값 반환해줌 (객체랑 다르게 키값에 다양한 자료형 올 수 있음)
+      
+      for (let [key, value] of user) { //걍 변수로뽑으면 ["name" : "John"] 요러
+         console.log(`${key}:${value}`); // name:John, then age:30
+      }
+
+      let map = new Map();
+      map.set('1', 'str1')
+         .set(1, 'num1')
+         .set(true, 'bool1');//chaining가능
+      console.log(map)
+      console.log(map.keys())// 키들만 모아서 객체로 반환
+      console.log(map.values())// 요소의 값들만 모아서 객체로 반환
+      console.log(map.entries())// 요소의 [키, 값]을 한 쌍들만 모아서 객체로 반환
+
+      console.log("//----------------- 연습문제 1 -------------------------")
+      //arr에서 중복 값을 제거해 주는 함수 unique(arr)
+      //배열 내 어떤 자료형이 들어와도 동작할 수 있어야함
+      //set()사용
+      function unique(arr) {
+         return Array.from(new Set(arr));//set은 배열이나 객체의 중복을 없애고 객체 이터러블로 반환해줌
+         //Array.from()은 객체나 문자열을 배열로 반환해줌
+      }
+      /*  내가 푼거
+      function unique(arr) {
+         let setArr = new Set();
+         for(item of arr){
+            setArr.add(item)
+         }
+         return setArr
+      } */
+      let values = ["Hare", "Krishna", "Hare", "Krishna", "Krishna", "Krishna", "Hare", "Hare", ":-O" ];
+      console.log( unique(values) ); // 얼럿창엔 `Hare, Krishna, :-O`만 출력되어야 합니다.
+
+      console.log("//----------------- 연습문제 2 -------------------------")
+      function aclean(arr) {
+         let map = new Map(); //맵은 key : value니깐 같은 키값에 value를 넣어주면
+         //계속 덮어씌워지는 것을 이용
+         
+         for (let word of arr) {
+            //map에 word라는 value로 들어오는 값을 쪼개고 정렬한다음 
+            //map의 sorted라는 key에 할당하여 그전값들도 다 덮어씌워지도록
+            // 단어를 글자 단위로 쪼갠 후, 알파벳 순으로 정렬한 다음에 다시 합칩니다.
+            let sorted = word.toLowerCase().split('').sort().join(''); // (*)
+            map.set(sorted, word);
+         }
+         return Array.from(map.values());
+         
+         //객체 버전(key값이 문자열이므로 객체로도 가능함)
+         // let obj = {};
+         // for (let i = 0; i < arr.length; i++) {
+            //    let sorted = arr[i].toLowerCase().split("").sort().join("");
+            //    obj[sorted] = arr[i];
+         // }
+         // return Object.values(obj);
+      }
+      let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+      console.log( aclean(arr) ); // "nap,teachers,ear"나 "PAN,cheaters,era"이 출력되어야 합니다.
+
+      console.log("//----------------- 연습문제 3 -------------------------")
+      // 반복 가능한 객체의 키
+      // map1.keys()를 사용해 배열을 반환받고, 이 배열을 변수에 저장해 
+      // .push와 같은 배열 메서드를 적용하고 싶다고 해봅시다.
+      let map1 = new Map();
+
+      map1.set("name", "John");//map1 {"name", "John"}
+      let keys = Array.from(map1.keys());//{"name"} --> ["name"]
+
+      // Error: keys.push is not a function
+      keys.push("more");
+
+      console.log(keys)
+   </script>
+</body>
+</html>

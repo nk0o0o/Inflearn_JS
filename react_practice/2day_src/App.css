@@ -1,0 +1,29 @@
+.App {
+  max-width: 500px;
+  text-align: center;
+  padding: 30px 20px;
+}
+.profile{padding: 16px; text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;border-radius: 8px;
+  background-color:antiquewhite;
+  position: relative;
+}
+.profile + .profile{margin-top: 16px;}
+.profile p{padding: 0 24px; line-height: 1.5;}
+.profile img{max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+.photo{
+  width: 80%;margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.new{
+  position: absolute;
+  padding: 0 0.25rem;
+  background-color: tomato;
+  color: #fff;
+  border-radius: .25rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  right: 45px;
+  top: 30px;
+}

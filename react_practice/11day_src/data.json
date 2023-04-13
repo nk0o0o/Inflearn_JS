@@ -1,0 +1,23 @@
+{"shop":[
+    {
+      "id":3,
+      "title": "남성 Running White 아디제로 보스톤 11",
+      "content": "Born in France",
+      "price": 279000
+    },
+  
+    {
+      "id":4,
+      "title": "아디제로 아디오스 프로 3.0",
+      "content": "Born in Seoul",
+      "price": 189000
+    },
+  
+    {
+      "id":5,
+      "title": "울트라부스트",
+      "content": "Born in the States",
+      "price": 189000
+    }
+  ]
+  }

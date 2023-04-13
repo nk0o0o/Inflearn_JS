@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      console.log("---------  나머지 매개변수(...arg) = arguments(인수)  ----------------------");
+      function sum(a, b) {
+         return a + b;
+      }
+
+      console.log( sum(1, 2, 3, 4, 5) );//3 
+
+      //마침표세개 "..." 는 "남아있는 매개변수들을 한데 모아 배열에 집어넣어라."는 것을 의미
+     
+      function sumAll(...args) { // args는 배열의 이름입니다.
+         let sum = 0;
+
+         for (let arg of args) sum += arg;
+
+         return sum;
+      }
+
+      console.log( sumAll(1, 2) ); // 3
+      console.log( sumAll(1, 2, 3) ); // 6
+
+      console.log("-------------------------------");
+
+      function showName(firstName, lastName, ...titles) {
+         console.log( firstName + ' ' + lastName ); // Bora Lee
+
+         // 나머지 인수들은 배열 titles의 요소가 됩니다.(앞의 변수는 titles의 요소가 되지 않음)
+         // titles = ["Software Engineer", "Researcher"]
+         console.log( titles[0] ); // Software Engineer
+         console.log( titles[1] ); // Researcher
+         console.log( titles.length ); // 2
+      }
+
+      showName("Bora", "Lee", "Software Engineer", "Researcher");
+
+      console.log("------------\narguments : 변수정의 없어도 유사배열객체로 가져옴(나머지매개변수전에 사용하던 방법)\n 배열은 아니므로 arguments.map(...)는 호출불가능\n-------------------");
+      
+      function showName() {
+         console.log( arguments.length );
+         console.log( arguments[0] );
+         console.log( arguments[1] );
+         // arguments는 이터러블 객체이기 때문에
+         // for(let arg of arguments) alert(arg); 를 사용해 인수를 펼칠 수 있습니다.
+      }
+      // 2, Bora, Lee가 출력됨
+      showName("Bora", "Lee");
+      // 1, Bora, undefined가 출력됨(두 번째 인수는 없음)
+      showName("Bora");
+
+      console.log("---------  Spread 문법(...arr)  ----------------------");
+      
+      var array_1 = [3,5,1]
+      console.log( Math.max(3, 5, 1) ); // 5 : Math.max()인수로 받은 숫자중 가장 큰 수 반환 - 배열을 인수로넣으면 안됨
+      console.log( Math.max(array_1) )//NaN
+      console.log( Math.max(array_1[0], array_1[1],array_1[2]) )//5 : 배열의 길이를 알 수 없을때는?
+      console.log( Math.max(...array_1) ); //5 : ...array_1 : array_1이 이터러블객체가되고 배열이아닌 인수목록으로 "확장"됨
+
+
+      let arr1 = [1, -2, 3, 4];
+      let arr2 = [10, 3, -8, 1];
+      console.log( Math.max(...arr1, ...arr2) ); // 10 : 이터러블객체 여러개 사용가능(배열들 객체로 다 풀어주고 그중에서 큰수반환)
+
+
+      let arr3 = [3, 5, 1];
+      let arr4 = [8, 9, 15];
+      let merged = [0, ...arr3, 2, ...arr4, 25];
+      console.log(merged); // 0,3,5,1,2,8,9,15 (0, arr3, 2, arr4,25) 순으로 합쳐줌
+
+     
+      let str = "Hello";
+      for (let value of str) { console.log(value); }//"H","e","l","l","o"
+      console.log( [...str] )// [H,e,l,l,o] : 문자열(이터러블객체)을 문자배열로 변환시켜줌
+      console.log(( Array.from(str) ))// [H,e,l,l,o] : 이터러블이나 유사배열객체를 배열로 변환시켜줌
+
+   </script>
+</body>
+</html>

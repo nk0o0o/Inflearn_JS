@@ -1,0 +1,18 @@
+.btn{cursor: pointer; background-color: transparent; border: 1px solid #aaa; border-radius: 99999px; padding: 14px 27px;color:#fff;outline: 0;font-size: 17px;;}
+/* .btn+.btn{margin-left: 8px;}
+이렇게 띄는거는 메인해서 해주는게 좋음
+App.css에서 App.js에서 보낸 class를 활용해서 스타일입힘
+실무에서는 classNames라는 npm을 깔아서 함
+*/
+.btn:hover{background-color: #aaa;}
+.btn:active{background-color: gray;}
+.btn.blue{
+    border: 1px solid #7090ff;
+    color: #7090ff;
+    background-color:rgba(0, 89, 255, 0.2);
+}
+.btn.red{
+    border: 1px solid rgb(255, 70, 111);
+    color: #ff466f;
+    background-color:rgba(255, 70, 111, 0.2);
+}

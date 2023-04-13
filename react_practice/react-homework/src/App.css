@@ -1,4 +1,0 @@
-button{cursor: pointer; background-color: transparent; border: 1px solid #aaa; border-radius: 4px; padding: 4px 8px;}
-button:hover{background-color: #aaa;}
-button:active{background-color: gray;}
-.dice_wrap{display: flex;}

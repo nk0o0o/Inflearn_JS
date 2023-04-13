@@ -1,0 +1,35 @@
+button{cursor: pointer; background-color: transparent; border: 1px solid #aaa; border-radius: 4px; padding: 4px 8px;color:#fff}
+button:hover{background-color: #aaa;}
+button:active{background-color: gray;}
+
+body{
+    background-color: #191f19;
+    color: #fff;
+}
+.App{
+    max-width: 640px;
+    margin:200px auto;
+    text-align: center;
+}
+.App-button{
+    margin: 8px;
+}
+.App-boards{
+    margin-top: 35px;
+}
+.App-board{
+    margin: 10px;
+}
+.board{
+    display: inline-block;
+    padding: 35px 30px;
+    border-radius: 12px;
+    border: 1px solid;
+    background: #272b38;
+}
+.board-heading{
+    margin: 45px auto 15px;
+    color: #888d9d;
+    font-weight: 400;
+    font-size: 18px;
+}

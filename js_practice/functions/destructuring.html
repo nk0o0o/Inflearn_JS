@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      let arr = ["Bora", "Lee"]
+      // let firstName = arr[0];
+      // let surname = arr[1];
+      //let [firstName, surname] = "Bora Lee".split(' '); //배열없이 문자열 바로 쓸때
+      //===아래와 같음
+      let [firstName, surname] = arr;
+      console.log(firstName, surname)
+
+      // 두 번째 요소는 필요하지 않음 : , 만 적으면 생략할 수 있음
+      let [first, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+      console.log( title ); // Consul
+
+    
+
+      console.log( "Object.entries(obj) :\n객체의 키벨류 한쌍을 배열로 묶어 배열로 반한" )
+      const obj = { name: 'boo', age: 42 };
+      console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
+      
+      // 객체의 키와 값 순회하기
+      let user = {
+         name: "John",
+         age: 30
+      };
+      for (let [key, value] of Object.entries(user)) {
+         console.log([key, value])
+         console.log("${key}:${value} : " + `${key}:${value}`); // name:John, age:30이 차례대로 출력
+      }
+
+      let user2 = new Map();//맵 생성 : 키벨류 데이터저장소
+      user2.set("name", "John");
+      user2.set("age", "30");//키, 벨류 저장소에 담기
+      console.log("user2의 맵",user2) //자료형 : 객체
+      console.log(user2.get("age")) // 키값 부르면 벨류값 반환해줌 (객체랑 다르게 키값에 다양한 자료형 올 수 있음)
+      
+      for (let [key, value] of user2) {
+         console.log(`${key}:${value}`); // name:John, then age:30
+      }
+
+      let map = new Map();
+      map.set('1', 'str1')
+         .set(1, 'num1')
+         .set(true, 'bool1');//chaining가능
+      console.log(map)
+      console.log(map.keys())// 키들만 모아서 객체로 반환
+      console.log(map.values())// 요소의 값들만 모아서 객체로 반환
+      console.log(map.entries())// 요소의 [키, 값]을 한 쌍들만 모아서 객체로 반환
+
+      //기본값지정가능 아무것도 안보내면 undefined
+      let [name, surName = "Anonymous"] = ["Julius"];
+      console.log(name);    // Julius (배열에서 받아온 값)
+      console.log(surName); // Anonymous (기본값)
+
+      // 객체 구조분해할당
+      // { 객체 프로퍼티: 목표 변수 } 순서 상관없음
+      let options = {
+         title: "Menu",
+         width: 100,
+         height: 200
+      };
+      let {width: w, height: h, titles} = options;
+      //변수만들어서 저장할 수 있음
+      //let {width: w, height: h, titles} = {title: "Menu", width: 100, height: 200};
+
+      console.log(titles);  // Menu
+      console.log(w);      // 100
+      console.log(h);      // 200
+
+      /*
+      
+      let options2 = {
+        tit: "Menu"
+      };
+
+      let {width = prompt("width?"), tit = prompt("tit?")} = options2;
+
+      console.log(tit);  // Menu
+      console.log(width);  // prompt 창에 입력한 값
+      
+      */
+      
+      let opt = {
+         title: "My menu",
+         items: ["Item1", "Item2"]
+      };
+      // 함수에 전달할 객체
+      // 똑똑한 함수는 전달받은 객체를 분해해 변수에 즉시 할당함
+      function showMenuBad( title = "Untitled", width = 200, height = 100, items = [] ) { 
+         console.log( `${title} ${width} ${height}` ); // My Menu 200 100
+         console.log( items ); // Item1, Item2
+      }
+      showMenuBad(opt.title, undefined, undefined, opt.items)
+
+      //똑똑한 함수{}로 구조분해만 해주면 알아서 해당 변수찾아서 할당해줌
+      function showMenu( { title = "Untitled", width:w= 200, height = 100, items = [] } ) {
+         // title, items – 객체 opt에서 가져옴
+         // width, height – 기본값
+         console.log( `${title} ${w} ${height}` ); // My Menu 200 100
+         console.log( items ); // Item1, Item2
+      }
+      showMenu(opt);
+
+      console.log("//----------------------- example_1 -----------------------------")
+      
+      let gameUser = {
+         userName: "John",
+         years: 30
+      };
+      /* function fnc({userName, years:age, isAdmin = false}){
+            console.log(userName)
+            console.log(age)
+            console.log(isAdmin)
+         } 
+      fnc(gameUser)
+      */
+      let {userName, years:age, isAdmin = false} = gameUser
+      console.log(userName)
+      console.log(age)
+      console.log(isAdmin)
+
+      console.log("//----------------------- example_2 -----------------------------")
+
+      let salaries = {
+         "John": 100,
+         "Pete": 300,
+         "Mary": 250
+      };
+      function topSalary(objObj){ 
+         //가장 큰 급여를 받는 사람 반환받는 함수
+         //순회하면서 제일 큰 값을 찾는 경우에는 앞뒤를 비교해서 큰 값 남기면 됨
+         let max = 0;
+         let maxName = null;
+         console.log(Object.entries(salaries));
+         for(const [name, salary] of Object.entries(objObj)) {
+            if (max < salary) { 
+               // 앞값보다 크면 급여랑 이름 냄기기
+               max = salary;
+               maxName = name;
+            }
+         }
+         return maxName; //젤 큰사람 이름 반환
+      }
+      console.log(topSalary(salaries))
+   </script>
+</body>
+</html>

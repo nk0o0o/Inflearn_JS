@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      //filter의 원형
+      // arr.filter(callback(element[, index[, array]])[, thisArg])
+      // callback(element, index, array) element는 필수
+      
+      function isBigEnough(value) {
+         return value >= 10;
+      }
+      console.log("isBigEnough1 : ", isBigEnough(20))
+      console.log("isBigEnough2 : ", isBigEnough(9))
+
+      var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+
+      // filtered : [12, 130, 44]
+      // " 배열 "의 객체중에서 filter콜백함수의 ture값을 받은 객체만 추출!
+
+      //콜백 함수 바로 넣기
+      var funFilter = [12, 5, 8, 130, 44].filter(value => value >= 10)
+      var funFilter_1 = [12, 5, 8, 130, 44].filter((value, idx )=> {
+         idx >= 2 && value >=10 
+         console.log(idx)
+      })
+      console.log("funFilter_1 : ",funFilter_1) // [130, 44]
+
+   </script>
+   <script>
+       // 0 이 아닌, 숫자 id인 모든 요소의 걸러진 json을 만들기 위해 filter()를 사용
+      var arr = [
+         { id: 15 },
+         { id: -1 },
+         { id: 0 },
+         { id: 3 },
+         { id: 12.2 },
+         { },
+         { id: null },
+         { id: NaN },
+         { id: 'undefined' }
+      ];
+
+      var invalidEntries = 0; //필터로 버려진 객체 갯수 세는 변수
+
+      function isNumber(obj) {
+         return obj !== undefined && typeof(obj) === 'number' && !isNaN(obj);//완전 숫자면 true
+      }
+
+      function filterByID(item, index) {
+
+         if (isNumber(item.id) && item.id !== 0) { 
+            console.log("index : ", index) //필터로 걸러진 객체들의 index(번째)
+            return true; //0이 아닌 숫자면 ture
+         }
+         invalidEntries++; //0이거나 숫자가 아닌 객체의 갯수
+         
+         return false;
+      }
+
+      var arrByID = arr.filter(filterByID);
+
+      console.log('Filtered Array : \n', arrByID);
+      // Filtered Array
+      // [{ id: 15 }, { id: -1 }, { id: 3 }, { id: 12.2 }]
+
+      console.log('Number of Invalid Entries = ', invalidEntries);
+      // Number of Invalid Entries = 5
+      console.log('Number of Valid Entries = ', (arr.length - invalidEntries));
+      // Number of Valid Entries = 4
+   </script>
+</body>
+</html>
