@@ -115,4 +115,8 @@ export default {
 };
 </script>
   
-<style></style>
+<style scoped>
+.container{
+   background: url('@/assets/img/bg.png') top center/cover no-repeat;
+}
+</style>

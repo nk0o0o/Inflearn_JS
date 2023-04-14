@@ -1,16 +1,26 @@
 #app{
+   overflow: hidden;
    height: 100vh;
    height: calc(var(--vh, 1vh) * 100);
    background-color: #F7F6FB;
+   
 }
 header{
-   position: relative;
-   display: flex;
-   align-items: center;
-   height: 40px;
+   height: 48px;
+}
+.nav {
+   height: 45px;
+}
+#wrapper{
+   height: calc(var(--vh, 1vh) * 100 - 93px);
 }
 .container{
-   padding-top: 20px;
+   padding-top: 45px;
+   position: relative;
+   height: calc(var(--vh, 1vh) * 100 - 93px);
+   padding: 45px 0 0;
+   max-width: 100%;
+   
 }
 *[class*=ico_]{
    position: relative;

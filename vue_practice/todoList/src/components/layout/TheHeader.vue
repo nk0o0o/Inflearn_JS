@@ -29,6 +29,16 @@ export default {
 </script>
 
 <style scoped>
+header{
+   z-index: 1;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   background-color: transparent;
+}
 .back-btn-hidden {
    visibility: hidden;
    opacity: 0;
@@ -46,5 +56,7 @@ export default {
 .page_title{
    width: 100%;
    text-align: center;
+   color: #fff;
+   font-weight: 700;
 }
 </style>

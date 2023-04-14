@@ -9,8 +9,7 @@
             <span class="temp_current_deg">ºC</span>
          </p>
       </div>
-      <BaseButton class="btn_start" @click.stop="deleteTodo(index)"
-          >Get Started!</BaseButton>
+      <BaseButton class="btn_start" @click.stop="deleteTodo(index)">Get Started!</BaseButton>
    </div>
 </template>
 
@@ -28,6 +27,10 @@ export default {
 </script>
 
 <style scoped>
+.container{
+   padding-top: 45px;
+   background: url('@/assets/img/bg_home.png') top center/cover no-repeat;
+}
 .temp_wrap{
    position: absolute;
    width: 100%; height:auto;
