@@ -1,0 +1,49 @@
+*{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+.d-flex{
+  display: flex;
+}
+.df-a-center{
+  align-items: center;
+}
+.df-j-between{
+  justify-content: space-between;
+}
+
+/* 테이블 */
+.table_list{
+  width: 100%;
+  display: table;
+}
+.t_header{
+  display: table-header-group;
+  background-color: #fefefe;
+  font-weight: bold;
+}
+.t_h_cell{
+  display: table-cell;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.t_body{
+  display: table-row-group;
+}
+.t_row{
+  display: table-row;
+}
+.t_b_cell{
+  text-align: center;
+  display: table-cell;
+}
+.t_num{
+  width: 100px;
+}
+.t_check{
+  width: 80px;
+}

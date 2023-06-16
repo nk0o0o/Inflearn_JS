@@ -1,0 +1,208 @@
+<template>
+  <div id="app">
+    <Header></Header>
+    <router-view 
+      :postItems="fillterPosts" 
+      @add-post="addPost" 
+      @toggle-post="togglePost" 
+      @delete-post="deletePost"
+      @search-post="searchPost"
+      @edit-post="editPost"
+      @sort-post="sortPost"
+    ></router-view>
+</div>
+</template>
+
+<script>
+import Header from "@/components/Header.vue";
+import { ref, computed } from "vue";
+import { useRouter } from 'vue-router'
+import axios from "axios";
+export default{
+  name:"App",
+  components:{
+    Header
+  },
+  setup() {
+    const router = useRouter();
+    const postItems = ref(null);
+    const loading = ref(true);
+    const error = ref("");
+    const searchText = ref("");
+    let editPostId = ref("")
+    //가져오기
+    const getPost = async (params) => {
+      try {
+        const res = await axios.get("http://localhost:5000/posts/");
+        postItems.value = res.data;
+        loading.value = false;
+      } catch (err) {
+        error.value = err;
+      }
+    };
+    getPost();
+    //날짜 포맷
+    const formatDate = (date) => {
+      date = [
+        '' + date.getFullYear(),
+        '0' + (date.getMonth() + 1),
+        '0' + date.getDate(),
+        '0' + date.getHours(),
+        '0' + date.getMinutes()
+      ].map(component => component.slice(-2)); 
+      return date.slice(0, 3).join('.') + ' ' + date.slice(3).join(':');
+    }
+    //글올리기
+    const addPost = async (post) => {
+      error.value = "";
+      if(!editPostId.value){
+        try {
+          const res = await axios.post("http://localhost:5000/posts/", {
+            id:post.id,
+            title: post.title,
+            author: post.author,
+            content: post.content,
+            createdAt: formatDate(new Date()),
+            checked:false
+          });
+          postItems.value.push(res.data);
+        } catch (err) {
+          console.log("error")
+          error.value = err;
+        }        
+      }else{
+        try{
+          const res = await axios.put(`http://localhost:5000/posts/${editPostId.value}`,{
+            id:editPostId,
+            title: post.title,
+            author: post.author,
+            content: post.content,
+            createdAt: formatDate(new Date()),
+            checked:false
+          })
+          getPost();
+        }catch(err){
+          error.value = err
+        }
+      }
+    }
+    //토글
+    const togglePost = async (idx) => {
+      error.value = "";
+      const id = postItems.value[idx].id;
+      try {
+        await axios.patch("http://localhost:5000/posts/" + id, {
+          checked: !postItems.value[idx].checked,
+        });
+      } catch (err) {
+        console.log("error")
+        error.value = err;
+      }
+      postItems.value[idx].checked = !postItems.value[idx].checked;
+    };
+    //글삭제
+    const deletePost = async() => {
+      error.value='';
+      const id = postItems.value.map((obj) => {
+        if(obj.checked == true){
+          return obj.id
+        }
+      }).filter(el=>el)
+      if(!id.length){
+        alert("선택된 글이 없습니다.")
+      }else{
+        try{
+          for (let i = 0; i < id.length; i++) {
+            const res = await axios.delete('http://localhost:5000/posts/' + id[i])
+            getPost();
+          }
+          alert("삭제완료")
+        }catch(err){
+          console.log("error")
+          error.value = err
+        }
+      }
+    }
+    //글 검색
+    const searchPost = (text)=> {
+      searchText.value = text;
+    }
+    const fillterPosts = computed(() => {
+      if(searchText.value){
+        return postItems.value.filter(post => {
+          return post.title.includes(searchText.value)
+                ||post.content.includes(searchText.value)
+                ||post.author.includes(searchText.value)
+                ||post.createdAt.includes(searchText.value)
+        })
+      }else{
+        return postItems.value
+      }
+    })
+    //글 수정
+    const editPost = async (postId) => {
+      editPostId.value = postId;
+      try {
+        const res = await axios.get("http://localhost:5000/posts/" + postId);
+        router.push({
+        name: "Create",
+        params: {
+          contentId: postId,
+        },
+        query:{
+          id:postId,
+          title:res.data.title,
+          content:res.data.content,
+          author:res.data.author
+        }
+      });
+      } catch (err) {
+        error.value = err;
+      }
+    };
+    //글 정렬
+    const sortPost = (order)=>{
+      const posts = JSON.parse(postItems.value)
+      console.log(posts)
+      console.log(posts.sort((a, b)=>{return a.id - b.id}))
+      if(order == "latest"){
+        const g = postItems.value.sort((a, b)=>{
+          return a.createdAt - b.createdAt
+        })
+        // postItems.value.sort(function(a, b) {
+        //   return a.time - b.time
+        // })
+      }else if(order == "title"){
+      }
+    }
+
+    return{
+      postItems,
+      error,
+      editPostId,
+      fillterPosts,
+      getPost,
+      addPost,
+      togglePost,
+      deletePost,
+      searchPost,
+      editPost,
+      sortPost
+    }
+  }
+}
+
+
+</script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+</style>

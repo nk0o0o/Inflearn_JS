@@ -1,9 +1,6 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from "@/components/router/router.js";
-import "@/assets/js/ui.js";
-import "@/assets/css/reset.css";
-import "@/assets/css/app.css";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from "./router.js";
 
 createApp(App)
 .use(router)

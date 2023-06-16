@@ -1,47 +1,28 @@
-<template :class={pageTitle}>
-   <TheHeader :pageTitle="pageTitle"/><!-- :backBtn="backBtn" -->
-   <div id="wrapper">
-      <router-view></router-view>
-   </div>
-   <TheNavigation/>
+<template>
+  <nav class="navbar">
+    <div class="container justify-content-start">
+      <router-link class="navbar-brand" :to="{name: 'Home'}">Home</router-link>
+      <div class="navbar-bar" id="navbarNav">
+        <div class="navbar-nav">
+          <router-link class="nav-link active" :to="{name: 'Todos'}">Todos</router-link>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- ./nav -->
 
-   <TodoInputModal 
-      @openModal="modal=true;"
-      @closeModal="modal = false"
-      :modal="modal"
-  >Todo 입력 모달</TodoInputModal>
-
+  <div class="container">
+    <router-view></router-view>
+  </div>
 </template>
-
 <script>
-import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
-
-import TheHeader from '@/components/layout/TheHeader.vue'
-import TheNavigation from '@/components/layout/TheNavigation.vue'
-import TodoForm from "@/components/TodoForm.vue";
-import TodoInputModal from "@/components/ui/TodoInputModal.vue";
-
-
 export default {
-   name:'App',
-   components: {
-    TheNavigation,
-    TheHeader,
-    TodoForm,
-    TodoInputModal
-},
-   setup() {
-      const modal = ref(false);
-      const route = useRoute();
-      const pageTitle = computed(() => route.name);      
-      return {
-         pageTitle,
-         modal
-      };
-   },
-};
+  setup() {
+
+
+    return {}
+  }
+}
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
