@@ -33,14 +33,6 @@
       "checked": false
     },
     {
-      "id": 5,
-      "title": "TigerVue",
-      "author": "Tiger",
-      "content": "Tiger like VUE",
-      "createdAt": "23.06.19 09:59",
-      "checked": false
-    },
-    {
       "id": 6,
       "title": "고양이vue",
       "author": "고양이",
@@ -62,14 +54,6 @@
       "author": "cow",
       "content": "cow는 vue가 재밌어유우우",
       "createdAt": "23.06.20 09:09",
-      "checked": false
-    },
-    {
-      "id": 9,
-      "title": "CowVue",
-      "author": "Cow",
-      "content": "Cow도 vue가 재밌어유우우우",
-      "createdAt": "23.06.20 09:10",
       "checked": false
     }
   ]

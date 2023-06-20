@@ -96,21 +96,30 @@ export default {
       searchText.value = text;
     }
     //글 검색 / 정렬
-    let sortedItems = computed(()=>{      
+    let sortedItems = computed(()=>{
+      const items = postItems.value;
+      
+      if(!selectOption.value && !searchText.value){
+        console.log(items)
+        /* items.sort((a, b)=>{
+          return a.createdAt.localeCompare(b.createdAt)
+        }) */
+      }
+      
       if(selectOption.value){
         switch (selectOption.value) {
           case "latest":
-            postItems.value.sort((a, b)=>{
+            items.sort((a, b)=>{
               return b.createdAt.localeCompare(a.createdAt)
             })
             break;
             case "oldest":
-              postItems.value.sort((a, b)=>{
+            items.sort((a, b)=>{
               return a.createdAt.localeCompare(b.createdAt)
             })
             break;
           case "title":
-            postItems.value.sort((a, b)=>{
+            items.sort((a, b)=>{
               return a.title.toUpperCase().localeCompare(b.title.toUpperCase())
             })
             break;
@@ -119,15 +128,15 @@ export default {
       }
 
       if(searchText.value){
-        return postItems.value.filter(post => {
+        return items.filter(post => {
           return post.title.toUpperCase().includes(searchText.value.toUpperCase())
-            ||post.content.toUpperCase().includes(searchText.value.toUpperCase())
-            ||post.author.toUpperCase().includes(searchText.value.toUpperCase())
-            ||post.createdAt.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.content.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.author.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.createdAt.toUpperCase().includes(searchText.value.toUpperCase())
         })
       }
-
-      return postItems.value
+  
+      return items
     })
     return {
       router,
