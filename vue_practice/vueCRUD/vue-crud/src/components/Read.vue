@@ -120,10 +120,10 @@ export default {
 
       if(searchText.value){
         return postItems.value.filter(post => {
-          return post.title.includes(searchText.value)
-            ||post.content.includes(searchText.value)
-            ||post.author.includes(searchText.value)
-            ||post.createdAt.includes(searchText.value)
+          return post.title.toUpperCase().includes(searchText.value.toUpperCase())
+            ||post.content.toUpperCase().includes(searchText.value.toUpperCase())
+            ||post.author.toUpperCase().includes(searchText.value.toUpperCase())
+            ||post.createdAt.toUpperCase().includes(searchText.value.toUpperCase())
         })
       }
 
