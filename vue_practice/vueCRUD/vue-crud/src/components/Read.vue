@@ -3,17 +3,22 @@
     <!-- 리스트상단 -->
     <div class="d-flex df-a-center df-j-between">
       <div class="search_wrap">
-        <input type="search" placeholder="Search" v-model="searchText" @keyup.prevent="searchPost(searchText)">
-        <button type="button"  @click.prevent="searchPost(searchText)">검색</button>
+        <input type="text"
+          placeholder="Search" 
+          :value="searchText"  
+          @input="searchText = $event.target.value"  
+          @keyup.prevent="searchPost(searchText)"
+        />
       </div>
 
       <div class="filter_wrap">
-        <select name="listFilter" id="" value="최신순" v-model="selectOption" @change="postSort()">
+        <select name="listFilter" id="" value="최신순" v-model="selectOption">
           <option value="latest">최신순</option>
+          <option value="oldest">오래된순</option>
           <option value="title">제목순</option>
         </select>
       </div>
-      <button type="button" @click.stop="deletePost()">선택글삭제</button>
+      <button type="button" @click.stop="deletePost(selectOption)">선택글삭제</button>
     </div>
     <!-- //리스트상단 -->
     <!-- 리스트 목록 -->
@@ -26,17 +31,18 @@
           <div class="t_h_cell">작성자</div>
           <div class="t_h_cell t_check">선택</div>
         </div>
-        <div class="t_body" v-for="(item, index) in postItems" :key="item.id">
+        <div class="t_body" v-for="(item, index) in sortedItems" :key="item.id">
           <div class="t_row" :class="{'is_checked':item.checked}">
             <div class="t_b_cell t_num">{{ item.id }}</div>
             <div class="t_b_cell">{{ item.createdAt }}</div>
             <div class="t_b_cell post_tit" @click="moveToDetail(item.id)">{{ item.title }}</div>
             <div class="t_b_cell">{{ item.author }}</div>
             <div class="t_b_cell t_check">
-              <input type="checkbox" name="" :id="'checkBox' + index" 
-              @click.stop
-              @change.stop="togglePost(index)"
-              :checked="item.checked"
+              <input type="checkbox" name="" 
+                :id="'checkBox' + index" 
+                @click.stop
+                @change.stop="togglePost(index)"
+                :checked="item.checked"
               />
               <label :for="'checkBox' + index"></label>
             </div>
@@ -49,19 +55,19 @@
 </template>
 
 <script>
-import { ref, toRef } from 'vue'
+import { ref, toRef, computed, isProxy, toRaw } from 'vue'
 import { useRouter } from "vue-router";
 export default {
   name:"Read",
   props: {
     postItems:Array
   },
-  emits: ["toggle-post", "delete-post", "search-post", "sort-post"],
+  emits: ["toggle-post", "delete-post", "search-post"],
   setup (props,{emit}) {
     const router = useRouter();
     const searchText = ref("")
     const postItems = toRef(props, 'postItems')
-    const selectOption = ref("")
+    const selectOption = ref(null)
     //토글 체크
     const togglePost = (idx) => {
       emit("toggle-post", idx)
@@ -90,19 +96,39 @@ export default {
       emit("search-post", text)
     }
     //글 순서 정렬
-    const postSort = () => {
-      emit("sort-post", selectOption.value)
-    }
+    let sortedItems = computed(()=>{      
+      if(selectOption.value){
+        switch (selectOption.value) {
+          case "latest":
+            postItems.value.sort((a, b)=>{
+              return b.createdAt.localeCompare(a.createdAt)
+            })
+            break;
+            case "oldest":
+              postItems.value.sort((a, b)=>{
+              return a.createdAt.localeCompare(b.createdAt)
+            })
+            break;
+          case "title":
+            postItems.value.sort((a, b)=>{
+              return a.title.toUpperCase().localeCompare(b.title.toUpperCase())
+            })
+            break;
+        
+        }
+      }
+      return postItems.value
+    })
     return {
       moveToDetail,
       deletePost,
       togglePost,
       searchPost,
-      postSort,
       postItems,
       selectOption,
       router,
       searchText,
+      sortedItems
     }
   }
 }

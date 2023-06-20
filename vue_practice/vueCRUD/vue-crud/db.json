@@ -2,26 +2,74 @@
   "posts": [
     {
       "id": 1,
-      "title": "2vue",
-      "author": "vuevue",
-      "content": "vuevuevue",
-      "createdAt": "23.06.16 16:34",
+      "title": "토끼vue",
+      "author": "토끼",
+      "content": "토끼는 vue가 재밋어요",
+      "createdAt": "23.06.16 12:34",
       "checked": false
     },
     {
       "id": 2,
-      "title": "1vueqqq",
-      "author": "vuevue",
-      "content": "vuevuevueqqqqq",
-      "createdAt": "23.06.16 16:34",
+      "title": "고라니vue",
+      "author": "고라니",
+      "content": "고라니는 vue가 재밋어요",
+      "createdAt": "23.06.19 14:12",
       "checked": false
     },
     {
       "id": 3,
-      "title": "qwe",
-      "author": "qwe",
-      "content": "qwe",
+      "title": "강아지vue",
+      "author": "강아지",
+      "content": "강아지는 vue가 재밋어요",
       "createdAt": "23.06.16 17:19",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "title": "호랑이vue",
+      "author": "호랑이",
+      "content": "호랑이는 vue가 재밋어요",
+      "createdAt": "23.06.19 09:44",
+      "checked": false
+    },
+    {
+      "id": 5,
+      "title": "TigerVue",
+      "author": "Tiger",
+      "content": "Tiger like VUE",
+      "createdAt": "23.06.19 09:59",
+      "checked": false
+    },
+    {
+      "id": 6,
+      "title": "고양이vue",
+      "author": "고양이",
+      "content": "고양이는 vue가 재미있어요",
+      "createdAt": "23.06.19 17:48",
+      "checked": false
+    },
+    {
+      "id": 7,
+      "title": "tigerVue",
+      "author": "tiger",
+      "content": "tiger도 vue가 재밌어용",
+      "createdAt": "23.06.20 09:08",
+      "checked": false
+    },
+    {
+      "id": 8,
+      "title": "cowVue",
+      "author": "cow",
+      "content": "cow는 vue가 재밌어유우우",
+      "createdAt": "23.06.20 09:09",
+      "checked": false
+    },
+    {
+      "id": 9,
+      "title": "CowVue",
+      "author": "Cow",
+      "content": "Cow도 vue가 재밌어유우우우",
+      "createdAt": "23.06.20 09:10",
       "checked": false
     }
   ]

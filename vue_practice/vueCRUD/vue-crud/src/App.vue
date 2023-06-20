@@ -8,7 +8,6 @@
       @delete-post="deletePost"
       @search-post="searchPost"
       @edit-post="editPost"
-      @sort-post="sortPost"
     ></router-view>
 </div>
 </template>
@@ -127,7 +126,7 @@ export default{
     const searchPost = (text)=> {
       searchText.value = text;
     }
-    const fillterPosts = computed(() => {
+    let fillterPosts = computed(() => {
       if(searchText.value){
         return postItems.value.filter(post => {
           return post.title.includes(searchText.value)
@@ -161,21 +160,25 @@ export default{
       }
     };
     //글 정렬
-    const sortPost = (order)=>{
-      const posts = JSON.parse(postItems.value)
-      console.log(posts)
-      console.log(posts.sort((a, b)=>{return a.id - b.id}))
-      if(order == "latest"){
-        const g = postItems.value.sort((a, b)=>{
-          return a.createdAt - b.createdAt
-        })
-        // postItems.value.sort(function(a, b) {
-        //   return a.time - b.time
-        // })
-      }else if(order == "title"){
-      }
-    }
+    /* const sortPost = (order)=>{
+    
+      postItems.value.sort(function(a, b) {
+        return a.title - b.title
+      })
+      console.log(sorted)
 
+      switch (order) {
+        case "latest":
+          console.log( 'gkgk' );
+          break;
+        case "oldest":
+          console.log( 'ghgh' );
+          break;
+        case "title":
+          console.log( 'glgl' );
+          break;
+      }
+    } */
     return{
       postItems,
       error,
@@ -187,7 +190,7 @@ export default{
       deletePost,
       searchPost,
       editPost,
-      sortPost
+      //sortPost
     }
   }
 }
