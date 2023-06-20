@@ -93,9 +93,9 @@ export default {
     };
     //검색 필터
     const searchPost = (text) => {
-      emit("search-post", text)
+      searchText.value = text;
     }
-    //글 순서 정렬
+    //글 검색 / 정렬
     let sortedItems = computed(()=>{      
       if(selectOption.value){
         switch (selectOption.value) {
@@ -117,18 +117,28 @@ export default {
         
         }
       }
+
+      if(searchText.value){
+        return postItems.value.filter(post => {
+          return post.title.includes(searchText.value)
+            ||post.content.includes(searchText.value)
+            ||post.author.includes(searchText.value)
+            ||post.createdAt.includes(searchText.value)
+        })
+      }
+
       return postItems.value
     })
     return {
+      router,
+      postItems,
+      searchText,
+      selectOption,
+      sortedItems,
       moveToDetail,
       deletePost,
       togglePost,
-      searchPost,
-      postItems,
-      selectOption,
-      router,
-      searchText,
-      sortedItems
+      searchPost
     }
   }
 }

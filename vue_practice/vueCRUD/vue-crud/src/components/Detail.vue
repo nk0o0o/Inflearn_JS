@@ -34,6 +34,7 @@ export default {
     const post = ref(null);
     const loading = ref(true);
     const postId = route.params.contentId;
+    
     //글 내용 가져오기
     const getPost = async (params) => {
       try {
@@ -59,12 +60,12 @@ export default {
     };
 
     return {
-      moveToListPage,
-      EditPost,
       loading,
       error,
       post,
-      postId
+      postId,
+      EditPost,
+      moveToListPage
     }
   }
 }

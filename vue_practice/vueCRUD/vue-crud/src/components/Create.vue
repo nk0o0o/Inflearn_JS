@@ -41,6 +41,7 @@ export default {
       postAuthor:"",
       postText:""
     });
+
     if(postId){
       postCont = reactive({
         postTit:route.query.title,
@@ -48,6 +49,7 @@ export default {
         postText:route.query.content
       });
     }
+    
     //글 저장
     const onSubmit = () => {
       if (!confirm("저장하겠습니까?")) {
@@ -101,11 +103,11 @@ export default {
 
     return {
       hasError,
-      postCont,
       postId,
-      confirmGoList,
+      postCont,
+      goList,
       onSubmit,
-      goList
+      confirmGoList
     }
   }
 }

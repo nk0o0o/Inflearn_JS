@@ -2,11 +2,10 @@
   <div id="app">
     <Header></Header>
     <router-view 
-      :postItems="fillterPosts" 
+      :postItems="postItems"
       @add-post="addPost" 
       @toggle-post="togglePost" 
-      @delete-post="deletePost"
-      @search-post="searchPost"
+      @delete-post="deletePost"      
       @edit-post="editPost"
     ></router-view>
 </div>
@@ -27,8 +26,8 @@ export default{
     const postItems = ref(null);
     const loading = ref(true);
     const error = ref("");
-    const searchText = ref("");
     let editPostId = ref("")
+
     //가져오기
     const getPost = async (params) => {
       try {
@@ -40,6 +39,7 @@ export default{
       }
     };
     getPost();
+
     //날짜 포맷
     const formatDate = (date) => {
       date = [
@@ -51,6 +51,7 @@ export default{
       ].map(component => component.slice(-2)); 
       return date.slice(0, 3).join('.') + ' ' + date.slice(3).join(':');
     }
+
     //글올리기
     const addPost = async (post) => {
       error.value = "";
@@ -85,6 +86,7 @@ export default{
         }
       }
     }
+
     //토글
     const togglePost = async (idx) => {
       error.value = "";
@@ -99,6 +101,7 @@ export default{
       }
       postItems.value[idx].checked = !postItems.value[idx].checked;
     };
+
     //글삭제
     const deletePost = async() => {
       error.value='';
@@ -122,22 +125,7 @@ export default{
         }
       }
     }
-    //글 검색
-    const searchPost = (text)=> {
-      searchText.value = text;
-    }
-    let fillterPosts = computed(() => {
-      if(searchText.value){
-        return postItems.value.filter(post => {
-          return post.title.includes(searchText.value)
-                ||post.content.includes(searchText.value)
-                ||post.author.includes(searchText.value)
-                ||post.createdAt.includes(searchText.value)
-        })
-      }else{
-        return postItems.value
-      }
-    })
+   
     //글 수정
     const editPost = async (postId) => {
       editPostId.value = postId;
@@ -159,38 +147,16 @@ export default{
         error.value = err;
       }
     };
-    //글 정렬
-    /* const sortPost = (order)=>{
-    
-      postItems.value.sort(function(a, b) {
-        return a.title - b.title
-      })
-      console.log(sorted)
 
-      switch (order) {
-        case "latest":
-          console.log( 'gkgk' );
-          break;
-        case "oldest":
-          console.log( 'ghgh' );
-          break;
-        case "title":
-          console.log( 'glgl' );
-          break;
-      }
-    } */
     return{
-      postItems,
       error,
+      postItems,
       editPostId,
-      fillterPosts,
       getPost,
       addPost,
       togglePost,
       deletePost,
-      searchPost,
       editPost,
-      //sortPost
     }
   }
 }
