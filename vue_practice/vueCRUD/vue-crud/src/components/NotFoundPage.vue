@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main class="page_error">
     페이지를 찾을 수 없습니다
-  </div>
+  </main>
 </template>
 
 <script>

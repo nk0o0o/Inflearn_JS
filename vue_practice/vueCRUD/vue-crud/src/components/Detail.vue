@@ -1,5 +1,5 @@
 <template>
-  <div class="page_detail">
+  <main class="page_detail">
     <div v-if="loading">..Loading</div>
     <div v-else class="page_edit_wrap">
       <div class="tit_area">
@@ -13,11 +13,11 @@
         {{ post.content }}
       </div>
     </div>
-    <div class="btn_area">
-      <button type="button" @click="EditPost(postId)">수정</button>
-      <button type="button" @click="moveToListPage">목록</button>
+    <div class="btn_area d-flex df-j-center gap-50">
+      <button type="button" class="btn shadow_box" @click="EditPost(postId)">수정</button>
+      <button type="button" class="btn shadow_box" @click="moveToListPage">목록</button>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -72,10 +72,23 @@ export default {
 </script>
 
 <style scoped>
-  .tit_area h2{padding: 16px 8px;}
-  .post_info{font-size: 14px;line-height: 1;}
+  .page_edit_wrap{
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  .tit_area h2{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 8px;
+  }
+  .post_info{
+    padding: 0 8px;
+    font-size: 14px;
+    line-height: 1;
+  }
   .cont_area{
     padding: 24px 16px;
     text-align: justify;
   }
+
 </style>

@@ -1,19 +1,17 @@
 <template>
-  <div id="app">
-    <Header></Header>
-    <router-view 
-      :postItems="postItems"
-      @add-post="addPost" 
-      @toggle-post="togglePost" 
-      @delete-post="deletePost"      
-      @edit-post="editPost"
-    ></router-view>
-</div>
+  <Header></Header>
+  <router-view 
+    :postItems="postItems"
+    @add-post="addPost" 
+    @toggle-post="togglePost" 
+    @delete-post="deletePost"      
+    @edit-post="editPost"
+  ></router-view>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useRouter } from 'vue-router'
 import axios from "axios";
 export default{

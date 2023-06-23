@@ -1,7 +1,7 @@
 <template>
-  <div>
-    메인화면
-  </div>
+  <main class="page_home">
+
+    메인화면  </main>
 </template>
 
 <script>
@@ -14,5 +14,7 @@ export default {
 </script>
 
 <style scoped>
-
+/* .page_home{
+  height: calc(100vh - 48px);
+} */
 </style>

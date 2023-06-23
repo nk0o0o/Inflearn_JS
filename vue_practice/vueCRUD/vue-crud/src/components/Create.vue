@@ -1,28 +1,28 @@
 <template>
-  <div class="page_create">
+  <main class="page_create">
     <h2>새글쓰기</h2>
     <form @submit.prevent="onSubmit" class="post_form">
       <div class="post_write_area">
         <div class="post_row">
           <label for="postTit" class="post_l_cell">제목</label>
-          <input type="text" id="postTit" class="post_r_cell" v-model="postCont.postTit" required/>
+          <input type="text" id="postTit" class="post_r_cell shadow_box" v-model="postCont.postTit" required/>
         </div>
         <div class="post_row">
           <label for="postAuthor" class="post_l_cell">글쓴이</label>
-          <input type="text" id="postAuthor" class="post_r_cell" v-model="postCont.postAuthor" required/>
+          <input type="text" id="postAuthor" class="post_r_cell shadow_box" v-model="postCont.postAuthor" required/>
         </div>
         <div class="post_row">
           <label for="postText" class="post_l_cell">내용</label>
-          <textarea id="postText" class="post_r_cell" v-model="postCont.postText" required></textarea>
+          <textarea id="postText" class="post_r_cell shadow_box" v-model="postCont.postText" required></textarea>
         </div>
       </div>
       <div v-if="hasError" class="msg_error">내용을 입력하세요</div>
       <div class="btn_area">
-        <button type="button" @click="confirmGoList">목록</button>
-        <button type="submit">저장</button>
+        <button type="button" class="btn" @click="confirmGoList">목록</button>
+        <button type="submit" class="btn">저장</button>
       </div>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>

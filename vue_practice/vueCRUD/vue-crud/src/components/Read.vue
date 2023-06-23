@@ -1,57 +1,58 @@
 <template>
-  <div class="page_read">
+  <main class="page_read">
     <!-- 리스트상단 -->
-    <div class="d-flex df-a-center df-j-between">
+    <div class="d-flex df-a-center df-j-between gap-20">
       <div class="search_wrap">
         <input type="text"
+          class="shadow_box"
           placeholder="Search" 
           :value="searchText"  
           @input="searchText = $event.target.value"  
           @keyup.prevent="searchPost(searchText)"
         />
       </div>
-
       <div class="filter_wrap">
-        <select name="listFilter" id="" value="최신순" v-model="selectOption">
+        <select name="listFilter" id="" value="최신순" v-model="selectOption" class="shadow_box">
           <option value="latest">최신순</option>
           <option value="oldest">오래된순</option>
           <option value="title">제목순</option>
         </select>
       </div>
-      <button type="button" @click.stop="deletePost(selectOption)">선택글삭제</button>
+      <button type="button" class="shadow_box btn_delete d-flex" @click.stop="deletePost(selectOption)">
+        <i class="ico_del red">선택글삭제</i>
+      </button>
     </div>
     <!-- //리스트상단 -->
     <!-- 리스트 목록 -->
-    <div>
-      <div class="table_list">
-        <div class="t_header">
-          <div class="t_h_cell t_num">ID</div>
-          <div class="t_h_cell">날짜</div>
-          <div class="t_h_cell">제목</div>
-          <div class="t_h_cell">작성자</div>
-          <div class="t_h_cell t_check">선택</div>
-        </div>
-        <div class="t_body" v-for="(item, index) in sortedItems" :key="item.id">
-          <div class="t_row" :class="{'is_checked':item.checked}">
-            <div class="t_b_cell t_num">{{ item.id }}</div>
-            <div class="t_b_cell">{{ item.createdAt }}</div>
-            <div class="t_b_cell post_tit" @click="moveToDetail(item.id)">{{ item.title }}</div>
-            <div class="t_b_cell">{{ item.author }}</div>
-            <div class="t_b_cell t_check">
-              <input type="checkbox" name="" 
-                :id="'checkBox' + index" 
-                @click.stop
-                @change.stop="togglePost(index)"
-                :checked="item.checked"
-              />
-              <label :for="'checkBox' + index"></label>
-            </div>
+    <div class="table_list shadow_box">
+      <!-- <div class="t_header">
+        <div class="t_h_cell t_num">ID</div>
+        <div class="t_h_cell t_w_10"></div>
+        <div class="t_h_cell t_title">제목</div>
+        <div class="t_h_cell t_w_15">작성자</div>
+        <div class="t_h_cell t_date t_w_30">날짜</div>
+      </div> -->
+      <div class="t_body">
+        <div v-if="!sortedItems.length && searchText">조건에 만족하는 값이 없습니다.</div>
+        <div v-else class="t_row" :class="{'is_checked':item.checked}" v-for="(item, index) in sortedItems" :key="item.id">
+          <!-- <div class="t_b_cell t_num">{{ item.id }}</div> -->
+          <div class="t_b_cell t_select">
+            <input type="checkbox" name="" 
+              :id="'checkBox' + index" 
+              @click.stop
+              @change.stop="togglePost(index)"
+              :checked="item.checked"
+            />
+            <label :for="'checkBox' + index"></label>
           </div>
+          <div class="t_b_cell">{{ item.author }}</div>
+          <div class="t_b_cell t_title" @click="moveToDetail(item.id)">{{ item.title }}</div>
+          <div class="t_b_cell t_date">{{ item.createdAt }}</div>
         </div>
       </div>
     </div>
     <!-- //리스트 목록 -->
-  </div>
+  </main>
 </template>
 
 <script>
@@ -97,13 +98,10 @@ export default {
     }
     //글 검색 / 정렬
     let sortedItems = computed(()=>{
-      const items = postItems.value;
-      
+      let items = postItems.value;
+     
       if(!selectOption.value && !searchText.value){
-        console.log(items)
-        /* items.sort((a, b)=>{
-          return a.createdAt.localeCompare(b.createdAt)
-        }) */
+        return {...postItems.value}
       }
       
       if(selectOption.value){
@@ -135,8 +133,6 @@ export default {
             || post.createdAt.toUpperCase().includes(searchText.value.toUpperCase())
         })
       }
-  
-      return items
     })
     return {
       router,
@@ -154,11 +150,32 @@ export default {
 </script>
 
 <style scoped>
-  .post_tit{
-    cursor: pointer;
-  }
   .t_row.is_checked{
     background-color: #efefef;
     font-weight: 700;
+  }
+  .filter_wrap{
+    margin-left: auto;
+  }
+  .table_list{
+    margin-top: 20px;
+  }
+  .t_body{display: flex;
+  flex-direction: column;
+  gap: 8px;}
+  .t_row{
+    padding: 8px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 30px auto;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+  }
+  .t_select{
+    grid-row:1/4;
+    display: flex;
+  }
+  .t_date{
+    text-align: right;
   }
 </style>
