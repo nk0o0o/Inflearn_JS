@@ -1,6 +1,6 @@
 <template>
   <main class="page_create">
-    <h2>새글쓰기</h2>
+    <h2>{{!postId ? "새글쓰기" : "수정하기"}}</h2>
     <form @submit.prevent="onSubmit" class="post_form">
       <div class="post_write_area">
         <div class="post_row">
@@ -18,8 +18,8 @@
       </div>
       <div v-if="hasError" class="msg_error">내용을 입력하세요</div>
       <div class="btn_area">
-        <button type="button" class="btn" @click="confirmGoList">목록</button>
-        <button type="submit" class="btn">저장</button>
+        <button type="button" class="btn shadow_box" @click="confirmGoList">목록</button>
+        <button type="submit" class="btn shadow_box">저장</button>
       </div>
     </form>
   </main>
@@ -30,7 +30,10 @@ import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 export default {
   name:"Create",
-  emit:["add-post"],  
+  emit:["add-post"], 
+  props:{
+    CreateState: String
+  } ,
   setup (props, {emit}) {
     const router = useRouter();
     const route = useRoute();
@@ -41,7 +44,7 @@ export default {
       postAuthor:"",
       postText:""
     });
-
+    
     if(postId){
       postCont = reactive({
         postTit:route.query.title,
@@ -49,7 +52,6 @@ export default {
         postText:route.query.content
       });
     }
-    
     //글 저장
     const onSubmit = () => {
       if (!confirm("저장하겠습니까?")) {

@@ -33,19 +33,16 @@ button, .btn{
   cursor: pointer;
   border: 0;
 }
-.btn{
-
-}
 .btn_delete{
   background-color: transparent;
 }
 /* 컨테이너(박스) */
 #app{
   background-color: #edf2f7;
-  padding: 0 8px;
 }
 #app main{
-  height: calc(100vh - 40px);
+  padding:8px;
+  min-height: calc(100vh - 40px);
 }
 .shadow_box{
   min-width: 35px;

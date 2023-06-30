@@ -1,17 +1,20 @@
 <template>
   <Header></Header>
   <router-view 
-    :postItems="postItems"
+    :searchResult="searchResult"
+    :postItems="filteredPost"
     @add-post="addPost" 
     @toggle-post="togglePost" 
     @delete-post="deletePost"      
     @edit-post="editPost"
+    @search-post="searchPost"
+    @sort-post="sortPost"
   ></router-view>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from 'vue-router'
 import axios from "axios";
 export default{
@@ -24,7 +27,10 @@ export default{
     const postItems = ref(null);
     const loading = ref(true);
     const error = ref("");
-    let editPostId = ref("")
+    const searchText = ref("");
+    const selectOption = ref("");
+    let searchResult = ref(false);
+    let editPostId = ref("");
 
     //가져오기
     const getPost = async (params) => {
@@ -145,12 +151,61 @@ export default{
         error.value = err;
       }
     };
+    //글 검색
+    const searchPost = (text)=>{
+      searchText.value = text
+    }
+    const sortPost = (text)=>{
+      selectOption.value = text
+    }
+    // 글 검색/정렬로 거른값 넘기기
+    const filteredPost = computed(()=>{
+      let items = postItems.value;
+      
+      if(!selectOption.value && !searchText.value){
+        searchResult.value = false;
+        return items
+      }
+      
+      if(selectOption.value){
+        switch (selectOption.value) {
+          case "latest":
+          return items.sort((a, b)=>{
+            return b.createdAt.localeCompare(a.createdAt)
+          })
+          case "oldest":
+          return items.sort((a, b)=>{
+            return a.createdAt.localeCompare(b.createdAt)
+          })
+          case "title":
+          return items.sort((a, b)=>{
+            return a.title.toUpperCase().localeCompare(b.title.toUpperCase())
+          })
+        }
+      }
 
+      if(searchText.value){
+        searchResult.value = !searchResult.value;
+        return items.filter(post => {
+          return post.title.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.content.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.author.toUpperCase().includes(searchText.value.toUpperCase())
+            || post.createdAt.toUpperCase().includes(searchText.value.toUpperCase())
+        })
+      }
+      
+    })
     return{
       error,
       postItems,
       editPostId,
+      selectOption,
+      searchText,
+      searchResult,
+      filteredPost,
       getPost,
+      sortPost,
+      searchPost,
       addPost,
       togglePost,
       deletePost,
