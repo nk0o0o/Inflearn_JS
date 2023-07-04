@@ -30,7 +30,6 @@ export default{
     const searchText = ref("");
     const selectOption = ref("");
     let searchResult = ref(false);
-    let editPostId = ref("");
 
     //가져오기
     const getPost = async (params) => {
@@ -59,7 +58,7 @@ export default{
     //글올리기
     const addPost = async (post) => {
       error.value = "";
-      if(!editPostId.value){
+      if(!post.id){
         try {
           const res = await axios.post("http://localhost:5000/posts/", {
             id:post.id,
@@ -76,8 +75,8 @@ export default{
         }        
       }else{
         try{
-          const res = await axios.put(`http://localhost:5000/posts/${editPostId.value}`,{
-            id:editPostId,
+          const res = await axios.put(`http://localhost:5000/posts/${post.id}`,{
+            id:post.id,
             title: post.title,
             author: post.author,
             content: post.content,
@@ -131,8 +130,7 @@ export default{
     }
    
     //글 수정
-    const editPost = async (postId) => {
-      editPostId.value = postId;
+    const editPost = async (postId) => {//detail에서 가져온 id값
       try {
         const res = await axios.get("http://localhost:5000/posts/" + postId);
         router.push({
@@ -198,7 +196,6 @@ export default{
     return{
       error,
       postItems,
-      editPostId,
       selectOption,
       searchText,
       searchResult,

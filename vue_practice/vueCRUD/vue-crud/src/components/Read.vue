@@ -204,9 +204,11 @@ export default {
     visibility: visible;
     background-color: #5ede99;
   }
-  .t_row:hover .t_select input + label{
-    opacity: 1;
-    visibility: visible;
+  @media(hover: hover) and (pointer: fine) {
+    .t_row:hover .t_select input + label{
+      opacity: 1;
+      visibility: visible;
+    }
   }
   .nodata{
     font-size: 1rem;

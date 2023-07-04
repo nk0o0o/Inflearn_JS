@@ -2,58 +2,10 @@
   "posts": [
     {
       "id": 1,
-      "title": "111122222토끼vue 토끼vue 토끼vue 토끼vue 토끼vue ",
-      "author": "토끼",
-      "content": "토끼는 vue가 재밋어요",
-      "createdAt": "23.06.26 16:48",
-      "checked": false
-    },
-    {
-      "id": 4,
-      "title": "호랑이vue",
-      "author": "호랑이",
-      "content": "호랑이는 vue가 재밋어요",
-      "createdAt": "23.06.19 09:44",
-      "checked": true
-    },
-    {
-      "id": 6,
-      "title": "고양이vue",
-      "author": "고양이",
-      "content": "고양이는 vue가 재미있어요",
-      "createdAt": "23.06.19 17:48",
-      "checked": true
-    },
-    {
-      "id": 7,
-      "title": "tigerVue",
-      "author": "tiger",
-      "content": "tiger도 vue가 재밌어용",
-      "createdAt": "23.06.20 09:08",
-      "checked": false
-    },
-    {
-      "id": 8,
-      "title": "고라니vue",
-      "author": "고라니",
-      "content": "고라니는 vue가 재밋어요",
-      "createdAt": "23.06.26 14:41",
-      "checked": false
-    },
-    {
-      "id": 9,
-      "title": "강아지vue",
-      "author": "강아지",
-      "content": "강아지는 vue가 재밋어요",
-      "createdAt": "23.06.26 14:41",
-      "checked": false
-    },
-    {
-      "id": 10,
-      "title": "cowVue",
-      "author": "cow",
-      "content": "cow는 vue가 재밌어유우우",
-      "createdAt": "23.06.26 14:41",
+      "title": "vv11",
+      "author": "vvv11",
+      "content": "vvv11",
+      "createdAt": "23.07.04 17:16",
       "checked": false
     }
   ]

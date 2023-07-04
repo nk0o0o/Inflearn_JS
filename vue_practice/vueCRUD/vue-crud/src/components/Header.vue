@@ -30,8 +30,16 @@ export default {
 
 <style scoped>
 header{
-  position: relative;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   padding: 0 8px;
+  background-color: #edf2f7;
 }
 .logo{
   position: absolute;

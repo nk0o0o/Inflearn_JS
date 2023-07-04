@@ -38,6 +38,8 @@ button, .btn{
 }
 /* 컨테이너(박스) */
 #app{
+  position: relative;
+  padding-top: 40px;
   background-color: #edf2f7;
 }
 #app main{

@@ -1,6 +1,6 @@
 <template>
   <main class="page_create">
-    <h2>{{!postId ? "새글쓰기" : "수정하기"}}</h2>
+    <h2>{{ creatState }}</h2>
     <form @submit.prevent="onSubmit" class="post_form">
       <div class="post_write_area">
         <div class="post_row">
@@ -18,7 +18,7 @@
       </div>
       <div v-if="hasError" class="msg_error">내용을 입력하세요</div>
       <div class="btn_area">
-        <button type="button" class="btn shadow_box" @click="confirmGoList">목록</button>
+        <button type="button" class="btn shadow_box" @click="goList()">목록</button>
         <button type="submit" class="btn shadow_box">저장</button>
       </div>
     </form>
@@ -26,55 +26,64 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
-import { useRouter, useRoute } from "vue-router";
+import { ref, reactive, watch, computed } from 'vue'
+import { useRouter, useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from "vue-router";
 export default {
   name:"Create",
   emit:["add-post"], 
-  props:{
-    CreateState: String
-  } ,
-  setup (props, {emit}) {
+  setup (_, {emit}) {
     const router = useRouter();
     const route = useRoute();
     const hasError = ref(false);
-    const postId = route.params.contentId;
+    let postId = ref(route.params.contentId)
+    let creatState = ref("새글쓰기")
     let postCont = reactive({
       postTit:"",
       postAuthor:"",
       postText:""
     });
     
-    if(postId){
+    //수정하기 눌러서 온 경우
+    if(postId.value){
+      creatState.value = "수정하기";
       postCont = reactive({
         postTit:route.query.title,
         postAuthor:route.query.author,
         postText:route.query.content
       });
-    }
-    //글 저장
-    const onSubmit = () => {
+    }     
+
+    //수정하다가 새글쓰기하는 경우
+    onBeforeRouteUpdate((to, from) => {
+      if (to.params.contentId !== from.params.contentId) {
+        if (!confirm("수정 취소? 수정 내용이 저장되지 않습니다")) {          
+          return false
+        } else {
+          postId.value = to.params.contentId;
+          creatState.value = "새글쓰기";
+          postCont.postTit = "",
+          postCont.postAuthor = "",
+          postCont.postText = ""  
+        }
+      }
+    })
+
+    onBeforeRouteLeave((to, from)=>{
+      if(!confirm("글쓰기 멈춤?")){
+        return false
+      }
+    })
+    
+    //글저장
+    const onSubmit = () =>{
       if (!confirm("저장하겠습니까?")) {
         alert("저장 취소하였습니다");
         return false
       } else {
         hasError.value = false;
-        alert("저장완료하였습니다");
-        if(postId){
-          emit("add-post", {
-            id: postId,
-            title: postCont.postTit,
-            author: postCont.postAuthor,
-            content: postCont.postText,
-          });
-        }else{
-          emit("add-post", {
-            id:'',
-            title: postCont.postTit,
-            author: postCont.postAuthor,
-            content: postCont.postText,
-          });
-        }
+        alert("저장완료하였습니다");        
+
+        addPost(postId.value)
 
         //입력칸 비우기
         postCont.postTit="",
@@ -86,15 +95,16 @@ export default {
       }
     }
     
-    //목록으로이동 확인
-    const confirmGoList = () =>{
-      if(!confirm("글쓰기 멈춤?")){
-        return false
-      }else{
-        goList()
-      }
+    //글보내기 emit
+    const addPost = (postid)=>{
+      emit("add-post", {
+        id: postid,
+        title: postCont.postTit,
+        author: postCont.postAuthor,
+        content: postCont.postText,
+      });
     }
-
+    
     //목록으로이동
     const goList = () => {
       router.push({
@@ -102,14 +112,13 @@ export default {
       });
     };
     
-
     return {
       hasError,
       postId,
       postCont,
+      creatState,
       goList,
-      onSubmit,
-      confirmGoList
+      onSubmit,      
     }
   }
 }
