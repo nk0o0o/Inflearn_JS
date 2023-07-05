@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { ref, reactive, watch, computed } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter, useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from "vue-router";
 export default {
   name:"Create",
@@ -42,7 +42,8 @@ export default {
       postAuthor:"",
       postText:""
     });
-    
+    let doSubmit= false
+
     //수정하기 눌러서 온 경우
     if(postId.value){
       creatState.value = "수정하기";
@@ -56,7 +57,7 @@ export default {
     //수정하다가 새글쓰기하는 경우
     onBeforeRouteUpdate((to, from) => {
       if (to.params.contentId !== from.params.contentId) {
-        if (!confirm("수정 취소? 수정 내용이 저장되지 않습니다")) {          
+        if (!confirm("수정 취소? 수정 내용이 저장되지 않습니다")) {
           return false
         } else {
           postId.value = to.params.contentId;
@@ -68,14 +69,19 @@ export default {
       }
     })
 
-    onBeforeRouteLeave((to, from)=>{
-      if(!confirm("글쓰기 멈춤?")){
-        return false
+    onBeforeRouteLeave((to, from)=>{      
+      //submit이 아닐때
+      if(!doSubmit){
+        if(!confirm("글쓰기 멈춤?")){ 
+          return false
+        }
       }
+      doSubmit = !doSubmit
     })
     
     //글저장
     const onSubmit = () =>{
+      doSubmit = true;
       if (!confirm("저장하겠습니까?")) {
         alert("저장 취소하였습니다");
         return false
