@@ -4,4 +4,24 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [VS Code](https://code.visualstudio.com/)
+
+# vue-crud
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run dev
+```
+
+### db.json 연결
+```
+npm install --save axios
+npm install -g json-server
+npm install json-server --save-dev
+json-server --watch db.json --port 5000
+
