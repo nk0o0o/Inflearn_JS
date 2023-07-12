@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" src="../resources/js/common.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+   <link rel="stylesheet" href="../resources/css/style.css">
+   <style>
+     *{margin:0;padding:0;font-family:monospace}
+      body{background-color:#f8f8f8}
+      .top{padding:120px 50px;border-bottom:1px solid #e0e0e0;background-color:#fff}
+      .top h1{font-size:70px}
+      .top p{margin-top:8px;font-size:15px;line-height:140%}
+      .main{margin-top:120px;padding:0 50px}
+      .main h2{font-size:30px;margin-bottom:20px;letter-spacing:2px}
+      .main .textWrap{padding-bottom:30px;border-bottom:1px solid #aaa}
+      .main .spacer{height:150px}
+      .main .text{font-size:14px;margin-bottom:10px;line-height:140%}
+      .main .icon{width:140px;height:140px;color:#333;font-size:40px;line-height:140px;text-align:center;background-color:#999;border-radius:100%}
+      .trigger{width:100%;height:auto;font-weight:700;font-size:20px;background-color:#bada77}
+      .footer{margin-top:240px;padding:0 50px;height:40px;background-color:#222}
+      .footer a{display:block;line-height:40px;font-family:monospace;letter-spacing:1px;text-align:right;color:#fff}
+   </style>
+   <title>Document</title>
+</head>
+
+<body>
+   <div class="wrap">
+      <div class="top">
+         <h1>ScrollMagic Demo</h1>
+         <p>스크롤매직 라이브러리 데모입니다.</p>
+      </div>
+      <div class="main">
+         <h2>What a wonderful!</h2>
+         <div class="textWrap">
+            <p class="text">Dolore occaecat cupidatat nostrud voluptate officia anim culpa minim in eiusmod eiusmod in.
+               Esse magna excepteur est eiusmod excepteur laborum amet esse sint sit velit cupidatat excepteur. Aliquip
+               magna dolore quis in tempor ipsum. Ad nostrud cupidatat ut do exercitation nulla ipsum culpa. Dolor
+               laboris sunt voluptate nostrud. Cupidatat non sint est proident pariatur nulla. Aliqua reprehenderit ad
+               do in ut deserunt sit.</p>
+            <p class="text">Amet aliquip incididunt exercitation et consequat sint laborum nulla. Excepteur qui ut
+               cillum eu quis irure elit proident deserunt eiusmod consectetur. Amet occaecat et ex in dolore velit esse
+               occaecat fugiat id et.</p>
+         </div>
+         <div class="spacer"></div>
+         <div class="trigger" id="trigger1">Trigger!</div>
+         <div class="spacer"></div>
+         <div id="animate1" class="icon">Hello</div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="trigger" id="trigger2">Trigger!</div>
+         <div id="animate2" class="icon">Scroll Down</div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+         <div class="spacer"></div>
+      </div>
+   </div>
+   <script>
+      (function(){
+	
+         var controller = new ScrollMagic.Controller();
+         //애니메이션 
+         var tween1 = TweenMax.to('#animate1', 0.5, {
+            backgroundColor: "#333333",
+            scale: 2.5,
+            rotation: 360,
+            x: 130,
+         });
+
+        /*  var tween2 = TweenMax.fromTo('#animate1', 0.5, {
+            backgroundColor: "#333333",
+            scale: 1,
+         }, {
+            scale: 2.5,
+            backgroundColor: "#dc143c",
+            x: 100, 
+            rotation: 360,
+            repeat: -1,
+            yoyo: true
+         }) */
+
+         var tween3 = TweenMax.to('#animate2', 1, {
+            backgroundColor: "#333333",
+            opacity:0,
+            y:250
+         })
+
+
+         //스크롤에 애니메이션 추가하기
+         var scene = new ScrollMagic.Scene({//Scene Object 생성
+            triggerElement: "#trigger1",//scene이 일어날 트리거를 지정
+            duration: "100%", //얼마나 긴시간 재생될지
+            offset: 150 //트리거보다 빠르게or느리게 설정
+         }).setTween(tween1) //tween으로 만든 object를 Scene Object에 넣어주기
+         .addTo(controller)//컨트롤러 지정
+         .addIndicators({name: "indicator_1"})//디버깅 인디케이터
+         
+         
+         var scene3 = new ScrollMagic.Scene({//Scene Object 생성
+            triggerElement: "#trigger2",//scene이 일어날 트리거를 지정
+            duration: "100%", //얼마나 긴시간 재생될지
+         }).setTween(tween3) //tween으로 만든 object를 Scene Object에 넣어주기
+         .addTo(controller)//컨트롤러 지정
+         .addIndicators({name: "indicator_3"})//디버깅 인디케이터 
+         
+      }())
+   </script>
+</body>
+
+</html>

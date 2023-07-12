@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "토끼vue",
+      "author": "토끼",
+      "content": "토끼는 vue가 재밌어요",
+      "createdAt": "23.07.05 10:03",
+      "checked": false
+    },
+    {
+      "title": "호랑이vue",
+      "author": "호랑이",
+      "content": "호랑이",
+      "createdAt": "23.07.05 10:03",
+      "checked": false,
+      "id": 2
+    }
+  ]
+}

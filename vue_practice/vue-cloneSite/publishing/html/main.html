@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="../favicon.ico">
+   <script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+   <script type="text/javascript" src="../resources/js/jQuery.scrollSpeed.js"></script>
+   <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+   <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+   <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+   <!-- <script type="text/javascript" src="../resources/js/cursor_follow.js" defer></script> -->
+   <script type="text/javascript" src="../resources/js/common.js"></script>
+   <link rel="stylesheet" href="../resources/css/style.css">
+   <title>MAIN</title>
+</head>
+
+<body>
+<!--    <div id="cursor">
+      <div class="cursor__circle"></div>
+   </div> -->
+   <div id="wrap">
+      <header>
+         <div class="inner">
+            <h1 class="logo"><a href="#">&copy;luminous</a></h1>
+            <nav class="menu">
+               <a href="#" class="menu_item">ABOUT,</a>
+               <a href="#" class="menu_item">WORK</a>
+            </nav>
+         </div>
+      </header>
+      <main id="container">
+         <section class="sec main_visual">
+            <!-- WeLove -->
+            <div id="weLoveTrigger" class="cp_01">
+               <span class="cp_t t0">W</span>
+               <span class="cp_t t1">E</span>
+               <span class="cp_t t2 txt_clip"><em>LOVE</em></span>
+            </div>
+            <div id="introPin" class="catchphrase">               
+               <!-- STORY -->
+               <div class="cp_02">
+                  <span class="cp_t">ST<em>O</em>RIES</span>
+                  <div id="storyTrigger"></div>
+                  <p  id="scrollDown" class="txt_scroll">please scroll down</p>
+               </div>
+            </div>
+            <div id="storyTriggerHook"></div>
+            <!-- 영상 -->
+            <div id="trigger2" class="sec_visual">
+               <p id="scrollSlogan" class="slogan">We love to visualize stories<br>because we love people<br>and they inspire us.</p>
+               <div id="animate2" class="vis_link">
+                  <iframe class="main_video_iframe" src="https://player.vimeo.com/video/771889047?background=1&amp;autoplay=0&amp;loop=1&amp;muted=1&amp;autopause=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="A guy who's concentrating."data-ready="true"></iframe>
+                  <div class="vis_link_center"></div>
+                  <div class="vis_link_txt">
+                     We are a creative agency,<br>
+                     film production, branded & original<br>
+                     content creators.
+                  </div>
+               </div>
+            </div>
+            <script>
+               $(document).ready(function(){
+                  var controller = new ScrollMagic.Controller();
+                  
+                  //인트로 
+                  var introScene = new ScrollMagic.Scene({
+                     triggerElement: "#introPin",
+                     triggerHook:0,
+                     duration:$(".cp_02").outerHeight() + $(".cp_01").outerHeight(),
+                  })
+                  .setPin("#introPin", {pushFollowers: false})
+                  .addTo(controller)
+                  //.addIndicators({name: "intro"});
+       
+
+                  var letters = document.querySelectorAll(".cp_01 .cp_t");
+                  for (var i=0; i<letters.length; i++) {
+                     //weLove 문구 1
+                     var lt0 = $(letters[0]).offset().top - 300;
+                     var weLoveScene1 = new ScrollMagic.Scene({
+                        triggerElement: letters[i],
+                        triggerHook:($(".cp_02").offset().top - $(".cp_02").outerHeight()) * 0.001,
+                        duration: 500,
+                        /* duration: 500 - ($(letters[i]).height() * i), */
+                     })
+                     .setPin(letters[i], {pushFollowers: false})
+                     .addTo(controller)
+                     //.addIndicators({name: "weLove"});
+                     //weLove 문구 2
+                     var weLoveScene2 = new ScrollMagic.Scene({
+                        triggerElement: letters[i],
+                        triggerHook:$(".cp_02").offset().top * 0.001,
+                     })
+                     .setClassToggle(letters[i], "visible")
+                     .addTo(controller)
+                     //.addIndicators({name: "weLove2"});
+                  }
+                  //weLove 문구 3
+                  var weLoveAni = TweenMax.to(".cp_01 .t2", 0.5, {
+                     backgroundPositionY : 0
+                  });
+                  var weLoveScene3 = new ScrollMagic.Scene({
+                     triggerElement: ".cp_01 .t2",
+                     triggerHook:($(".cp_02").offset().top - $(".cp_01 .t2").outerHeight()) * 0.001,
+                     duration:300
+                  })
+                  .setTween(weLoveAni)
+                  .addTo(controller)
+                  //.addIndicators({name: "weLove3"});
+
+                
+             
+                  //스크롤 다운 문구
+                  var scrollDownAni = TweenMax.to('#scrollDown',0.5, {
+                     y:50,
+                     opacity: 0
+                  });
+                  var scrollDownScene = new ScrollMagic.Scene({
+                     triggerElement: "#scrollDown_trigger",
+                     offset:25,
+                     duration:$('.cp_02').outerHeight(),
+                  })
+                  .setTween(scrollDownAni)
+                  .addTo(controller)
+                  //.addIndicators({name: "Down"});
+
+                  //STORY 문구
+                  var storyScene = new ScrollMagic.Scene({
+                     triggerElement: "#storyTrigger",
+                     triggerHook:$('#storyTriggerHook') * 0.001,
+                     duration:"100%"
+                  })
+                  .setClassToggle(".cp_02", ".scroll_up")
+                  .addTo(controller)
+                  .addIndicators({name: "Story"});
+              
+
+                  //슬로건 문구
+                  var scrollSloganAni = TweenMax.to('#scrollSlogan',0.5, {
+                     opacity: 1
+                  });
+                  var scrollSloganScene = new ScrollMagic.Scene({
+                     triggerElement: "#scrollSlogan",
+                     triggerHook:0.9,
+                     duration:"50%"
+                  })
+                  .setTween(scrollSloganAni)
+                  .addTo(controller)
+                  .addIndicators({name: "slogan"});
+
+                  //비주얼 이미지
+                  var visualAni = TweenMax.to('.main_video_iframe',0.5, {
+                     opacity: 1,
+                     width: "100%"
+                  });
+                  var visualScene = new ScrollMagic.Scene({
+                     triggerElement: "#scrollSlogan",
+                     duration: "100%"
+                  })
+                  .setTween(visualAni)
+                  .addTo(controller)
+                  //.addIndicators({name: "visual"});
+               })
+          </script>
+         </section>
+         <section class="sec sec_story">
+            <h3 class="sec_tit_sm">Our Story</h3>
+            <p class="sec_desc eng">
+               Driven by a passion for storytelling, Steve Lee (director) and Dada Kim (producer) founded Luminous Seoul
+               in 2015.<br><br>
+               With their ability to connect with audiences across cultures and work with talent across the globe,
+               Luminous
+               has become a cornerstone partner for brands like Kia, Google, Samsung, Louis Vuitton and Chanel in
+               Korea.<br><br>
+               In 2022, Luminous launched Luminous Labs to answer brand needs to grow their communities through platform
+               strategy,
+               and motivate their audience loyalty and advocacy through serialized digital content. As Luminous
+               Productions will
+               continue to provide world class video production for advertising and original content.<br><br>
+               Alongside Luminous Labs, Luminous also started Luminous Studios which will be in charge of creating
+               original content and character development projects. Their passion in storytelling is the fuel that keeps
+               the lights on at Luminous.
+               <a href="#" class="btn_more">more</a>
+            </p>
+         </section>
+         <section class="sec main_work">
+            <ul class="work_list">
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+               <li>
+                  <figure>
+                     <img src="../resources/images/enlarge.jfif" alt>
+                     <figcaption>Kia 2021</figcaption>
+                  </figure>
+               </li>
+            </ul>
+         </section>
+      </main>
+      <!-- // .main -->
+   </div>
+   <script>
+      /*  $(document).ready(function(){
+         let st = 0;
+         let $weLoveText = $('.cp_01 .cp_t');
+         textEffect01($weLoveText);
+       });
+       
+       function textEffect01(arr){
+          let $textarr = arr;
+          let $initSt = 0;
+          let $offsets = [];
+          $textarr.each(function (index, item) {         
+             $offsets.push($(item).offset().top);
+             $(window).scroll(function(){
+                var st = $initSt + $(this).scrollTop();
+                var ani = $offsets[index] - st;
+                setTimeout(() => {
+                   if(ani < 0){
+                      $(item).css('top', 0)
+                   }else{
+                      $(item).css('top', ani)
+                   }               
+                }, 100);
+             });
+          });
+       } */
+      $(document).ready(function () {
+         jQuery.scrollSpeed(100, 800);
+      })
+
+   </script>
+   
+</body>
+
+</html>
