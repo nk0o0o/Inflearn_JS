@@ -1,19 +1,28 @@
 <template>
   <main class="page_create">
-    <h2>{{ creatState }}</h2>
     <form @submit.prevent="onSubmit" class="post_form">
+      <h2>{{ creatState }}</h2>
       <div class="post_write_area">
         <div class="post_row">
           <label for="postTit" class="post_l_cell">제목</label>
-          <input type="text" id="postTit" class="post_r_cell shadow_box" v-model="postCont.postTit" required/>
+          <input type="text" id="postTit" class="post_r_cell shadow_box"
+          placeholder="제목"
+          v-model="postCont.postTit" 
+          required/>
         </div>
         <div class="post_row">
           <label for="postAuthor" class="post_l_cell">글쓴이</label>
-          <input type="text" id="postAuthor" class="post_r_cell shadow_box" v-model="postCont.postAuthor" required/>
+          <input type="text" id="postAuthor" class="post_r_cell shadow_box"
+          placeholder="글쓴이" 
+          v-model="postCont.postAuthor" 
+          required/>
         </div>
         <div class="post_row">
           <label for="postText" class="post_l_cell">내용</label>
-          <textarea id="postText" class="post_r_cell shadow_box" v-model="postCont.postText" required></textarea>
+          <textarea id="postText" class="post_r_cell shadow_box"
+          placeholder="내용" 
+          v-model="postCont.postText" 
+          required></textarea>
         </div>
       </div>
       <div v-if="hasError" class="msg_error">내용을 입력하세요</div>
@@ -131,17 +140,25 @@ export default {
 </script>
 
 <style scoped>
+h2{
+  padding: 16px 0;
+  font-weight:700;
+  font-size: 18px;
+  text-align: left;
+}
 .post_row{
   display: flex;
   padding: 4px 0;
-
+}
+.post_row label{
+  display: none;
 }
 .post_row .post_l_cell{
   flex: 0 0 20%;
   text-align: left;
 }
 .post_row .post_r_cell{
-  flex: 0 0 80%;
+  flex: 1 0 80%;
   box-sizing: border-box;
 }
 #postText{
@@ -157,6 +174,8 @@ export default {
 }
 .post_form{
   position: relative;
+  width: 85%;
+  margin: 0 auto;
 }
 .msg_error{
   position: absolute;

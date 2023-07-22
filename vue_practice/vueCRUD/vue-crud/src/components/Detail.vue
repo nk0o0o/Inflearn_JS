@@ -9,7 +9,7 @@
           <div class="post_info">{{ post.author }}</div>
         </div>
       </div>
-      <div class="cont_area">
+      <div class="cont_area shadow_box">
         {{ post.content }}
       </div>
     </div>
@@ -87,6 +87,8 @@ export default {
     line-height: 1;
   }
   .cont_area{
+    min-height: 200px;
+    margin:8px 0 20px;
     padding: 24px 16px;
     text-align: justify;
   }
