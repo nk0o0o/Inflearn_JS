@@ -3,6 +3,9 @@
     <router-link to="/" class="logo">
       <img src="/src/assets/img/logo.png" alt="">
     </router-link>
+    <router-link to="/" class="logo">
+      <img src="/src/assets/logo.png" alt="">
+    </router-link>
     <nav>
       <router-link :to="{ name: 'Read' }">목록</router-link>
       <router-link @click.native="checkNewCreate" :to="{ name: 'Create'}">글쓰기</router-link>
@@ -46,13 +49,13 @@ header{
 .logo{
   position: absolute;
   left: 50%;
-  top: 16px;
-  transform: translate3d(-50%, 0%, 0);
-  max-width: 50px;
+  top: 0;
+  transform: translate(-50%, 0);
+  max-width: 40px;
+  padding: 4px;
 }
 .logo img{
   max-width: 100%;
-  height: auto;
 }
 nav{
   display: flex; 
