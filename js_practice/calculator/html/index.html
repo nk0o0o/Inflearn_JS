@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+    #numberKeypad td{
+      box-shadow:  0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a;
+      border-radius: 4px;
+      background-color: #f3f4f6;
+      text-align: center;
+      color: #333;
+      font-size: 14px;
+      height: 45px;
+    }
+    #numberKeypad td:active{
+      background-color: #dfdfdf;
+      color: #888;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          },
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container max-w-xs mx-auto bg-gray-200">
+    <div id="numberResult" class="w-full text-right p-2 h-10">
+      <span class="cal_value"></span>
+    </div>
+    <input id="numberInput" type="text" placeholder="0" value="" class="w-full bg-transparent text-right outline-none border-0 p-2 select-none">
+    <table id="numberKeypad" class="w-full border-separate border-spacing-1.5">
+      <colgroup>
+        <col class="w-1/4">
+        <col class="w-1/4">
+        <col class="w-1/4">
+        <col class="w-1/4">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td id="percent">%</td>
+          <td id="allclear">AC</td>
+          <td id="division">/</td>
+          <td id="backspace">back</td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="num">8</td>
+          <td class="num">9</td>
+          <td id="multi">*</td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="num">5</td>
+          <td class="num">6</td>
+          <td id="minus">-</td>
+        </tr>
+        <tr>
+          <td class="num">1</td>
+          <td class="num">2</td>
+          <td class="num">3</td>
+          <td id="plus">+</td>
+        </tr>
+        <tr>
+          <td id="plusOrMinus">+/-</td>
+          <td class="num">0</td>
+          <td id="dot">.</td>
+          <td id="equal">=</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      var inputLength;      
+      var nums = document.querySelectorAll('.num')
+      var numberInput = document.querySelector('#numberInput')
+      var numberResult = document.querySelector('#numberResult')
+      var numberResult = document.querySelector('.cal_value')
+      var numStack =[];
+      var signStack =[];
+      var total;
+
+      window.addEventListener('click', function(e){
+        e.preventDefault();
+        var target = e.target;
+        var targetId = target.id;
+        var targetValue = target.textContent;
+        var isNotNum = isNaN(targetValue); //숫자 판별
+
+        if(!isNotNum){//숫자면
+          numPrint(targetValue)
+        }
+
+        if(isNotNum){//숫자아닐때          
+          if(numberInput.value){
+            pushSignStack(targetValue)
+            pushNumStack(numberInput.value)
+            numberResult.textContent += numberInput.value + targetValue
+            numberInput.value = ''
+          }
+          switch (targetId) {
+            case "allclear":
+              reset()
+              break; 
+            case "backspace":
+              break;
+            case "division":
+              break; 
+            case "multi":
+              break; 
+            case "minus":
+              break; 
+            case "plus":
+              break; 
+            case "plusOrMinus":
+              break; 
+            case "equal":
+              console.log(numStack)
+              console.log(signStack)
+              console.log(sumAll(numStack, signStack))
+
+              break; 
+          }//switch
+        }
+        if(target.matches('#numberInput')){
+          cursorEnd()
+        }
+      })//window click
+     
+      numberInput.addEventListener('keyup', function(e){
+        cursorEnd()
+      })
+      //연산자 담기
+      function pushSignStack(sign){
+        signStack.push(sign)
+      }
+      //숫자 담기
+      function pushNumStack(num){
+        numStack.push(num)
+      }
+      //숫자 연산자 합치기
+      function sumAll(nArgs,sArgs) {
+        let sum =[];
+        for (let i = 0; i < nArgs.length; i++) {
+          sum.push(nArgs[i]);
+          sum.push(sArgs[i]);                
+        }
+        return sum.join('');
+      }
+      //태그 만들고 클릭값 출력
+      function addSpan(text , spanClass){
+        var htmlspan = document.createElement('span');
+        htmlspan.classList.add(spanClass);
+        numberResult.append(htmlspan);
+        htmlspan.textContent = text;
+      } 
+
+      //숫자출력
+      function numPrint(num){
+        numberInput.value += num ;
+      }
+
+      //리셋
+      function reset(){
+        document.querySelectorAll('.cal_value').forEach(element => {
+          element.remove();
+        });
+        numberInput.value = ''
+        numStack =[];
+        signStack =[];
+      }
+      //커서 맨뒤로
+      function cursorEnd(){
+        inputLength = numberInput.value.length;
+        numberInput.focus();
+        numberInput.setSelectionRange(inputLength, inputLength);
+      }
+    </script>
+  </div>
+</body>
+</html>

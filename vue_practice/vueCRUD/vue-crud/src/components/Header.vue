@@ -3,11 +3,8 @@
     <router-link to="/" class="logo">
       <img src="/src/assets/img/logo.png" alt="">
     </router-link>
-    <router-link to="/" class="logo">
-      <img src="/src/assets/logo.png" alt="">
-    </router-link>
     <nav>
-      <router-link :to="{ name: 'Read' }">목록</router-link>
+      <router-link :to="{ name: 'Read' }" class="font-normal hover:font-bold">목록</router-link>
       <router-link @click.native="checkNewCreate" :to="{ name: 'Create'}">글쓰기</router-link>
     </nav>
   </header>
