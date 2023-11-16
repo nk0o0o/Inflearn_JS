@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #223;
+      color: #0ff;
+      font: 1rem sans-serif;
+    }
+
+    svg {
+      display: none;
+    }
+
+    .panel-1 {
+      align-items: center;
+      display: flex;
+      font-weight: bold;
+      height: 90vh;
+      justify-content: center;
+      text-transform: uppercase;
+    }
+
+    .panel-3 {
+      background-color: #334;
+      padding: 4rem;
+      position: relative;
+    }
+
+    .placeholder {
+      --height: 0;
+      height: var(--height);
+    }
+
+    .container {
+      background-color: #0ff;
+      height: 100px;
+      filter: url("#goo");
+      position: fixed;
+      top: 90vh;
+      width: 100vw;
+    }
+
+    .items {
+      --scroll-top: 0;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-top: var(--scroll-top);
+      padding: 8rem 1rem 10rem;
+    }
+
+    .item {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      padding-top: 2rem;
+      max-width: 600px;
+    }
+
+    .item:nth-child(2n) {
+      flex-direction: row-reverse;
+    }
+
+    .bubble {
+      align-items: center;
+      background-color: #0ff;
+      color: #223;
+      border-radius: 50%;
+      display: flex;
+      font: bold 40px sans-serif;
+      height: 120px;
+      justify-content: center;
+      width: 120px;
+    }
+
+    .content {
+      color: #0ff;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noise1" x="0" y="0" width="100%" height="100%">
+      <feTurbulence baseFrequency="0.025" stitchTiles="noStitch" />
+    </filter>
+    <filter id="noise2" x="0" y="0" width="100%" height="100%">
+      <feTurbulence baseFrequency="0.025" stitchTiles="stitch" />
+    </filter>
+  
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise1);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise1); transform: translate(100px, 0);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise1); transform: translate(0, 100px);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise1); transform: translate(100px, 100px);" />
+  
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise2); transform: translate(220px, 0);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise2); transform: translate(320px, 0);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise2); transform: translate(220px, 100px);" />
+    <rect x="0" y="0" width="100" height="100" style="filter: url(#noise2); transform: translate(320px, 100px);" />
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+  
+  <div class="panel-1">
+    Scroll down &darr;
+  </div>
+  
+  <div class="panel-2">
+    <div class="placeholder"></div>
+    <div class="container">
+      <div class="items">
+        <div class="item">
+          <div>
+            <div class="bubble">1</div>
+          </div>
+          <div>
+            <div class="content">
+              Incididunt. In nostrud ut do exercitation ad tempor velit incididunt. Sit aliquip commodo aliqua. Velit ipsum laboris tempor ut e.
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="bubble">2</div>
+          </div>
+          <div>
+            <div class="content">
+              Incididunt. In nostrud ut do exercitation ad tempor velit incididunt. Sit aliquip commodo aliqua. Velit ipsum laboris tempor ut e.
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="bubble">3</div>
+          </div>
+          <div>
+            <div class="content">
+              Incididunt. In nostrud ut do exercitation ad tempor velit incididunt. Sit aliquip commodo aliqua. Velit ipsum laboris tempor ut e.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel-3">
+    <h3>Notice</h3>
+    <p>
+      Just a proof of concept, use at your own risk.
+    </p>
+    <p>Obvious issues that I don't feel like solving here :P</p>
+    <ul>
+      <li>Distorted corners of the cyan bar caused by the SVG filter. Edges should be hidden.</li>
+      <li>The text next to the bubbles alos distorts the cyan bar at the bottom as it enters the viewport. 
+        Could be solved by showing the text only when it's fully past the cyan bar (using the IntersectionObserver).</li>
+    </ul>
+  </div>
+  <script>
+    (() => {
+  var $placeholder = document.querySelector('.placeholder');
+  var $items = document.querySelector('.items');
+
+  // move the items container up as the page scrolls
+  window.addEventListener('scroll', function (evt) {
+    $items.
+    style.
+    setProperty('--scroll-top', `${-1 * window.scrollY}px`);
+  });
+
+  // resize placeholder
+  var resizeHandler = () => {
+    $placeholder.style.setProperty('--height', `${$items.getBoundingClientRect().height}px`);
+  };
+  ['resize', 'orientationchange', 'load', 'DOMContentLoaded'].
+  forEach(e => window.addEventListener(e, resizeHandler));
+
+})();
+  </script>
+</body>
+
+</html>

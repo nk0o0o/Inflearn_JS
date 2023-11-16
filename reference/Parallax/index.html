@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        body,
+        html {
+            height: 100%;
+        }
+        .parallax {
+           /*  background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover; */
+            background: url() no-repeat center/cover fixed;
+        }
+        .parallax1 {
+            background-image: url("./assets/images/dinosaur.png");
+            height: 300px; 
+        }
+        .parallax2 {
+            background-image: url("./assets/images/sunrise.png");
+            height: 300px; 
+        }
+        /* 모바일에서는 스크롤 되게하기 */
+        @media only screen and (max-device-width: 1366px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parallax parallax1"></div>
+    <div style="height:500px;border:1px solid red;background-color: transparent; font-size:36px">
+        Scroll Up and Down this page to see the parallax scrolling effect.
+        This div is just here to enable scrolling.
+        Tip: Try to remove the background-attachment property to remove the scrolling effect.
+    </div>
+    
+    <div class="parallax parallax2"></div>
+    <div style="height:1000px;border:1px solid red;background-color: transparent; font-size:36px">
+        Scroll Up and Down this page to see the parallax scrolling effect.
+        This div is just here to enable scrolling.
+        Tip: Try to remove the background-attachment property to remove the scrolling effect.
+    </div>
+    <div class="parallax parallax1"></div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./prism.css">
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            color: #333;
+        }
+        .copyBtn{
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 38px;
+            height: 38px;
+            border: 0;
+            cursor: pointer;
+            border-radius: 100%;
+            background: transparent url('./ic_24_copy.svg') no-repeat center center/24px ;
+        }
+        .copyBtn:hover{
+            background-color: rgba(153, 153, 153, 0.2);
+        }
+        .codeSnippet{
+            position: relative;
+        }
+        .codeSnippetOpen{
+            width: 38px;
+            height: 38px;
+            border: 1px solid #D6DAE1;
+            background: transparent url('./ic-16-arrow-sort.svg') no-repeat center center/16px;
+            cursor: pointer;
+        }
+        .component_list{}
+        .component_list li {display: flex; flex-direction: column;}
+        .component_list .component{
+            display: flex; 
+            justify-content: space-between;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="component_list">
+        <li>
+            <div class="tit">Default Button</div>
+            <div class="component">
+                <div class="input_group"><input type="text"></div>
+                <button class="codeSnippetOpen"></button>
+                <div class="codeSnippet">
+                    <textarea name="code" class="language-markup">
+                        <div class="board_pager">
+                            <span class="pager_prev"></span>
+                            <ul class="pager_list">
+                                <li class="on"><span>1</span></li>
+                                <li><span>2</span></li>
+                                <li><span>3</span></li>
+                                <li><span>4</span></li>
+                                <li><span>5</span></li>
+                            </ul>
+                            <span class="pager_next"></span>
+                        </div>
+                        <ul>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </textarea>
+                    <button class="copyBtn"></button>
+                </div>
+            </div>
+         </li>
+        <li>Icon Button</li>
+    </ul>
+
+    <button class="codeSnippetOpen"></button>
+    <div class="codeSnippet">
+        <textarea name="code" class="language-markup">
+            <div class="board_pager">
+                <span class="pager_prev"></span>
+                <ul class="pager_list">
+                    <li class="on"><span>1</span></li>
+                    <li><span>2</span></li>
+                    <li><span>3</span></li>
+                    <li><span>4</span></li>
+                    <li><span>5</span></li>
+                </ul>
+                <span class="pager_next"></span>
+            </div>
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </textarea>
+        <button class="copyBtn"></button>
+    </div>
+
+
+    <button class="codeSnippetOpen"></button>
+    <div class="codeSnippet">
+        <textarea name="code" class="language-markup">
+            <ul class="text-animation">
+                <li>s</li>
+                <li>m</li>
+                <li>o</li>
+                <li>k</li>
+                <li>y</li>
+            </ul>        
+        </textarea>
+        <button class="copyBtn"></button>
+    </div>
+
+
+    <script src="./prism.js"></script>
+    <script>
+      /*   $('.codeSnippet').hide(); */
+        $('.codeSnippetOpen').click(function () {
+            $(this).next('.codeSnippet').stop().slideToggle();
+        });
+
+        // prism textarea 변환
+        $("textarea[name='code']").each(function (i, block) {
+            var className = $(block).attr('class');
+            var sourceCode = $(block).html();
+            var prefix = "<pre";
+            var commandOption = $(block).attr('command-line');
+            if (commandOption !== undefined) {
+                var user = commandOption.split(" ")[0] || "user";
+                var host = commandOption.split(" ")[1] || "localhost";
+                prefix += " class='command-line' data-user='" + user + "' data-host='" + host + "'>";
+            } else {
+                prefix += " class='line-numbers'>";
+            };
+            prefix += "<code class='" + className + "' id='textDiv'>";
+            var postfix = "</code></pre>";
+            $(block).after(prefix + sourceCode + postfix);
+            $(block).remove();
+        });
+
+        $(document).ready(function () {
+            var copyBtn = $(".copyBtn");
+            copyBtn.on("click", function () {
+                var textDiv = $(this).prev(".language-markup").find('#textDiv');
+                var txt = textDiv.text();
+                var createInput = $('<textarea></textarea>');
+                textDiv.append(createInput);
+                createInput.val(txt);
+                createInput.select();
+                document.execCommand('copy');
+                createInput.remove();
+                alert('복사가 완료되었습니다.');
+            })
+        })
+    </script>
+
+</body>
+
+
+</html>

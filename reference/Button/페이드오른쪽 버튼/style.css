@@ -1,0 +1,43 @@
+#wrap{
+   padding: 30px;
+}
+.btn{
+   position: relative;
+   background-color: #aaa;
+   border: 1px solid #aaa;
+   border-radius: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: auto;
+   padding: 4px 16px;
+   line-height: 1.3;
+}
+
+/* 버튼 hover 효과 - 오른쪽으로 슬라이드 */
+.hov_right::before{
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   width: 0%;
+   transition: width 300ms;
+   background-color: #fff;
+   border-radius: 8px;
+}
+.hov_right .hov_right_text{
+   color: #fff;
+   position: relative;
+   z-index: 1;
+}
+.hov_right:hover{ 
+   border: 1px solid #aaa;
+}
+.hov_right:hover::before{
+   width: 100%;
+} 
+.hov_right:hover .hov_right_text{
+   color: #aaa;
+}

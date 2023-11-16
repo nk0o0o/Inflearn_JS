@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrap{
+      position: relative;
+    }
+    .light::before{
+      content: '';
+      display: block;
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 100%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -25px;
+    }
+    .light{
+      top: 0;
+      left: 50%;
+      margin-left: -150px;
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background-color: #fff;
+      clip-path: polygon(51% 0, 31% 100%, 79% 100%);
+      opacity: 0.6;
+      font-weight: 900;
+      color: grey;
+      transform-origin: top;
+      text-shadow: 
+      2px   0  0   #000, 
+      -2px   0  0   #000, 
+      0    2px 0   #000, 
+      0   -2px 0   #000, 
+      1px  1px 0   #000, 
+      -1px -1px 0   #000, 
+      1px -1px 0   #000, 
+      -1px  1px 0   #000,
+      1px  1px 5px #000;
+      animation: spotLight 5s forwards alternate;
+    }
+      
+    .item{
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      font-size: 6em;
+      text-align: center;
+      color: lightslategray;
+    }
+    @keyframes spotLight {
+      0%{
+        transform: rotate(0);
+      }
+      10%{
+        transform: rotate(-10deg);
+      }
+      25%{
+        transform: rotate(90deg);
+      }
+      50%{
+        transform: rotate(-90deg);
+      }
+       60%{
+        transform: rotate(100deg);        
+      }
+      75%{       
+        transform: rotate(0deg);
+      }
+      80%{
+        transform: rotate(10deg);
+      }
+      90%{
+        transform: rotate(-10deg);
+      }
+      95%{
+        transform: rotate(5deg);
+      }
+      100%{
+        transform: rotate(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="light"></div>
+    <div class="item">
+      Light
+    </div>
+  </div>
+</body>
+</html>

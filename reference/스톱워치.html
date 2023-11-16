@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #Timer{
+            width:500px;
+            height:400px;
+            background-color:lightgrey;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:Translate(-50%,-50%);
+            padding:20px 10px 10px 10px;
+            text-align:center;
+        }
+        p{
+            margin:0;
+            height:40px;
+            font-size:22px;
+        }
+        span{
+            margin:0 10px;
+            vertical-align:middle;
+        }
+        #Time{
+            background-color:white;
+            height:40px;
+        }
+        #ActionContainer{
+            height: calc(400px - 40px);
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            align-items:center;
+        }
+        #ActionContainer:before, #ActionContainer:after{
+            content:'';
+        }
+        button{
+            height:50px;
+            width:65%;
+        }
+    </style>
+</head>
+<body>
+    <div id="Timer">
+        <div id="Time">
+            <p><span id="Min">00</span>:<span id="Sec">00</span>:<span id="Milli">00</span></p>
+        </div>
+        <div id="ActionContainer">
+            <button id="Start">Start</button>
+            <button id="Pause">Pause</button>
+            <button id="Clear">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+        // Timer 객체. Timer 관련된 코드를 Timer에 가둬 전역을 더럽히는걸 방지하기 위해 만듦. 
+        class StopWatch{
+            constructor(){
+                /* 처음 시간 */
+                this.minutes=0;
+                this.seconds=0;
+                this.milliSeconds=0;
+                /* 버튼 */
+                this.startButton = document.getElementById('Start');
+                this.pauseButton = document.getElementById('Pause');
+                this.clearButton = document.getElementById('Clear');
+                this.timer;
+                /* html 분, 초, 밀리초 자리 */
+                this.minutesField = document.getElementById('Min');
+                this.secondsField = document.getElementById('Sec');
+                this.milliSecondsField = document.getElementById('Milli');
+            };
+            fireEvents(){
+                const thisTimer = this;
+                /** 
+                 * this 활용 1번째 방법
+                 * 여기서 thisTimer 에 this를 할당합니다.
+                 * 할당해야하는 이유는 addEventListener의 두번째 파라미터 함수 안에서 this에 접근할시
+                 * this는 더 이상 Timer를 가르키는게 아니라 이벤트가 발생한 HTML 엘리먼트를 가르키기 때문입니다. 
+                 * */
+                this.startButton.addEventListener('click',function(e){
+                    thisTimer.startStopWatch();
+                });
+                this.pauseButton.addEventListener('click',function(e){
+                    thisTimer.pauseStopWatch();
+                });
+                this.clearButton.addEventListener('click',function(e){
+                    thisTimer.clearStopWatch();
+                });
+            }
+            startStopWatch(){
+                /**
+                 * this 활용 2번째 방법.
+                 * setInterval에 function()이 있다면 function()의 this는 window 객체를 가르킵니다.
+                 * 근데 arrow function 즉 화살표 함수는 함수가 호출된 객체를 가르킵니다. 
+                 * 여기선 화살표 함수는 Timer 객체의 스코프에서 호출됐으니 this = Timer 객체 입니다.
+                 */
+                this.timer = setInterval(()=>{
+                    if(this.milliSeconds<99){
+                        this.milliSeconds++;
+                        if(this.milliSeconds>=10){
+                            this.milliSecondsField.innerText=this.milliSeconds;
+                        }else{
+                            this.milliSecondsField.innerText=('0'+this.milliSeconds);
+                        }
+                    }else{
+                        this.milliSecondsField.innerText='00';
+                        this.milliSeconds=0;
+                        if(this.seconds<59){
+                            this.seconds++;
+                            if(this.seconds>=10){
+                                this.secondsField.innerText=this.seconds;
+                            }else{
+                                this.secondsField.innerText=('0'+this.seconds);
+                            }
+                        }else{
+                            this.secondsField.innerText='00';
+                            this.seconds=0;
+                            this.minutes++;
+                            this.minutesField.innerText=this.minutes;
+                            if(this.minutes>=10){
+                                this.minutes.innerText=this.minutes;
+                            }else{
+                                this.minutesField.innerText=('0'+this.minutes);
+                            }
+                        }
+                    }
+                },10);
+            } //startStopWatch
+
+            pauseStopWatch(){
+                clearInterval(this.timer);
+            }//pauseStopWatch
+            
+            clearStopWatch(){
+                clearInterval(this.timer);
+                this.minutes=0;
+                this.seconds=0;
+                this.milliSeconds=0;
+                this.minutesField.innerText='00';
+                this.secondsField.innerText='00';
+                this.milliSecondsField.innerText='00';
+                /**
+                 * 
+                 * 이렇게도 가능
+                 * for(let i =0; i<document.querySelectorAll('p span').length;i++){
+                 *   document.querySelectorAll('p span')[i].innerText='00';
+                    }
+                */
+                
+            }//clearStopWatch
+        }
+
+        //인스턴스 생성
+        const stopWatch = new StopWatch();
+        stopWatch.fireEvents();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery Masonry 플러그인</title>
+<style>
+   * {
+      margin : 0px;
+      padding : 0px; box-sizing: border-box;
+      list-style:none;
+   }
+
+   body {
+      background-color : #525252; box-sizing: border-box;
+   }
+   ul::after{
+      content: '';
+      display: block;
+      clear: both;
+      box-sizing: border-box;
+   }
+   ul{
+      box-sizing: border-box;
+      width: 100%;
+   }
+   li.item div{
+      border: 1px solid red;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+   }
+   li.item {
+      float: left;
+      min-width:140px;
+      height: 532px;
+      box-sizing: border-box;
+      background-color : #FFFFFF;
+      border-radius : 10px;
+   }
+   .item.large{
+      width: 400px;
+      height: 532px;
+   }
+   .item.middle{
+      width: 200px;
+      height: 390px;
+   }
+   .item.small{
+      width: 33.333%;
+      height: 390px;
+   }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="./masonry.pkgd.min.js"></script>
+
+</head>
+<!-- body 태그 구성 -->
+<body>
+    <ul id="masonry_container">
+        <li class = "item large"><div></div></li>
+        <li class = "item middle"><div></div></li>
+        <li class = "item large"><div></div></li>
+        <li class = "item middle"><div></div></li>
+        <li class = "item small"><div></div></li>
+        <li class = "item small"><div></div></li>
+        <li class = "item small"><div></div></li>
+        <li class = "item large"><div></div></li>
+        <li class = "item large"><div></div></li>
+    </ul>
+    <script type="text/javascript">
+      jQuery(document).ready(function () {
+          jQuery("#masonry_container").masonry({
+                itemSelector : ".item",
+               columnWidth: 1
+          });
+      });
+  </script>
+</body>
+</html>

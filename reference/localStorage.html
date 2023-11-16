@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>갑상선 케어 - 복약 관리 - 복약 일정</title>
+<script src="../../resources/js/jquery-3.6.0.min.js"></script>
+<script src="../../resources/js/swiper.min.js"></script>
+<script src="../../resources/js/fullcalendar-6.1.8.min.js"></script><!-- 20230831 달력 플러그인 추가 -->
+<script src="../../resources/js/ui.common.js"></script>
+<link rel="stylesheet" href="../../resources/css/swiper.min.css">
+<link rel="stylesheet" href="../../resources/css/guide.css">
+</head>
+
+
+<body>
+  <a href="../FCT/new-FCT-078.html" id="result">ddd</a>
+  <script>
+      // 전달할 데이터
+      const userInfo = {
+        year: "2023",
+        month: "07",
+        day: "15",
+      }
+
+      const aTag = document.querySelector('a');
+      aTag.addEventListener('click', () => {
+        localStorage.setItem("user-info", JSON.stringify(userInfo));
+      });
+
+      //받는 페이지
+
+      const { year, month, day } = JSON.parse(localStorage.getItem("user-info"));
+    
+    
+    console.log(year, month, day); 
+
+  </script>
+</body>
+
+</html>

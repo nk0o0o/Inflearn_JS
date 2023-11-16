@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		#wrap {
+			padding-top: 100vh;
+		}
+		.item {
+			width: 200px;
+			height: 200px;
+			margin: 50px auto;
+			padding-top: 75px;
+			background: #ccc;
+			text-align: center;
+			color: #FFF;
+			font-size: 3em;
+		}
+		.item.txt {
+			width: 500px;
+			height: auto;
+			color: #ccc;
+			background-color: #fefefe;
+		}
+		.aosess_wrap {overflow: hidden;margin: 0 auto; width: fit-content;}
+		.fl{float: left;}
+	</style>
+</head>
+
+<body>
+
+	<div id="wrap">
+		<div class="item txt" data-aos="fade-up">
+			<p>1</p>
+			<div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, est. Id ratione autem unde molestiae, 
+				quo cupiditate, cumque explicabo asperiores a magnam assumenda blanditiis. Voluptatum aut consequatur officia enim esse?</div>
+		</div>
+		<div class="aosess_wrap">
+			<div class="item fl" data-aos="fade-down">2</div>
+			<div class="item fl">2.25</div>
+			<div class="item fl" data-aos="fade-up">2.5</div>
+		</div>
+		<div class="item" 
+            data-aos="fade-up"
+            data-aos-offset="100"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            data-aos-mirror="true"
+            data-aos-once="false"
+            data-aos-anchor-placement="top-center"
+      >3</div>
+		<div class="item" data-aos="fade-left" style="clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);">4</div>
+		<div class="item" data-aos="zoom-in">5</div>
+		<div class="item" data-aos="zoom-out">6</div>
+		<div class="item" data-aos="slide-up">7</div>
+		<div class="item" data-aos="flip-up">8</div>
+		<div class="item" data-aos="flip-down">9</div>
+		<div class="item" data-aos="flip-right">10</div>
+		<div class="item" data-aos="flip-left">11</div>
+	</div>
+
+	<script>
+
+	AOS.init({
+		duration: 1200,
+	})
+	</script>
+
+
+</body>
+
+</html>

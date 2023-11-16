@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="../resources/js/jquery-3.6.0.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+   <script src="../resources/js/script.js"></script>
+   <link rel="stylesheet" href="../resources/css/style.css">
+</head>
+<body>
+   <div class="txt-box fade-up">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quia quis corrupti officiis asperiores 
+      inventore incidunt dolor quisquam earum quo dolorum nesciunt, eaque nostrum similique aperiam minus eum atque commodi.
+   </div>
+   <div class="txt-box fade-up">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quia quis corrupti officiis asperiores 
+      inventore incidunt dolor quisquam earum quo dolorum nesciunt, eaque nostrum similique aperiam minus eum atque commodi.
+   </div>
+   <div class="txt-box fade-up">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quia quis corrupti officiis asperiores 
+      inventore incidunt dolor quisquam earum quo dolorum nesciunt, eaque nostrum similique aperiam minus eum atque commodi.
+   </div>
+   <script>
+      gsap.set(".fade-up", { yPercent: -5});
+      gsap.to(".fade-up", {
+         yPercent: -10,
+         ease: "none",
+         scrollTrigger: {
+            trigger: ".txt-box",
+            scrub: 1
+         }, 
+      });
+
+   </script>
+</body>
+</html>

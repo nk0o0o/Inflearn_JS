@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .spinner {
+      /* Size */
+      height: 4rem;
+      width: 4rem;
+      border: 4px solid #d1d5db;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spinner 800ms linear infinite;
+    }
+    /* @keyframes spinner {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    } */
+    *{box-sizing: border-box;}
+    :root {
+      --radial-progress-bar-size: 8rem;
+      --radial-progress-bar-border-width: 0.75rem;
+    }
+    .radial-progress-bar {
+        position: relative;
+        height: var(--radial-progress-bar-size);
+        width: var(--radial-progress-bar-size);
+    }
+    .radial-progress-bar__percentages {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        border: var(--radial-progress-bar-border-width) solid #d1d5db;
+        border-radius: 9999px;
+        height: 100%;
+        width: 100%;
+    }
+    .radial-progress-bar__curve {
+        left: 0;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        clip: rect(auto, auto, auto, auto);
+    }
+    .radial-progress-bar__half {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        border: var(--radial-progress-bar-border-width) solid #3b82f6;
+        border-radius: 9999px;
+    }
+
+    .radial-progress-bar__half--first {
+        clip: rect(0px, calc(var(--radial-progress-bar-size) * 0.5), var(--radial-progress-bar-size), 0px);
+        transform: rotate(270deg);
+    }
+
+    .radial-progress-bar__half--second {
+        clip: rect(0px, calc(var(--radial-progress-bar-size) * 0.5), var(--radial-progress-bar-size), 0px);
+        transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner">DSWWWW</div>
+
+  <div class="radial-progress-bar">
+    <div class="radial-progress-bar__percentages">75</div>
+    <div class="radial-progress-bar__curve">
+        <div class="radial-progress-bar__half radial-progress-bar__half--first"></div>
+        <div class="radial-progress-bar__half radial-progress-bar__half--second"></div>
+    </div>
+</div>
+</body>
+</html>

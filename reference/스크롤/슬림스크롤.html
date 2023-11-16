@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title></title>
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+   <style>
+      html {
+         overflow-y: hidden;
+      }
+
+      .scroll_wrap {
+         width: 300px;
+         padding: 20px;
+      }
+
+      ul#inner-content-div {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         background-color: #999;
+         border: 2px solid black;
+         max-height: 50vh;
+         width: 100%;
+      }
+
+      li {
+         width: 100%;
+         border-bottom: 2px solid black;
+         height: 50px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="scroll_wrap">
+      <ul id="inner-content-div">
+         <li>1</li>
+         <li>2</li>
+         <li>5</li>
+         <li>5</li>
+         <li>5</li>
+         <li>5</li>
+         <li>5</li>
+      </ul>
+   </div>
+
+   <script>
+      $(document).ready(function () {
+         $('#inner-content-div').slimScroll({
+            height: '180px',
+            distance: '10px', //감싸는 영역에서부터의 위치
+            size: '5px', //스크롤 너비
+            color: '#ffcc00', //스크롤 색
+            start: 'top', //시작 위치 (제이쿼리 선택자 위치로 이동가능!)(기본:top)
+            railVisible: true, //스크롤 배경표시 여부
+            railColor: '#222', //스크롤 배경색
+            railOpacity: 0.3, //스크롤 배경색 투명도
+            wheelStep: 5, //스크롤량
+            disableFadeOut: false, //마우스 오버했을때 안사라짐 : true
+            position: 'right', //스크롤 위치 기본 : 오른쪽
+            alwaysVisible: false, //스크롤 고정 or 사라짐 여부
+            allowPageScroll: false,
+         });
+      })
+   </script>
+</body>
+
+</html>

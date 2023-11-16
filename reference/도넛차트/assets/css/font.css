@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+/* Font */
+@font-face {
+	font-family:'ardm';
+	src: url('../fonts/Arita-Dotum-Medium.eot');
+	src: local(※), url('../fonts/Arita-Dotum-Medium.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/Arita-Dotum-Medium.woff') format('woff'),
+		 url('../fonts/Arita-Dotum-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family:'ardsb';
+	src: url('../fonts/Arita-Dotum-SemiBold.eot');
+	src: local(※), url('../fonts/Arita-Dotum-SemiBold.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/Arita-Dotum-SemiBold.woff') format('woff'),
+		 url('../fonts/Arita-Dotum-SemiBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //PC LeftMenu
+    $(document).ready(function(){
+        $(".menu-v1").click (function(){
+            $(this).children(".submenu").stop().slideDown();
+        });
+        $(".menu-v1").mouseleave(function(){
+            $(this).children(".submenu").stop().slideUp();
+        });
+    });
+
+
+    //Mobile LeftMenu
+    $(document).ready(function() {
+        $(".btn_m").click(function() {
+            $("#menu,.page_cover,html").addClass("open");
+            window.location.hash = "#open";
+        })
+    })
+
+    window.onhashchange = function() {
+        if (location.hash != "#open") {
+            $("#menu,.page_cover,html").removeClass("open");
+        }
+    };
+
+    $(document).ready(function(){
+        $("#menu ul.submenu").hide();
+        $("#menu ul.nav-v1 li").click (function(){
+            $(this).children("ul",this).stop().slideDown();
+        });
+        $("#menu ul.nav-v1 li").mouseleave(function(){
+            $(this).children("ul",this).stop().slideUp();
+        });
+    });
+  </script>
+</body>
+</html>

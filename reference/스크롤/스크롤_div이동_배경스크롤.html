@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            padding: 1600px 10px 500px;
+        }
+        .container {
+            width: 100%;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        .text {
+            font-size: 80px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="text">LIFE ARCHIVE SPACE.</p>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+
+            $(document).scroll(function(){
+                let scrollX = $(document).scrollTop();
+                
+                console.log("scrollX:"+scrollX);
+                
+                if(scrollX >= 700 && scrollX <= 1200){
+                    let textLeft = "translateX(" +(scrollX)+ "px)";
+                    $('.text').css({'transform':textLeft});
+                    console.log("textLeft:"+textLeft);
+                }
+
+
+
+
+
+                /* const containerOffsetTOP = $('.container').offset().top;                                
+                //let textLeft = "translateX(-" + (scrollX/2) + "px)";
+                //$('.text').css({'transform':textLeft});
+                let textLeft = "translateX(" +scrollX/2+ "px)";
+                $('.text').css({'transform':textLeft}); */
+            
+            
+            })
+        });
+    </script>
+</body>
+</html>

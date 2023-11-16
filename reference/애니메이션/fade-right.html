@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            position: relative; 
+            width: 178px;
+            height: 305px; 
+            margin: 0 auto;
+        }
+        h1::before { 
+            content: ""; 
+            position: absolute; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 88.5%; 
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 11%, white 100%); 
+            transform-origin: right center; 
+            /* 방향 설정하면 됨 z축까지 됨 */
+            animation: sizeDown 3.5s forwards infinite;
+        }        
+        @keyframes sizeDown { 
+            from {
+                transform: scaleX(1); }
+            to {
+                transform: scaleX(0); } 
+        }    
+    </style>
+</head>
+<body>
+    <h1>gkgkgk</h1>
+</body>
+</html>

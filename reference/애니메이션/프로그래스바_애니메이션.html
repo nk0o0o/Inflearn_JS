@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .progressBar_wrap {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progressBar {
+            height: 2px;
+            width: 200px;
+            background: lightgray;
+        }
+
+        .loaded {
+            height: 100%;
+            width: 100%;
+            background: #444;
+            animation: 3s linear infinite loading;
+            transform-origin: 0%;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(100%);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="progressBar_wrap">
+        <div class="progressBar">
+          <div class="loaded"></div>
+      </div>
+      <p>4</p>
+</body>
+</html>

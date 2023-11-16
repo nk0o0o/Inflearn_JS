@@ -1,0 +1,194 @@
+*{
+  font-family: 'Roboto', sans-serif;
+}
+*[class*=col]{
+  border: 1px solid;
+}
+/* 카드제목같은 링크이동 전체영역 감싸기 */
+.stretched-link{cursor: pointer;}
+/* 여러줄 말줄임 */
+.text-truncate-1{
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+.text-truncate-2{
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+.text-truncate-3{
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+}
+/* 호버 밑줄 효과 */
+.hov_underline {
+    text-decoration: none;
+    background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+    background-size: 0px 6%;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    transition-duration: 0.5s;
+}
+.hov_underline:hover {
+  background-size: 100% 6%;
+}
+/* 슬라이드 */
+.multi_carousel { 
+  float: left;
+  overflow: hidden;
+  padding: 15px;
+  width: 100%;
+  position:relative; 
+}
+.carousel_wrap::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.multi_carousel-inner { 
+  transition: 1s ease all;
+  float: left; 
+}
+.multi_carousel-inner .item { 
+  float: left;
+}
+.multi_carousel-inner .item .item_inner{
+  margin:10px; 
+  color:#666;
+}
+.multi_carousel .btn_prev, 
+.multi_carousel .btn_next {
+  width: 40px;;
+  height: 40px;
+  visibility:hidden;
+  opacity: 0;
+  position:absolute;
+  border-radius:50%;
+  top:50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-color: transparent;
+  transition:all 0.3s;
+}
+.multi_carousel:hover .btn_prev, 
+.multi_carousel:hover .btn_next{
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0px);
+}
+.multi_carousel .btn_prev {
+  left:0;
+  transform: translateX(-45px);
+}
+.multi_carousel .btn_next { 
+  right:0;
+  transform: translateX(45px);
+}
+@media (hover: hover) {
+  .multi_carousel .btn_prev.over, .multi_carousel .btn_prev.over:hover,  
+  .multi_carousel .btn_next.over, .multi_carousel .btn_next.over:hover { 
+    pointer-events: none;
+    background:#ccc; 
+  }
+}
+.multi_carousel .btn_prev:hover, 
+.multi_carousel .btn_next:hover{
+  background-color: rgba(0, 0, 0, 12.5);
+} 
+.multi_carousel .card{
+  overflow: hidden;
+}
+/* 슬라이드 화살표 */
+.arrow-left, .arrow-right{
+  display: block;
+  position: absolute;
+  background-color: transparent;
+}
+.arrow-left::before, .arrow-right::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-top: solid 2px #fff;
+  border-right: solid 2px #fff;
+}
+.arrow-left::before{
+  -webkit-transform: translate(-50%, -50%) rotate(-135deg);
+  transform: translate(-50%, -50%) rotate(-135deg);
+  margin-left: 3px;
+}
+.arrow-right::before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+  margin-left: -2px;
+}
+/* 카드안에 이미지와 내용 */
+.card-img-overlay{
+  padding:1.25rem 1rem;
+}
+/* 카드 이미지 밑에 내용 */
+.card-img_wrap{
+  position: relative;
+}
+.card-img_wrap .badge{
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1rem;
+}
+
+/* 아바타 */
+.avatar{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/* 카드 내용 글자 두께 */
+.card_title{
+  font-weight: 700;
+}
+.card_info {
+  font-weight: 500;
+}
+.hov_img_bigger{
+  overflow: hidden;
+}
+.hov_img_bigger img{
+  transition: transform .5s;
+}
+/* 카드 북마크 */
+.card_bookmark{
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  background-color: blue;
+  top: -4px;
+  right: -48px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.card_bookmark::after{
+  content: '☆';
+  display: block;
+  font-size: 100%;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  color: #fff;
+}
+
+.card_bookmark.on::after{
+  content: '★'
+}

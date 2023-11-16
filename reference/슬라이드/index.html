@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.3/js/swiper.min.js"></script>
+   <title>Document</title>
+</head>
+
+<body>
+
+   <div id="content-wrap">
+      <!-- gallery_swiper_wrap -->
+      <div class="gallery_swiper_wrap">
+         <!-- gallery top  -->
+         <div class="swiper-conainer gallery-container gallery-top">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>1</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>2</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>3</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Add Arrows -->
+         <div class="swiper-button-next swiper-button-next"></div>
+         <div class="swiper-button-prev swiper-button-prev"></div>
+         <!-- gallery thumbs  -->
+         <div class="swiper-conainer gallery-container gallery-thumbs">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>1</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>2</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="swiper-slide-container">
+                     <p>3</p>
+                     <img src="https://via.placeholder.com/500" alt>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- //gallery_swiper_wrap -->
+   </div>
+</body>
+<script>
+   var galleryThumbs = new Swiper('.gallery-thumbs', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      centeredSlides: true,
+      loop: true,
+      loopedSlides: 1,
+      effect: 'fade',
+      fadeEffect: {
+         crossFade: true
+      },
+   });
+   var galleryTop = new Swiper('.gallery-top', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      centeredSlides: true,
+      loop: true,
+      loopedSlides: 1,
+      navigation: {
+         nextEl: '.gallery_swiper-wrap .swiper-button-next',
+         prevEl: '.gallery_swiper-wrap .swiper-button-prev',
+      },
+   });
+   galleryTop.controller.control = galleryThumbs;
+   galleryThumbs.controller.control = galleryTop;
+</script>
+
+</html>

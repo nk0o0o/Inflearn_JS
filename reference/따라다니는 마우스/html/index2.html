@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="../resources/css/reset.css">
+   <link rel="stylesheet" href="../resources/css/style2.css">
+</head>
+<body>
+   <div class="grid">
+      <div class="eyes pos-1">
+          <div class="eye eye__left">
+              <div class="eye__ball"></div>
+          </div>
+          <div class="eye eye__right">
+              <div class="eye__ball"></div>
+          </div>
+      </div>
+   </div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js'></script>
+<script>
+   const leftEyes = document.querySelectorAll('.eye__left .eye__ball');
+   const rightEyes = document.querySelectorAll('.eye__right .eye__ball');
+
+   const moveEye = (eye, event) => {
+      const rect = eye.getBoundingClientRect();
+      const x = event.pageX - rect.left;
+      const y = event.pageY - rect.top;
+
+      const angle = Math.atan2(y, x);
+      const diff = Math.sqrt(x * x, y * y);
+      const degrees = angle * 180 / Math.PI;
+      const radius = Math.min(8, diff);
+
+      const cappedX = radius * Math.cos(angle);
+      const cappedY = radius * Math.sin(angle);
+      
+      gsap.to(eye, {
+         x: cappedX,
+         y: cappedY
+      })
+   };
+
+   document.addEventListener('mousemove', e => {
+      leftEyes.forEach(eye => {
+         moveEye(eye, e);
+      })
+      
+      rightEyes.forEach(eye => {
+         moveEye(eye, e);
+      })
+   });
+</script>
+</html>

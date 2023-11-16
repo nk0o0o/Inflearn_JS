@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      body{--s: 84px;--m: -1px;--f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);}
+      button{background-color: transparent;border: none;}
+      .hexagon{position: relative;width: var(--s);height: calc(var(--s)*1.1547);margin: var(--m);}
+      .hexagon::after{position: absolute;top: 0;left: 0;content: "";width: 100%;height: 100%;display: inline-block;font-size:initial;margin-bottom: calc(var(--m) - var(--s)*0.2885);clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);filter:url("#round");opacity: 0.2;background-color: red;}
+      .hexagon img{position: absolute;z-index: 1;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 58px;}
+   </style>
+</head>
+<body>
+   <div class="hexa_wrap">
+      <!-- shape 라운드 필터 svg-->
+      <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+         <defs>
+            <filter id="round">
+               <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+               <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -9"/>
+               <feComposite in="SourceGraphic" operator="atop"/>
+            </filter>
+         </defs>
+      </svg>
+      <!-- // shape 라운드 필터 svg -->
+      <button type="button" class="hexagon"></button>
+      <button type="button" class="hexagon"></button>
+      <button type="button" class="hexagon"></button>
+      <!-- <span class="hexagon_tit">Dental MBTI</span> -->
+      <!-- <span class="hexagon_tit">웰니스 다이어리</span> -->
+      <!-- <span class="hexagon_tit">AI 건강 카메라</span> -->
+   </div>
+</body>
+</html>

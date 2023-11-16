@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap" class="sub">
+    <!-- header -->
+    <header>
+      
+    </header>
+    <!-- // header -->
+    <!-- container -->
+    <main id="sub_container">
+
+      <section class="gap_80 board_view"> <!--페이지 클래스 -->
+        
+         <!-- sub_top_about -->
+         <div class="sub_top_about">
+            <h2></h2>
+            <p class="about_text"></p>
+         </div>
+         <!-- // sub_top_about -->
+         <!-- grid_wrap -->
+        <div class="grid_wrap">
+         <button class="btn btn_xl btn_radius btn_secondary" onclick="openPopup('#modalPop01')">Opne Review Modal Popup</button>
+        </div>
+        <!-- // grid_wrap -->
+      </section>
+
+    </main>
+    <!-- // container -->
+
+    <!-- footer -->
+    <footer class="footer">
+    </footer>
+    <!-- // footer -->
+
+  </div>
+  <!-- // wrap -->
+
+   <div id="modalPop01" class="modal_wrap review_modal">
+      <div class="modal">
+         <button type="button" class="btn btn_sm modal_close ico_48"><span class="blind">닫기</span></button>
+         <div class="cont">
+            <!-- review_img -->
+            <div class="review_img">
+               <div class="swiper review_modal_swiper">
+                  <ul class="swiper-wrapper">
+                    <li class="swiper-slide">
+                       <div class="img"><img src="/resources/images/@sample_modal_review_01.png" alt></div>
+                    </li>
+                    <li class="swiper-slide">
+                       <div class="img"><img src="/resources/images/@sample_modal_review_02.png" alt></div>
+                    </li>
+                  </ul>
+                  <div class="slide_btn swiper-button-next"><span class="blind">이전 사진</span></div>
+                  <div class="slide_btn swiper-button-prev"><span class="blind">다음 사진</span></div>
+                  <div class="swiper-pagination"></div>
+               </div>
+            </div>
+            <!-- // review_img -->
+            <!-- review_txt -->
+            <div class="review_txt">
+               <!-- review_detail -->
+               <div class="review_detail">
+                  <div class="scroll_wrap">
+                     <div class="user_info">
+                        <p class="name">김*정</p>
+                        <p>30대 (여)</p>
+                        <p>지성, 민감성</p>
+                     </div>
+                     <div class="starpoint_wrap">
+                        <div class="starpoint_box">
+                           <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                           <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+                           <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                           <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+                           <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                           <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+                           <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                           <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+                           <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                           <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
+                           <div class="star_radio_wrap">
+                              <input type="radio" name="stargroup_1" id="starpoint_1" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_2" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_3" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_4" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_5" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_6" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_7" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_8" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_9" class="star_radio" disabled>
+                              <input type="radio" name="stargroup_1" id="starpoint_10" class="star_radio" checked disabled>
+                              <span class="starpoint_bg"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="comments">
+                        피부톤에 맞는 파운데이션을 찾고 싶어서 찾아보다가 베이스피커를 알게 됐어요.
+                        처음에는 기존 쓰던 파운데이션이랑 비슷한 컬러 제품을 주문해서 사용하다가 커버력이나
+                        발림성이 모두 마음에 들어 다른 컬러도 사용해보고 싶어서 부산에서 아모레 성수까지 직접 방문 했습니다!
+                        직접 컬러테스트 받고 투고제품으로 구매해왔는데 너무 마음에 들어서 아리따움에서 같은 컬러로
+                        파운데이션을 또 구매하게됐어요 피부톤과 비슷하니 커버도 더 잘되고 광이 더 고급스럽게 보여지네요 만족하며 사용중입니다!
+                     </div>
+                     <ul class="rate_list">
+                        <li>발속력 
+                           <div class="starpoint_wrap">
+                              <div class="starpoint_box">
+                                 <label for="starpoint_11" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                                 <label for="starpoint_12" class="label_star" title="1"><span class="blind">1점</span></label>
+                                 <label for="starpoint_13" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                                 <label for="starpoint_14" class="label_star" title="2"><span class="blind">2점</span></label>
+                                 <label for="starpoint_15" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                                 <label for="starpoint_16" class="label_star" title="3"><span class="blind">3점</span></label>
+                                 <label for="starpoint_17" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                                 <label for="starpoint_18" class="label_star" title="4"><span class="blind">4점</span></label>
+                                 <label for="starpoint_19" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                                 <label for="starpoint_20" class="label_star" title="5"><span class="blind">5점</span></label>
+                                 <div class="star_radio_wrap">
+                                    <input type="radio" name="stargroup_2" id="starpoint_11" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_12" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_13" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_14" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_15" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_16" class="star_radio" checked disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_17" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_18" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_19" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_2" id="starpoint_20" class="star_radio" disabled>
+                                    <span class="starpoint_bg"></span>
+                                 </div>
+                              </div>
+                            </div>
+                        </li>
+                        <li>지속력 
+                           <div class="starpoint_wrap">
+                              <div class="starpoint_box">
+                                 <label for="starpoint_21" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                                 <label for="starpoint_22" class="label_star" title="1"><span class="blind">1점</span></label>
+                                 <label for="starpoint_23" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                                 <label for="starpoint_24" class="label_star" title="2"><span class="blind">2점</span></label>
+                                 <label for="starpoint_25" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                                 <label for="starpoint_26" class="label_star" title="3"><span class="blind">3점</span></label>
+                                 <label for="starpoint_27" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                                 <label for="starpoint_28" class="label_star" title="4"><span class="blind">4점</span></label>
+                                 <label for="starpoint_29" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                                 <label for="starpoint_30" class="label_star" title="5"><span class="blind">5점</span></label>
+                                 <div class="star_radio_wrap">
+                                    <input type="radio" name="stargroup_3" id="starpoint_21" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_22" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_23" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_24" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_25" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_26" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_27" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_28" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_3" id="starpoint_29" class="star_radio" checked disabled >
+                                    <input type="radio" name="stargroup_3" id="starpoint_30" class="star_radio" disabled>
+                                    <span class="starpoint_bg"></span>
+                                 </div>
+                              </div>
+                            </div>
+                        </li>
+                        <li>사용감 
+                           <div class="starpoint_wrap">
+                              <div class="starpoint_box">
+                                 <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                                 <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+                                 <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                                 <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+                                 <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                                 <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+                                 <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                                 <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+                                 <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                                 <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
+                                 <div class="star_radio_wrap">
+                                    <input type="radio" name="stargroup_4" id="starpoint_1" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_2" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_3" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_4" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_5" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_6" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_7" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_8" class="star_radio" checked disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_9" class="star_radio" disabled>
+                                    <input type="radio" name="stargroup_4" id="starpoint_10" class="star_radio" disabled>
+                                    <span class="starpoint_bg"></span>
+                                 </div>
+                              </div>
+                            </div>
+                        </li>
+                     </ul>
+                     <span class="review_source">(아리따움몰에서 작성한 리뷰)</span>
+                     <div class="answer_box">
+                        <div class="comment_info">
+                          <p class="ico_16 ico_reply"></p>
+                          <p class="user_name">
+                            <strong>관리자</strong>
+                            <span class="date">2023.05.01 12:00:00</span>
+                          </p>
+                        </div>
+                        <p class="comment_text">바쁘신 와중에 회원님의 소중한 후기 감사드립니다! 수령하신 제품의 문의 및 불편사항은 언제든지 1:1문의 또는 고객센터로 문의부탁드립니다.</p>
+                     </div>
+                  </div>
+               </div>
+               <!--// review_detail -->
+               <!-- review_info -->
+               <div class="review_info">
+                  <div class="date_box">
+                     <p class="date">2023.05.24</p>
+                     <div style="display: flex; align-items: center; justify-content: center; width: 103px; height: 48px; border: 1px solid;">좋아요</div>
+                  </div>
+                  <a href="#">
+                     <div class="product_box">
+                        <div class="img"><img src="/resources/images/@sample_product_thumb_01.png" alt></div>
+                        <div class="info">
+                           <p class="name">파운데이션 세미매트 21.5N1 20G</p>
+                           <p class="price">40,000</p>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <!-- // review_info -->
+            </div>
+            <!--// review_txt -->           
+         </div>
+      </div>
+   </div>
+
+  <script>
+    $(document).ready(function (){
+      $(window).resize(function(event){
+        ww = $(window).width();
+        quickBtn();
+      });
+      $(window).scroll(function(event){
+        headerAction(); // 헤더 액션
+        quickBtn(); // 퀵버튼 위치
+      });
+      headerAction(); // 헤더 인터렉션
+      reviewModalImgSwiper();
+    });
+  </script>
+
+  <script>
+   //팝업 열기
+   function openPopup(el){
+      var $modalWrap = $(el)
+      $modalWrap.addClass('open')
+      popupCase(el);
+   }
+   //팝업 위치
+   function popupCase(el){
+      var $modal = $(el).find('.modal');
+      var $modalCloseBtn = $(el).find('.modal_close');
+      var $modalH = $modal.height();
+      var $winW = $(window).innerWidth();
+      var $winH = $(window).innerHeight();
+      if ($modalH > $winH) {
+         $modal.addClass('absolute');
+      } else {
+         $modal.removeClass('absolute');
+      }
+      $modalCloseBtn.on("click", function() {
+         $(this).parents(".modal_wrap").removeClass("open");
+      });
+   }
+   //리뷰 이미지 슬라이드
+   function reviewModalImgSwiper() {
+      const reviewPopImgSwiper = new Swiper(".review_modal_swiper", {
+         slidesPerView: 1,
+         loop: false,
+         preloadImages: true,
+         updateOnImagesReady: true,
+         spaceBetween : 0,
+         observer: true,
+         observeParents: true,
+         navigation: {
+            nextEl: ".review_modal_swiper .swiper-button-next",
+            prevEl: ".review_modal_swiper .swiper-button-prev"
+         },
+         pagination: {
+            el: '.review_modal_swiper .swiper-pagination',
+            clickable: 'true',
+            type: 'bullets',
+            renderBullet: function (index, className) {
+               return '<span class="' + className + '">' + '<span class="blind">'+ index + '번째 사진' +'</span>' + '</span>';
+            },
+         },
+      });
+   }
+  </script>
+</body>
+
+</html>

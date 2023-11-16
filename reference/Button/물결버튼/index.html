@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <input type="checkbox" id="inpCheck" name="inpCheckGroup">
+   <label for="inpCheck" class="blob_btn">
+      <span class="text">상담신청</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <rect id="base" width="24" height="24" fill="none" opacity="0"/>
+        <g transform="translate(-320.5 -250)">
+          <path class="blob_arr" d="M0,10.75a.748.748,0,0,1-.53-.22.75.75,0,0,1,0-1.061L3.939,5-.53.53A.75.75,0,0,1-.53-.53.75.75,0,0,1,.53-.53l5,5a.75.75,0,0,1,0,1.061l-5,5A.748.748,0,0,1,0,10.75Z" transform="translate(330 257)" fill="#1f1f1f"/>
+        </g>
+      </svg>
+      <span class="blob_btn_inner">
+        <span class="blob_btn_blobs">
+          <span class="blob_btn_blob"></span>
+          <span class="blob_btn_blob"></span>
+          <span class="blob_btn_blob"></span>
+          <span class="blob_btn_blob"></span>
+        </span>
+      </span>
+    </label>
+    <script>
+      $(document).ready(function(){
+         $('#inpCheck').click(function(){
+            var id = $(this).attr('id')
+            var check = $('#inpCheck').is(':checked');
+            if(check){
+               $('label[for='+id+']').addClass('on')
+            }else{
+               $('label[for='+id+']').removeClass('on')
+            }
+         })
+
+      })
+    </script>
+</body>
+</html>

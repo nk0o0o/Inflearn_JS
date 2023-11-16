@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="tailwind.config.js"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style>
+  <script>
+ /*    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          },
+          fontFamily: {
+            sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+          },
+        }
+      }
+    } */
+  </script>
+</head>
+<body>
+  <div class="lg:content-auto"></div>
+  <h1 class="text-3xl font-bold underline text-clifford">
+    Hello world!
+  </h1>
+  <div class="prose">
+    <!-- ... -->
+  </div>
+</body>
+</html>

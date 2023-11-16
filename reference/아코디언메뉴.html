@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="widivh=device-widivh, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <style>
+      hr {margin: 50px 0;}
+      label {margin: 1em 0;display: block;}
+      body {margin: 3em;}
+      body.guide {overflow: hidden;margin: 0;}
+      .container {margin-top: 40px;}
+      .depth1 {cursor: pointer;display: block;font-size: .8rem;opacity: .5;padding: .7em 0;position: relative;transition: .3s ease-out;}
+      .depth1~.depth1 {margin-top: .3em;}
+      .depth1::after {content: "";font-size: .5em;position: absolute;right: 0;top: .75rem;}
+      .depth1.on,.depth1:hover {opacity: 1;}
+      .depth1.on::after {transform: rotate(180deg);}
+      .depth2 {border-top: 1px solid rgba(255, 255, 255, .2);display: none;margin-left: 0;}
+      .depth2-list {font-size: .65rem;margin: .5em;}
+      .depth2 a {padding: .5em;display: block;}
+      .depth2 a:hover {color: yellowgreen;}
+   </style>
+</head>
+<body>
+   <div class="container">
+      <div class="depth1">Depth-1</div>
+      <div class="depth2">
+         <ul class="depth2-list">
+            <li class="list-item"><a href="#">Menu-1</a></li>
+            <li class="list-item"><a href="#">Menu-2</a></li>
+            <li class="list-item"><a href="#">Menu-3</a></li>
+         </ul>
+      </div>
+      <div class="depth1">Depth-1</div>
+      <div class="depth2">
+         <ul class="depth2-list">
+            <li class="list-item"><a href="#">Menu-1</a></li>
+            <li class="list-item"><a href="#">Menu-2</a></li>
+            <li class="list-item"><a href="#">Menu-3</a></li>
+         </ul>
+      </div>
+   </div>
+   <script>
+      $(function () {
+         var speed = 300;
+         var depth1 = $('.container .depth1');
+         var depth2 = $('.container .depth2');
+         $(depth1).on("click", function () {
+            var isOn = $(this).hasClass("on");
+            if (isOn) {
+               $(this).removeClass("on").next('.depth2').slideUp(speed);
+            } else {
+               $(this).addClass("on").next('.depth2').slideDown(speed);
+            }
+            return false;
+         });
+      });
+   </script>
+</body>
+
+</html>

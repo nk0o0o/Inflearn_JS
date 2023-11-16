@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{margin:0;padding:0;}
+        ul,li{list-style:none;}
+        .slide{height:300px;overflow:hidden; width: 500px; margin: 0 auto;}
+        .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} 
+         .slide li{width:calc(100% / 4);height:300px;}
+        /* 자동 가로 슬라이드 */
+       /*  
+        .slide li:nth-child(1){background:#ffa;}
+        .slide li:nth-child(2){background:#faa;}
+        .slide li:nth-child(3){background:#afa;}
+        .slide li:nth-child(4){background:#aaf;}
+        @keyframes slide {
+            0% {margin-left:0;}
+            10% {margin-left:0;} 
+            25% {margin-left:-100%;} 
+            35% {margin-left:-100%;} 
+            50% {margin-left:-200%;}
+            60% {margin-left:-200%;}
+            75% {margin-left:-300%;}
+            85% {margin-left:-300%;}
+            100% {margin-left:0;}
+        } */
+        /* 자동 세로 슬라이드 */
+        /* .slide ul{height:calc(100% * 4);animation:slide 8s infinite;}
+        .slide li{height:calc(100% / 4);}
+        .slide li:nth-child(1){background:#ffa;}
+        .slide li:nth-child(2){background:#faa;}
+        .slide li:nth-child(3){background:#afa;}
+        .slide li:nth-child(4){background:#aaf;}
+        @keyframes slide {
+            0% {margin-top:0;}
+            10% {margin-top:0;}
+            25% {margin-top:-300px;}
+            35% {margin-top:-300px;}
+            50% {margin-top:-600px;}
+            60% {margin-top:-600px;}
+            75% {margin-top:-900px;}
+            85% {margin-top:-900px;}
+            100% {margin-top:0;}
+        } */
+        /* 페이드 슬라이드 */
+        /* .slide ul{position:relative;height:100%;}
+        .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 8s infinite;}
+        .slide li:nth-child(1){background:#ffa;animation-delay:0s}
+        .slide li:nth-child(2){background:#faa;animation-delay:2s}
+        .slide li:nth-child(3){background:#afa;animation-delay:4s}
+        .slide li:nth-child(4){background:#aaf;animation-delay:6s}        
+        @keyframes fade {
+            0% {opacity:0;}
+            5% {opacity:1;}
+            25% {opacity:1;}
+            30% {opacity:0;}
+            100% {opacity:0;}
+        } */
+        /* 수동 가로 슬라이드 */
+        .slide2{height:300px;overflow:hidden;position:relative;width: 500px;margin: 0 auto;}
+        .slide2 ul{width:calc(100% * 4);display:flex;transition:1s;}
+        .slide2 li{width:calc(100% / 4);height:300px;}
+        .slide2 li:nth-child(1){background:#ffa;}
+        .slide2 li:nth-child(2){background:#faa;}
+        .slide2 li:nth-child(3){background:#afa;}
+        .slide2 li:nth-child(4){background:#aaf;}
+        .slide2 input{display:none;}
+        .slide2 .bullet{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:10;}
+        .slide2 .bullet label{width:10px;height:10px;border-radius:10px;border:2px solid #666;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
+        #pos1:checked ~ ul{margin-left:0;}
+        #pos2:checked ~ ul{margin-left:-100%;}
+        #pos3:checked ~ ul{margin-left:-200%;}
+        #pos4:checked ~ ul{margin-left:-300%;}
+        #pos1:checked ~ .bullet label:nth-child(1),
+        #pos2:checked ~ .bullet label:nth-child(2),
+        #pos3:checked ~ .bullet label:nth-child(3),
+        #pos4:checked ~ .bullet label:nth-child(4){background:#666;}
+        
+
+    </style>
+</head>
+<body>    
+    <!-- 자동 슬라이드 -->
+    <div class="slide">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <br><br>
+    <!-- 수동 슬라이드 -->
+    <div class="slide2">
+        <input type="radio" name="pos" id="pos1" checked>
+        <input type="radio" name="pos" id="pos2">
+        <input type="radio" name="pos" id="pos3">
+        <input type="radio" name="pos" id="pos4">
+        <ul>
+            <li><img src="http://placehold.it/500x300?text=sample"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p class="bullet">
+            <label for="pos1">1</label>
+            <label for="pos2">2</label>
+            <label for="pos3">3</label>
+            <label for="pos4">4</label>
+        </p>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

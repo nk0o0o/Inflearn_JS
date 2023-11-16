@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .codeSnippets {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .codeSnippet {
+            margin: 0 10px;
+        }
+
+        .codeSnippets p {
+            text-align: center;
+            display: none;
+        }
+
+        .codeSnippet-svg,
+        .codeSnippet-css {
+            position: relative;
+        }
+
+        pre {
+            background-color: #1a2b34;
+            padding-right: 1.5rem;
+            color: #bcbcbc;
+            font-size: 0.8rem;
+
+        }
+
+        .clipboard pre {
+            cursor: pointer;
+        }
+
+        .clipboard .codeSnippet-svg,
+        .clipboard .codeSnippet-css {
+            overflow: hidden;
+        }
+
+        .clipboard .codeSnippet-svg:after,
+        .clipboard .codeSnippet-css:after {
+            position: absolute;
+            content: "copied to clipboard";
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            color: #fff;
+            transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clipboard .success.codeSnippet-svg:after,
+        .clipboard .success.codeSnippet-css:after {
+            opacity: 0.8;
+            transform: scale(1.23);
+        }
+
+        .clipboard .codeSnippets p {
+            display: block;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="codeSnippets">
+            <div class="codeSnippet">
+                <pre class="codeSnippet-svg">
+                    <code class="SVGCode">
+                        &lt;header&gt;                    
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div class="codeSnippet">
+            <pre class="codeSnippet-css">
+                <code class="CSSCode">
+                    .icon{
+                        filter: <span class="invert"></span>url(#colorFilter);
+                    }
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        const body = document.querySelector("body");
+        const SVGCode = document.querySelector(".SVGCode");
+        const SVGCodeCont = document.querySelector(".codeSnippet-svg");
+        const CSSCodeCont = document.querySelector(".codeSnippet-css");
+        const CSSCode = document.querySelector(".CSSCode");  
+
+        function clickToCopy(codeContainer, code) {
+            navigator.clipboard.writeText(code.innerText);
+            codeContainer.classList.add("success");
+            setTimeout(function () {
+                codeContainer.classList.remove("success");
+            }, 800);
+        }
+
+        // click to copy CSS and SVG if there's a clipboard function
+        (() => {
+            if (navigator.clipboard) {
+                body.classList.add("clipboard");
+                CSSCodeCont.addEventListener("click", () => {
+                    clickToCopy(CSSCodeCont, CSSCode);
+                });
+                SVGCodeCont.addEventListener("click", () => {
+                    clickToCopy(SVGCodeCont, SVGCode);
+                });
+            }
+        })()
+
+      
+    </script>
+</body>
+
+</html>
