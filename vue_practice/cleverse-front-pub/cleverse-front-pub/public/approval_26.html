@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/approval-cleverse.css">
+  <script src="/assets/js/approval-cleverse.js"></script>
+</head>
+<body>
+  <div class="approval-view-frame cleverse-pop-frame modal">
+    <div class="title">결재처리</div>
+    <!-- table -->
+    <div >
+			<table class="cleverse-tbl-approval data-type">
+				<colgroup>
+					<col style="width:26%;">
+					<col style="width:auto;">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">제목</th>
+						<td>
+              <div class="input-box type3 full">
+                <input type="text" required placeholder="" class="cleverse-design" >
+              </div>
+            </td>
+					</tr>
+					<tr>
+						<th scope="row">발송방법</th>
+						<td>
+              <div class="cleverse-input-radio h16"><input type="radio" name="radio1" id="radio1-1" class="cleverse-design" ><label for="radio1-1">승인</label></div>
+              <div class="cleverse-input-radio h16"><input type="radio" name="radio1" id="radio1-2" class="cleverse-design" ><label for="radio1-2">반려</label></div>
+              <div class="cleverse-input-radio h16"><input type="radio" name="radio1" id="radio1-3" class="cleverse-design" ><label for="radio1-3">보류</label></div>
+              <div class="cleverse-input-radio h16"><input type="radio" name="radio1" id="radio1-4" class="cleverse-design" ><label for="radio1-4">전결</label></div>
+              <p class="fc-point normal mt5">※ 결재형태를 반드시 선택하여 주시기 바랍니다.</p>
+            </td>
+					</tr>
+          <tr>
+						<th scope="row">비밀번호</th>
+						<td>
+              <div class="input-box type3 w200">
+                <input type="password" required placeholder="" class="cleverse-design" >
+              </div>
+            </td>
+					</tr>
+          <tr>
+						<th scope="row">의견</th>
+						<td>
+              <textarea name="" id="" class="cleverse-design"></textarea>
+            </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+    <!-- //table -->
+
+    <!-- btn -->
+    <div class="cleverse-btn-wrap al-right">
+      <button type="button" class="cleverse-btn lg line-type">취소</button>
+      <button type="button" class="cleverse-btn lg">확인</button>
+    </div>
+    <!-- //btn -->
+  </div>
+</body>
+</html>
