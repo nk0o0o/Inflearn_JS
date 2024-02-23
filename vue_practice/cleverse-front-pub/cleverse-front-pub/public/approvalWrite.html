@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/approval-cleverse.css">
+  <script src="/assets/js/approval-cleverse.js"></script>
+</head>
+<body>
+  <div class="approval-view-frame">
+    <!-- btn -->
+    <div class="head-btn-wrap">
+      <button type="button" class="cleverse-btn md line-type">목록</button>
+      <div class="btn-set">
+        <button type="button" class="cleverse-btn md line-type">안추가</button>
+        <button type="button" class="cleverse-btn md line-type">결재자 지정</button>
+        <button type="button" class="cleverse-btn md">상신</button>
+        <button type="button" class="cleverse-btn md line-type scale">펼쳐보기</button>
+      </div>
+    </div>
+    <!-- //btn -->
+
+    <div class="head-location">
+      <span>전자결재</span><em>결재작성하기</em>
+    </div>
+    <!-- btn-set -->
+    <div class="cleverse-tbl-btn-set">
+      <div>
+        <select name="" id="" class="cleverse-design" >
+          <option value="">크기 100%</option>
+          <option value="">옵션명</option>
+          <option value="">옵션명</option>
+        </select>
+        <button type="button" class="cleverse-btn basic ico-info">발송요청정보편집</button>
+      </div>
+      <div>
+        <button type="button" class="cleverse-btn basic ico-save">임시저장</button>
+        <button type="button" class="cleverse-btn basic ico-forward">문서수정</button>
+        <button type="button" class="cleverse-btn basic ico-file org">첨부수정</button>
+        <div class="drop-down-menu">
+          <!-- layer -->
+          <!--
+            default value: false 입니다.
+            data-visible="true" 일 경우 레이어 지속 노출
+            data-visible="false" 일 경우 레이어 toggle 형태로 노출
+          -->
+          <button type="button" class="cleverse-btn-option" data-visible="false">옵션 더보기</button>
+          <div class="layer-option-view">
+            <ul>
+              <li><button type="button">진행상태</button></li>
+              <li><button type="button">다운로드</button></li>
+              <li><button type="button">피드에 공유</button></li>
+              <li><button type="button">인쇄</button></li>
+            </ul>
+          </div>
+          <!-- //layer -->
+        </div>
+      </div>
+    </div>
+    <!-- //btn-set -->
+
+    <!-- btn-set : 임시저장없는 케이스 -->
+    <div class="cleverse-tbl-btn-set">
+      <div>
+        <select name="" id="" class="cleverse-design" >
+          <option value="">크기 100%</option>
+          <option value="">옵션명</option>
+          <option value="">옵션명</option>
+        </select>
+        <button type="button" class="cleverse-btn basic ico-info">발송요청정보편집</button>
+      </div>
+      <div>
+        <div class="drop-down-menu">
+          <!-- layer -->
+          <!--
+            default value: false 입니다.
+            data-visible="true" 일 경우 레이어 지속 노출
+            data-visible="false" 일 경우 레이어 toggle 형태로 노출
+          -->
+          <button type="button" class="cleverse-btn-option" data-visible="false">옵션 더보기</button>
+          <div class="layer-option-view">
+            <ul>
+              <li><button type="button">진행상태</button></li>
+              <li><button type="button">다운로드</button></li>
+              <li><button type="button">피드에 공유</button></li>
+              <li><button type="button">인쇄</button></li>
+            </ul>
+          </div>
+          <!-- //layer -->
+        </div>
+      </div>
+    </div>
+    <!-- //btn-set -->
+    <!-- table -->
+    <div class="cleverse-tbl-view">
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">문서종류</th>
+            <td>품의</td>
+            <th scope="row">보존기간</th>
+            <td>1년</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">공시여부</th>
+            <td>
+              <select name="" id="" class="cleverse-design" >
+                <option value="">선택</option>
+                <option value="">옵션명</option>
+                <option value="">옵션명</option>
+              </select>
+            </td>
+            <th scope="row">문서등급</th>
+            <td>
+              <select name="" id="" class="cleverse-design" >
+                <option value="">선택</option>
+                <option value="">옵션명</option>
+                <option value="">옵션명</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">권한열람</th>
+            <td colspan="3">
+              <b>결재자, 참조, 수신처, 팀 공개</b>
+              <p class="mt5 fc-gray normal">업무상 유관자 및 팀원까지만 공유 가능한 문서</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">결재선</th>
+            <td colspan="3">
+              <div class="approval-line-list">
+                <ul>
+                  <li>
+                    <div class="type">
+                      <span>기안</span>
+                      <span class="on">상신</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 과장</button></strong>
+                      <p>디지털워크그룹 디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                  <li class="pay-type">
+                    <div class="type">
+                      <span class="on">결재</span>
+                      <span>열람</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 그룹파트장</button></strong>
+                      <p>디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="type">
+                      <span class="on">기안</span>
+                      <span>상신</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 과장</button></strong>
+                      <p>디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="type">
+                      <span class="on">기안</span>
+                      <span>상신</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 차장</button></strong>
+                      <p>디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="type">
+                      <span>기안</span>
+                      <span class="on">상신</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 과장</button></strong>
+                      <p>디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="type">
+                      <span>기안</span>
+                      <span class="on">상신</span>
+                    </div>
+                    <div class="staff-info">
+                      <strong><button type="button" class="staff"><b>김한화</b> 과장</button></strong>
+                      <p>디지털워크그룹</p>
+                      <span>2022.02.09 10:55</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="approval-line-box">
+                <ul>
+                  <li>
+                    <span>승인(협조결재)</span>
+                    <span><button type="button" class="staff">김한화 차장</button></span>
+                    <span class="part">디지털워크그룹</span>
+                    <span>2022.02.09 10:55</span>
+                  </li>
+                  <li>
+                    <span>승인(협조결재)</span>
+                    <span><button type="button" class="staff">김한화 차장</button></span>
+                    <span class="part">PL팀</span>
+                    <span>2022.02.09 10:55</span>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">참조<button type="button" class="cleverse-btn-tooltip">툴팁</button></th>
+            <td colspan="3">
+              <button type="button" class="staff">이선희(디지털워크그룹)</button>,
+              <button type="button" class="staff">최소영(PL팀)</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">수신<button type="button" class="cleverse-btn-tooltip">툴팁</button></th>
+            <td colspan="3">
+              <button type="button" class="staff">이선희(디지털워크그룹)</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">메모<button type="button" class="cleverse-btn-tooltip">툴팁</button></th>
+            <td colspan="3">
+              <textarea name="" id="" class="cleverse-design"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-approval">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">첨부문서</th>
+            <td colspan="3">
+              <div class="cleverse-tbl-btn-set">
+                <p>
+                  <button type="button" class="cleverse-btn basic ico-del">항목제거</button>
+                  <button type="button" class="cleverse-btn basic ico-doc">관련문서</button>
+                  <button type="button" class="cleverse-btn basic">앞으로</button>
+                  <button type="button" class="cleverse-btn basic">뒤로</button>
+                </p>
+                <p><button type="button" class="cleverse-btn basic ico-file org">파일추가</button></p>
+              </div>
+              <div>
+                <!-- 임시 영역 -->
+                <p style="background: #f5f5f5; text-align: center; line-height: 150px; color: #666;">파일 첨부 영역</p>
+                <!-- //임시 영역 -->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cleverse-tbl-admin-custom">
+        <colgroup>
+          <col style="width:120px;">
+          <col>
+          <col style="width:120px;">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td colspan="4" class="ta-c">
+              <div class="cleverse-paper-wrap">
+                <div class="cleverse-box">
+                  <strong>품의</strong>
+                  <!-- table -->
+                  <div class="cleverse-tbl-view">
+                    <table class="cleverse-tbl-approval">
+                      <colgroup>
+                        <col style="width:150px;">
+                        <col>
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">제목</th>
+                          <td><input type="text" name="" id="" class="cleverse-design" ></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">기안자</th>
+                          <td><input type="text" name="" id="" class="cleverse-design" ></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">수신처</th>
+                          <td>수신처 별도</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- //table -->
+                  <!-- 청정지역 -->
+                  <table>
+                    <colgroup>
+                      <col style="width:150px;">
+                      <col>
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">제목</th>
+                        <td><input type="text" name="" id="" class="cleverse-design" ></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">기안자</th>
+                        <td><input type="text" name="" id="" class="cleverse-design" ></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">수신처</th>
+                        <td>수신처 별도</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- 청정지역 -->
+                  <div class="cleverse-print">
+                    <!-- 임시영역 -->
+                     <p style="text-align:center;line-height:250px;">작성된 문서 출력 부분</p>
+                    <!-- //임시영역 -->
+                    <div>
+                      <table class="cleverse-tbl-approval">
+                        <colgroup>
+                          <col style="width:150px;">
+                          <col>
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">참조</th>
+                            <td>김한화(디지털워크그룹), 김한화(디지털워크그룹)</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">수신</th>
+                            <td>김한화(디지털워크그룹)</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">메모</th>
+                            <td>업무상 유관자 및 팀원까지만 공유 가능한 문서</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- //table -->
+
+  </div>
+  <script>
+    frameHeight()
+  </script>
+</body>
+</html>
