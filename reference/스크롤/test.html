@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+		}
+	  #wrap {
+			padding-top: 100vh;
+		}
+		.item {
+			width: 200px;
+			height: 200px;
+			margin: 50px auto;
+			padding-top: 75px;
+			background: #ccc;
+			text-align: center;
+			color: #FFF;
+			font-size: 3em;
+      border: 1px solid gray !important;
+			background-color: #fefefe;
+		}
+		.item.txt {
+			width: 500px;
+			height: auto;
+			color: #ccc;
+		}
+		.aosess_wrap {overflow: hidden;margin: 0 auto; width: fit-content;}
+		.fl{float: left;}
+    *[data-ani='showDown'], *[data-ani='showUp']{opacity: 1; transition: opacity 500ms;}
+    *[data-ani='showUp']{transform: translate3d(0,100%,0);}
+    *[data-ani='showDown']{transform: translate3d(0,-100%,0);}
+
+    .active{opacity: 1;background-color: gray; transform: translate3d(0,0,0); transition: all 500ms;}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+		<div class="item txt" data-ani="showUp">
+			<p>1</p>
+			<div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, est. Id ratione autem unde molestiae, 
+				quo cupiditate, cumque explicabo asperiores a magnam assumenda blanditiis. Voluptatum aut consequatur officia enim esse?</div>
+		</div>
+		<div class="aosess_wrap" data-ani="showDown">
+      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, est. Id ratione autem unde molestiae, <br>
+				quo cupiditate, cumque explicabo asperiores a magnam assumenda blanditiis.es a magnam assumenda blanditiis.<br>
+        es a magnam assumenda blanditiis.es a magnam assumenda blanditiis. Voluptatum aut consequatur officia enim esse?</div>
+			<div class="item fl">2</div>
+			<div class="item fl">2.25</div>
+			<div class="item fl">2.5</div>
+		</div>
+		<div class="item ani-showUp" data-ani="showUp">3</div>
+		<div class="item" data-ani="showUp">4</div>
+		<div class="item" data-ani="showUp">5</div>
+		<div class="item" data-ani="showUp">6</div>
+		<div class="item" data-ani="showDown">7</div>
+		<div class="item" data-ani="showDown">8</div>
+		<div class="item" data-ani="showDown">9</div>
+		<div class="item" data-ani="showDown">10</div>
+		<div class="item" data-ani="showDown">11</div>
+	</div>
+
+</body>
+<script>
+  console.log("1 offT    " + document.querySelectorAll('[data-ani]')[1].offsetTop);
+  // slide Up 하기
+  // 1. window, document 높이값구하기
+  // 2. viewport 밑바닥에서 20vh 위 절대좌표 구하기
+  // 3. 애니메이션 요소 절반위치 절대좌표구하기
+  // 4. 2번 > 3번 이면 동작active
+
+  window.addEventListener('scroll', debounce(uiShowAni));
+
+  //show animation
+  function uiShowAni(){
+    let scrollPos = window.scrollY;//scroll offset
+    let wH = window.innerHeight; //window height
+    let docH = Math.max(//document(scroll) height //Browser compatibility
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    let items = document.querySelectorAll('[data-ani]');
+
+    console.log(scrollPos + wH);
+    console.log('docH  '+document.body.offsetHeight);
+
+    if ((scrollPos + wH) >= docH) {//scroll bottom check
+      items.forEach(element => {
+        element.classList.add('active')        
+      });
+    } 
+
+    for (let i = 0; i < items.length; i++) {
+      const el = items[i];
+      let aniName = el.getAttribute('data-ani');
+      let triggerPos = (scrollPos + wH) - (wH * 0.2); //showUp-animation trigger window offset//화면밑에서 20%
+      let elOff = el.offsetTop;
+      
+      if(aniName == "showDown"){
+        elOff = el.offsetTop + (el.offsetHeight * 0.5);
+      }
+
+      if(triggerPos >= elOff){
+        el.classList.add('active')
+      }else {
+        el.classList.remove('active')
+      }
+
+      
+     /*  
+      if(i == 1){
+        console.log("window.scrollY  " + parseInt(window.scrollY));
+        console.log('바닥  ' + (scrollPos + wH));
+        console.log("triggerPos   " + triggerPos);
+        console.log("elOff   " + elOff);
+      } */
+      
+    }
+    
+  }
+
+  //debounce
+  function debounce(func, wait = 20, immediate = true) {
+    let timeout;
+    let context = this; //context=콜백함수 
+    return () => {
+      let context = this; //context=콜백함수 
+      let args = arguments; //인수 배열형태 객체 [0:func, 2: 20, 3: true]
+      let later = () => {
+        timeout = null;
+        if (!immediate) {
+          func.apply(context, args);
+          //args={func:'', wait: 20, immediate: true}
+          //함수 func에 context를 this로 보내주고, args를 func에 인수로 보내줌 
+          //func이 인수 안받아도됨
+        }
+      };
+      let callNow = immediate && !timeout; //true
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+</script>
+</html>
