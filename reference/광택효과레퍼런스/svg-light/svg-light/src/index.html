@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="title">
+    This is <br/> 
+    just SVG
+  </h1>
+  <div class="subtitle">
+    How cool is that?
+  </div>
+</div>
+
+<div class="cursor">
+  <div class="cursor__point"></div>
+  <div class="cursor__light"></div>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <filter id="light">
+    <feSpecularLighting result="specOut" surfaceScale="1" specularConstant="1.2" specularExponent="10" lighting-color="#999">
+      <fePointLight id="point-light" x="50" y="75" z="100" />
+    </feSpecularLighting>
+  </filter>
+
+  <filter id="noise">
+    <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.999 0.999" seed="1" numOctaves="10" />
+    <feColorMatrix type="saturate" values="0" />
+    <feComponentTransfer result="noise">
+      <feFuncA type="linear" slope="1" />
+    </feComponentTransfer>
+    <feBlend in="noise" in2="SourceGraphic" mode="multiply" />
+  </filter>
+</svg>

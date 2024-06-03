@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CSS Galaxy Button 🚀</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style2.css">
+  <style>
+    .circle{
+      --cut: 0.1em;
+      --active: 0;
+      --bg:
+        radial-gradient(
+          120% 120% at 126% 126%,
+          hsl(var(--hue) calc(var(--active) * 97%) 98% / calc(var(--active) * 0.9)) 40%,
+          transparent 50%
+        ) calc(100px - (var(--active) * 100px)) 0 / 100% 100% no-repeat, 
+        radial-gradient(
+          120% 120% at 120% 120%,
+          hsl(var(--hue) calc(var(--active) * 97%) 70% / calc(var(--active) * 1)) 30%,
+          transparent 70%
+        ) calc(100px - (var(--active) * 100px)) 0 / 100% 100% no-repeat,
+        hsl(var(--hue) calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
+      /* background: var(--bg); */
+      width: 100px;
+      height: 100px;
+      font-size: 2rem;
+      font-weight: 500;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25em;
+      white-space: nowrap;
+      border-radius: 2rem;
+      position: relative;
+      scale: calc(1 + (var(--active) * 0.1));
+      transform-style: preserve-3d;
+      perspective: 100vmin;
+      overflow: hidden;
+      position: relative;
+    }
+    .circle::before{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: white;
+      mask-image: url("data:image/svg+xml,%3Csvg height='100' width='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle r='45' cx='50' cy='50' stroke='green' stroke-width='3' fill='none' /%3E Sorry, your browser does not support inline SVG. %3C/svg%3E ");
+      mask-repeat: no-repeat;
+      border: 1px solid white;
+    }
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="galaxy-button">
+  <div class="circle">
+    <span class="spark"></span>
+  </div>
+  <button>
+    <span class="spark"></span>
+    <span class="backdrop"></span>
+    <span class="text">Explore</span>
+  </button>
+  <div class="bodydrop"></div>
+</div>
+<!-- partial -->
+  <script  src="./script2.js"></script>
+
+</body>
+</html>

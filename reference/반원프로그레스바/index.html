@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .half_progress {
+  width: 150px;
+  height: 84px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+.half_progress .txt_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.half_progress .txt_wrap .txt_range {
+  letter-spacing: -0.0375rem;
+  font-family: "Suit tuneh";
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.56;
+}
+.half_progress .txt_wrap .txt_range.type01 {
+  color: #fed637;
+}
+.half_progress .txt_wrap .txt_range.type02 {
+  color: #91d47a;
+}
+.half_progress .txt_wrap .txt_range.type03 {
+  color: #2acfb7;
+}
+.half_progress .txt_wrap .txt_index {
+  letter-spacing: -0.046875rem;
+  font-family: "Suit tuneh";
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.54;
+}
+.half_progress .pointer {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  border: 1rem solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+  z-index: 3;
+}
+.half_progress .pointer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1.258rem;
+  height: 1.258rem;
+  margin: 0.1rem;
+  border-radius: 100%;
+  border: 0.129rem solid #fff;
+}
+.half_progress .pointer.type01::before {
+  background-color: #fed637;
+}
+.half_progress .pointer.type02::before {
+  background-color: #91d47a;
+}
+.half_progress .pointer.type03::before {
+  background-color: #2acfb7;
+}
+.half_progress .bar_overflow {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 75px;
+  margin-bottom: 10px;
+}
+.half_progress .bar_overflow::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border: 1rem solid transparent;
+  border-radius: 50%;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #fed637 19%, #25d1bc 92%) border-box;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+.half_progress .bar_overflow .bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1.07rem solid #ebeff5;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.half_progress .left {
+  position: absolute;
+  background: #fed637;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.half_progress .right { position: absolute; background: #ebeff5; width: 1rem; height: 1rem; border-radius: 50%; right: 0; bottom: 0; overflow: hidden; }
+</style>
+<body>
+  <div class="half_progress">
+    <div class="aType" style="display:none">mvCon</div>
+    <div class="pointer type01 type02" style="transform: rotate(403.2deg);"></div>
+    <div class="left"></div>
+    <div class="right">
+      <div class="back"></div>
+    </div>
+    <div class="bar_overflow">
+      <div class="bar" style="transform: rotate(133.2deg);"></div>
+    </div>
+    <p class="hidden">
+      <span class="num" id="userPer02">49</span>%
+    </p>
+    <div class="txt_wrap">
+      <div class="txt_range type02" id="chatRang02">보통</div>
+      <div class="txt_index">일관성</div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $(".half_progress").each(function(){
+    	var analysisType = $(this).find(".aType").text();
+        var bar = $(this).find(".bar");
+        var pointer = $(this).find(".pointer");
+        var val = $(this).find(".num");//퍼센트값
+        var per = parseInt( val.text(), 10);
+        var $right = $('.right');
+        var $back = $('.back');
+        $({p:0}).animate({p:per}, {
+          duration: 3000,
+          step: function(p) {
+            bar.css({
+              transform: "rotate("+ (45+(p*1.8)) +"deg)"
+            });
+            pointer.css({
+              transform: "rotate("+ (315+(p * 1.8)) +"deg)"
+            });
+            val.text(p|0);
+          }
+        }).delay( 200 );
+
+        pointer.addClass('type01')
+        if (per >= 0) {
+          pointer.addClass('type01');
+          if (per > 25) {
+            pointer.addClass('type02');
+          }
+          if (per >= 75) {
+            pointer.addClass('type03');
+          }
+        }      
+        
+      });
+    })
+  </script>
+  
+</body>
+</html>

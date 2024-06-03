@@ -2,9 +2,9 @@
    --color-text: navy;
    --color-bg: papayawhip;
    --color-bg-accent: #ecdcc0;
-   --size: clamp(10rem, 1rem + 40vmin, 30rem);
+   --size: clamp(10rem, 1rem + 40vmin, 30rem);/* min, minmax사이에서의 값, max */
    --gap: calc(var(--size) / 14);
-   --duration: 60s;
+   --duration: 30s;
    --scroll-start: 0;
    --scroll-end: calc(-100% - var(--gap));
  }
