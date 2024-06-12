@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    #wrap{height: 100vh;padding-top: 300px; margin-left: 300px;}
+
+    .gnbBtn{width: 100px; height: 60px;line-height: 60px;border: 1px solid #eee;}
+
+    .gnb.active{display: block}
+    .gnb { position: absolute; background: #fff; display: none; }
+    .gnb .dep{position: absolute; top: 0; left: 200px; width: 200px; display: none;}
+    .gnb .dep > ul{height: 300px;overflow-y: auto;}
+    .gnb li { display: flex; align-items: center; width: 200px; height: 55px; font-size: 18px; font-weight: 500; line-height: 1.2; border-bottom: 1px solid #eee; }
+    .gnb li.active > .dep{display: block;}
+    .gnb li.active{color: red;}
+    .gnb .dep2 {color: black;}
+    .gnb .dep3 { color: black}
+
+  </style>
+</head>
+<body>
+  
+  <div id="wrap">
+
+    <header>
+      <div class="gnbBtn" onmouseenter="gnbbtnHover()">GBN</div>
+      <div class="gnb active">
+        <ul class="dep1">
+          <li class="active">Menu1
+            <div class="dep">
+              <ul class="dep2">
+                <li class="active">Menu1-1
+                  <div class="dep">
+                    <ul class="dep3">
+                      <li>Menu1-1-1</li>
+                      <li>Menu1-1-2</li>
+                      <li>Menu1-1-3</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>Menu1-2
+                  <div class="dep">
+                    <ul class="dep3">
+                      <li>Menu1-2-1</li>
+                      <li>Menu1-2-2</li>
+                      <li>Menu1-2-3</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>Menu1-3</li>
+                <li>Menu1-4</li>
+                <li>Menu1-5</li>
+                <li>Menu1-6
+                  <div class="dep">
+                    <ul class="dep3">
+                      <li>Menu1-6-1</li>
+                      <li>Menu1-6-2</li>
+                      <li>Menu1-6-3</li>
+                      <li>Menu1-6-4</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>Menu2
+            <div class="dep dep2">
+              <ul class="dep2">
+                <li>Menu2-1
+                  <div class="dep">
+                    <ul class="dep3">
+                      <li>Menu2-1-1</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>Menu2-2</li>
+              </ul>
+            </div>
+          </li>
+          <li>Menu3
+            <div class="dep dep2">
+              <ul>
+                <li>Menu3-1
+                  <div class="dep">
+                    <ul class="dep3">
+                      <li>Menu3-1-1</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>Menu3-2</li>
+              </ul>
+            </div>
+          </li>
+          <li>Menu4</li>
+        </ul>
+      </div><!-- //gnb -->
+    </header>
+
+
+
+
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      gnbOpen()
+    })
+    function gnbbtnHover(){
+      if(!$('.gnb').hasClass('active')) $('.gnb').addClass('active');      
+    }
+
+    function gnbOpen(){
+      $('.dep li').mouseover(function(e){
+        let t = e.currentTarget;
+        let dep = $(t).parents('.dep');
+        let idx = $(t).index();
+        
+       /*  if(dep.hasClass('dep1')){
+          $('.dep2').addClass('active')
+          $('.dep2').find('.dep_in').hide()
+          $('.dep2').find('.dep_in').eq(idx).show()
+        }else if(dep.hasClass('dep2')){
+          $('.dep3').addClass('active')
+          $('.dep3').find('.dep_in').hide()
+          $('.dep3').find('.dep_in').eq(idx).show()
+        } */
+      })
+
+
+      let dep1 = $('.dep1 > li') || $('.dep1 > li').children('a');
+      let dep2 = $('.dep2 > li') || $('.dep2 > li').children('a');
+      let dep3 = $('.dep3 > li') || $('.dep3 > li').children('a');
+      
+      
+      dep1.mouseover(function(){
+        $('.dep1 > li') .removeClass('active');
+        $(this).addClass('active');      
+      });
+      $('.gnb > ul').mouseleave(function(){
+        $(this).children('li').removeClass('active');
+      })
+      dep2.mouseover(function(){
+        $('.dep2 > li').removeClass('active');
+        $(this).addClass('active');
+      })
+      $('.dep2').mouseleave(function(){
+        $(this).children('li').removeClass('active');
+      })
+      dep3.mouseover(function(){
+        $('.dep3 > li').removeClass('active');
+        $(this).addClass('active');
+      });
+
+    }
+  
+  </script>
+</body>
+</html>
